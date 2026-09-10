@@ -33,5 +33,11 @@
   },
   "devDependencies": {
     "wrangler": "^4.0.0"
+  },
+  "overrides": {
+    "sharp": "0.35.4",
+    "undici": "7.29.1",
+    "ws": "8.21.0",
+    "esbuild": "0.28.1"
   }
 }
