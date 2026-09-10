@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/scenario-definition-v0.1.schema.json",
+  "title": "StarBench Scenario Definition V0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "record_type", "scenario_id", "name", "description", "category",
+    "task_types", "benchmark_task_refs", "suite_refs", "metric_preferences", "weights",
+    "minimum_coverage", "minimum_evidence", "metadata", "version"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "record_type": { "const": "SCENARIO_DEFINITION" },
+    "scenario_id": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "category": { "enum": ["coding", "planning", "instruction_following", "reasoning", "long_context", "cost_efficiency", "agent"] },
+    "task_types": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "benchmark_task_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["benchmark_task_id", "version", "weight", "required"],
+        "properties": {
+          "benchmark_task_id": { "type": "string", "minLength": 1 },
+          "version": { "type": "string", "pattern": "^[0-9]+[.][0-9]+[.][0-9]+$" },
+          "weight": { "type": "number", "exclusiveMinimum": 0 },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "suite_refs": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["suite_id", "version", "weight", "required"],
+        "properties": {
+          "suite_id": { "type": "string", "minLength": 1 },
+          "version": { "type": "string", "pattern": "^[0-9]+[.][0-9]+[.][0-9]+$" },
+          "weight": { "type": "number", "exclusiveMinimum": 0 },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "metric_preferences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["metric_id", "weight", "required"],
+        "properties": {
+          "metric_id": { "type": "string", "minLength": 1 },
+          "weight": { "type": "number", "exclusiveMinimum": 0 },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "weights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["normalization", "coverage_mode"],
+      "properties": {
+        "normalization": { "const": "normalize_positive" },
+        "coverage_mode": { "const": "weighted_task_metric_coverage" }
+      }
+    },
+    "minimum_coverage": { "type": "number", "minimum": 0, "maximum": 1 },
+    "minimum_evidence": { "type": "integer", "minimum": 1 },
+    "metadata": { "type": "object" },
+    "version": { "type": "string", "pattern": "^[0-9]+[.][0-9]+[.][0-9]+$" }
+  },
+  "anyOf": [
+    { "properties": { "benchmark_task_refs": { "minItems": 1 } } },
+    { "properties": { "suite_refs": { "minItems": 1 } } }
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "ai_name": "读取失败示例",
+  "source_url": "https://example.com/unavailable",
+  "web_text": "",
+  "web_text_length": 0,
+  "webpage_read_status": "failed",
+  "web_error_code": "CONNECTION_FAILED",
+  "web_error_message": "Remote page could not be read.",
+  "web_checked_at": "2026-08-01T01:35:02Z"
+}

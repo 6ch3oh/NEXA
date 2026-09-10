@@ -1,0 +1,3 @@
+{
+  "reference_model":"synthetic/reference-v1","probes":[{"name":"synthetic-one","domain":"math","cloze_consensus":1,"value":1}],"self_error":0,"target_results":{"reference-v1":{"correct":1,"total":1,"hamming":0,"error_rate":0}}
+}

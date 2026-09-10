@@ -1,0 +1,47 @@
+{
+  "classification": "SYNTHETIC_PRODUCT_BACKEND_REFERENCE",
+  "version": "0.2",
+  "state": "AUTOMATION_LOCAL_PRODUCT_BACKEND_V0.2_READY",
+  "provider": {
+    "provider_kind": "n8n",
+    "provider_instance_id": null,
+    "display_label": "本机 n8n / 待确认实例名称",
+    "identity_state": "CONFIRMATION_REQUIRED",
+    "health": "UNKNOWN"
+  },
+  "production_readiness_matrix": {
+    "capability_id": "knowledge.collect",
+    "read": "READY",
+    "provider_health": "NOT_READY",
+    "run": "CONFIG_REQUIRED",
+    "result_copy": "IMPLEMENTATION_READY",
+    "diagnose": "READY",
+    "repair": "IMPLEMENTATION_READY",
+    "build": "IMPLEMENTATION_READY",
+    "publish": "BLOCKED_EXTERNAL"
+  },
+  "ui_reference": {
+    "workflow_total": 3,
+    "workflow_ids": ["knowledge.collect", "fixture.success", "fixture.failed"],
+    "result": {
+      "artifact_kind": "MARKDOWN",
+      "primary_action": "COPY_MARKDOWN",
+      "copy_ready": true,
+      "provenance": "synthetic_ui_reference"
+    },
+    "failure": {
+      "historical_failure_only": true,
+      "workflow_runtime": "NOT_OBSERVED",
+      "retry": "READY",
+      "ai_diagnosis": "READY"
+    }
+  },
+  "side_effects": {
+    "credential_read": false,
+    "production_execution": false,
+    "production_publish": false,
+    "docker_modification": false,
+    "cross_module_dispatch": false,
+    "second_workflow_engine": false
+  }
+}

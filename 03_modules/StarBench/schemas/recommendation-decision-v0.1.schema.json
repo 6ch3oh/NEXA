@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/recommendation-decision-v0.1.schema.json",
+  "title": "StarBench Recommendation Decision V0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "record_type", "decision_id", "request_id", "policy_id", "scenario_id",
+    "status", "recommended_candidate", "eligible_candidates", "rejected_candidates",
+    "candidate_assessments", "decision_score", "coverage", "confidence", "reason_codes",
+    "explanation", "evidence_refs", "source_class", "generated_at", "metadata"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "record_type": { "const": "RECOMMENDATION_DECISION" },
+    "decision_id": { "type": "string", "pattern": "^decision_[a-f0-9]{64}$" },
+    "request_id": { "type": "string" },
+    "policy_id": { "type": "string" },
+    "scenario_id": { "type": "string" },
+    "status": { "enum": ["RECOMMENDED", "NO_ELIGIBLE_CANDIDATE", "INSUFFICIENT_EVIDENCE", "ABSTAINED", "TIE", "INVALID_REQUEST"] },
+    "recommended_candidate": { "type": ["object", "null"] },
+    "eligible_candidates": { "type": "array", "items": { "type": "object" } },
+    "rejected_candidates": { "type": "array", "items": { "type": "object" } },
+    "candidate_assessments": { "type": "array", "items": { "type": "object" } },
+    "decision_score": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+    "coverage": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+    "confidence": { "type": ["string", "null"] },
+    "reason_codes": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+    "explanation": { "type": "string" },
+    "evidence_refs": { "type": "array", "items": { "type": "object" } },
+    "source_class": { "enum": ["TEST_FIXTURE", "REAL_RECOMMENDATION"] },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "metadata": { "type": "object" }
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "result_artifact": {
+    "phase": "synthetic-result-intake",
+    "workflow_id": "synthetic-workflow-001",
+    "cases": {
+      "success": {
+        "execution_id": "synthetic-execution-001",
+        "test_output_reached": true,
+        "node_path": ["Synthetic Trigger", "Synthetic Output"],
+        "fields": {
+          "webpage_read_status": "success",
+          "web_checked_at": "2026-08-10T16:00:00+00:00",
+          "http_status_code": 200,
+          "web_text_length": 12,
+          "source_url": "https://invalid.example/synthetic",
+          "web_text": "SYNTHETIC_CONTENT"
+        }
+      },
+      "partial": {
+        "execution_id": "synthetic-execution-002",
+        "test_output_reached": true,
+        "fields": {
+          "webpage_read_status": "empty",
+          "web_checked_at": "2026-08-10T16:01:00+00:00",
+          "http_status_code": 200,
+          "web_text_length": 0,
+          "web_error_message": "SYNTHETIC_EMPTY"
+        }
+      },
+      "failed": {
+        "execution_id": "synthetic-execution-003",
+        "test_output_reached": false,
+        "fields": {
+          "webpage_read_status": "failed",
+          "web_checked_at": "2026-08-10T16:02:00+00:00",
+          "http_status_code": 500,
+          "web_error_code": "SYNTHETIC_FAILURE"
+        }
+      },
+      "secret": {
+        "execution_id": "synthetic-execution-004",
+        "test_output_reached": true,
+        "raw_payload": "FAKE_SECRET_VALUE",
+        "fields": {
+          "webpage_read_status": "success",
+          "web_checked_at": "2026-08-10T16:03:00+00:00",
+          "credential": "FAKE_SECRET_VALUE",
+          "authorization": "FAKE_SECRET_VALUE",
+          "prompt_raw": "FAKE_SECRET_VALUE",
+          "full_content": "FAKE_SECRET_VALUE",
+          "binary": "FAKE_SECRET_VALUE"
+        }
+      }
+    }
+  },
+  "run_summary_artifact": [
+    {"case": "success", "execute_exit_code": 0, "execute_log": "synthetic:success.log"},
+    {"case": "partial", "execute_exit_code": 0, "execute_log": "synthetic:partial.log"},
+    {"case": "failed", "execute_exit_code": 2, "execute_log": "synthetic:failed.log"},
+    {
+      "case": "secret",
+      "execute_exit_code": 0,
+      "execute_log": "synthetic:secret.log",
+      "token": "FAKE_SECRET_VALUE"
+    }
+  ]
+}

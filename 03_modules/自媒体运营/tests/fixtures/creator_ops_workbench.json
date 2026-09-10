@@ -1,0 +1,42 @@
+{
+  "fixture_version": "0.1",
+  "synthetic_data_only": true,
+  "scenarios": [
+    {"scenario_id":"idea_write_draft","content_id":"wb-idea","target_accounts":["acct-a1"],"current_state":"IDEA","title":null,"body":null,"created_at":"2026-08-01T00:00:00Z"},
+    {"scenario_id":"draft_prepare_assets","content_id":"wb-draft","target_accounts":["acct-a2"],"current_state":"DRAFT","title":"Synthetic draft","body":"Synthetic body","created_at":"2026-08-02T00:00:00Z"},
+    {"scenario_id":"asset_preparation_missing","content_id":"wb-asset-missing","target_accounts":["acct-b1"],"current_state":"ASSET_PREPARATION","content_type":"SHORT_VIDEO","title":"Missing media","script_reference":"fixture://script/missing","created_at":"2026-08-03T00:00:00Z"},
+    {"scenario_id":"review_pending","content_id":"wb-review","target_accounts":["acct-b2"],"current_state":"REVIEW","title":"Review item","body":"Synthetic body","created_at":"2026-08-04T00:00:00Z"},
+    {"scenario_id":"review_rejected","content_id":"wb-rejected","target_accounts":["acct-b3"],"current_state":"REJECTED","review_state":"CHANGES_REQUESTED","title":"Rejected item","body":"Synthetic body","created_at":"2026-08-05T00:00:00Z"},
+    {"scenario_id":"ready_to_publish","content_id":"wb-ready-pass","target_accounts":["acct-b3"],"current_state":"READY_TO_PUBLISH","review_state":"APPROVED","publish_readiness":"READY","content_type":"IMAGE_POST","title":"Ready synthetic post","body":"Synthetic ready body","asset_references":["wb-cover"],"created_at":"2026-08-06T00:00:00Z"},
+    {"scenario_id":"ready_checklist_fail","content_id":"wb-ready-fail","target_accounts":["acct-b4"],"current_state":"READY_TO_PUBLISH","review_state":"PENDING","publish_readiness":"READY","content_type":"IMAGE_POST","title":null,"body":null,"provenance_complete":false,"created_at":"2026-08-06T01:00:00Z"},
+    {"scenario_id":"manual_publish_success","content_id":"wb-manual-ready","target_accounts":["acct-a1"],"current_state":"READY_TO_PUBLISH","review_state":"APPROVED","publish_readiness":"READY","title":"Manual publish synthetic","body":"Synthetic manual body","created_at":"2026-08-07T00:00:00Z"},
+    {"scenario_id":"published_metrics_missing","content_id":"wb-published-no-metrics","target_accounts":["acct-a1"],"current_state":"PUBLISHED","review_state":"APPROVED","publish_readiness":"READY","title":"Published no metrics","body":"Synthetic","created_at":"2026-08-07T01:00:00Z"},
+    {"scenario_id":"published_metrics_present","content_id":"wb-metrics-present","target_accounts":["acct-a2"],"current_state":"METRICS_PENDING","review_state":"APPROVED","publish_readiness":"READY","title":"Metrics present","body":"Synthetic","created_at":"2026-08-07T02:00:00Z"},
+    {"scenario_id":"post_publish_review_pending","content_id":"wb-review-pending","target_accounts":["acct-b1"],"current_state":"METRICS_PENDING","review_state":"APPROVED","publish_readiness":"READY","title":"Review pending","body":"Synthetic","created_at":"2026-08-07T03:00:00Z"},
+    {"scenario_id":"reviewed_terminal","content_id":"wb-reviewed","target_accounts":["acct-b2"],"current_state":"REVIEWED","review_state":"APPROVED","publish_readiness":"READY","title":"Reviewed synthetic","body":"Synthetic","created_at":"2026-08-08T00:00:00Z"},
+    {"scenario_id":"blocked_content","content_id":"wb-blocked","target_accounts":["acct-b3"],"current_state":"BLOCKED","title":"Blocked synthetic","body":"Synthetic","extension_fields":{"block_reason":"Synthetic dependency","blocked_from":"DRAFT"},"created_at":"2026-08-08T01:00:00Z"},
+    {"scenario_id":"archived_content","content_id":"wb-archived","target_accounts":["acct-b4"],"current_state":"ARCHIVED","title":"Archived synthetic","body":"Synthetic","created_at":"2026-08-08T02:00:00Z"},
+    {"scenario_id":"multi_account_workload","content_id":"wb-multi-account","target_accounts":["acct-a1","acct-b1"],"current_state":"DRAFT","title":"Multi account synthetic","body":"Synthetic","created_at":"2026-08-09T00:00:00Z"}
+  ],
+  "assets": [
+    {"asset_id":"wb-cover","asset_type":"COVER","location":"fixture://workbench/cover.png","content_relations":["wb-ready-pass"],"account_relations":["acct-b3"],"status":"AVAILABLE","created_at":"2026-08-06T00:00:00Z"}
+  ],
+  "publish_records": [
+    {"publish_record_id":"wb-publish-no-metrics","content_id":"wb-published-no-metrics","account_id":"acct-a1","actual_publish_time":"2026-08-07T01:30:00Z"},
+    {"publish_record_id":"wb-publish-metrics","content_id":"wb-metrics-present","account_id":"acct-a2","actual_publish_time":"2026-08-07T02:30:00Z"},
+    {"publish_record_id":"wb-publish-review-pending","content_id":"wb-review-pending","account_id":"acct-b1","actual_publish_time":"2026-08-07T03:30:00Z"},
+    {"publish_record_id":"wb-publish-reviewed","content_id":"wb-reviewed","account_id":"acct-b2","actual_publish_time":"2026-08-08T00:30:00Z"}
+  ],
+  "metrics": [
+    {"metrics_id":"wb-metrics-1","publish_record_id":"wb-publish-metrics","views":null,"impressions":0,"likes":0,"comments":null,"favorites":0,"shares":0,"followers_delta":null,"engagement":0.0,"collected_at":"2026-08-08T02:00:00Z"},
+    {"metrics_id":"wb-metrics-2","publish_record_id":"wb-publish-review-pending","views":100,"impressions":120,"likes":5,"comments":1,"favorites":2,"shares":0,"followers_delta":1,"engagement":0.0667,"collected_at":"2026-08-08T03:00:00Z"},
+    {"metrics_id":"wb-metrics-3","publish_record_id":"wb-publish-reviewed","views":200,"impressions":250,"likes":10,"comments":2,"favorites":3,"shares":1,"followers_delta":2,"engagement":0.064,"collected_at":"2026-08-09T00:00:00Z"}
+  ],
+  "reviews": [
+    {"review_id":"wb-review-complete","content_id":"wb-reviewed","publish_record_id":"wb-publish-reviewed","strengths":["Synthetic strength"],"weaknesses":["Synthetic weakness"],"reusable_patterns":["Synthetic pattern"],"failed_patterns":[],"next_action":"Synthetic next action","evidence":["fixture://workbench/evidence"],"reviewed_at":"2026-08-09T01:00:00Z"}
+  ],
+  "due_dates": {
+    "wb-draft":"2026-08-01T00:00:00Z",
+    "wb-ready-pass":"2026-08-11T00:00:00Z"
+  }
+}

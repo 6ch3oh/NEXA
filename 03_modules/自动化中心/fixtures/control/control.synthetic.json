@@ -1,0 +1,59 @@
+{
+  "classification": "synthetic_control_foundation_fixture",
+  "source_data_copied": false,
+  "foundation_version": "0.1",
+  "capability": {
+    "capability_id": "synthetic.process",
+    "workflow_identity": {
+      "provider_kind": "synthetic",
+      "provider_instance_id": null,
+      "external_workflow_id": "synthetic-workflow-001"
+    },
+    "risk_level": "medium",
+    "confirmation_policy": "always",
+    "availability": "configuration_required",
+    "invocation_modes": ["provider_delegated"],
+    "execution_engine": "external_provider"
+  },
+  "run_request": {
+    "request_id": "synthetic-run-request-001",
+    "state": "blocked",
+    "execution_authorized": false,
+    "dispatched": false,
+    "blockers": ["provider_instance_unresolved", "execution_adapter_not_implemented"]
+  },
+  "result_action": {
+    "action_type": "copy_markdown",
+    "label": "Copy result",
+    "safe_value": "# Synthetic safe result",
+    "media_type": "text/markdown",
+    "primary": true,
+    "source_is_safe_projection": true
+  },
+  "health": {
+    "current_run_state": "unknown",
+    "current_runtime_observed": false,
+    "current_runtime_inference_allowed": false,
+    "evidence_basis": "historical_result_only",
+    "needs_attention": false
+  },
+  "repair_candidate": {
+    "candidate_id": "synthetic-repair-001",
+    "state": "draft",
+    "publish_eligible": false,
+    "static_tests": "not_run",
+    "sandbox_validation": "not_run"
+  },
+  "workflow_build_candidate": {
+    "candidate_id": "synthetic-build-001",
+    "state": "draft",
+    "reuse_required": true
+  },
+  "deployment_gate": {
+    "state": "validated",
+    "publish_eligible": false,
+    "user_approval_required": true,
+    "production_action_performed": false,
+    "blockers": ["target_provider_unresolved", "user_approval_required"]
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.1",
+  "task": "NEXA-CUSTOMER-REQUEST-OWNER-READ-PROJECTION-V0.1-001",
+  "cases": [
+    {"case_id": "overview_owner_customer_mix", "expected": "PASS"},
+    {"case_id": "today_timezone_boundary", "expected": "PASS"},
+    {"case_id": "customer_list_pagination", "expected": "PASS"},
+    {"case_id": "customer_detail_isolation", "expected": "PASS"},
+    {"case_id": "request_combined_filters", "expected": "PASS"},
+    {"case_id": "request_detail_multiple_invocations", "expected": "PASS"},
+    {"case_id": "model_usage", "expected": "PASS"},
+    {"case_id": "tier_usage", "expected": "PASS"},
+    {"case_id": "partial_cost", "expected": "PASS"},
+    {"case_id": "mixed_currency", "expected": "PASS"},
+    {"case_id": "pending_review_queue", "expected": "PASS"},
+    {"case_id": "request_pagination", "expected": "PASS"},
+    {"case_id": "secret_safety", "expected": "PASS"},
+    {"case_id": "large_input_reference_only", "expected": "PASS"},
+    {"case_id": "query_limit_500", "expected": "PASS"}
+  ]
+}

@@ -1,0 +1,350 @@
+{
+  "version": "0.1",
+  "state": "PASS_COMPLETE_STRUCTURAL_ACCOUNTING",
+  "production_sha256": "7BFC195182AC296B18C7388680786774CAA381C0924FA30EBAFEDA715CD868D2",
+  "production_source": "AUTHENTICATED_N8N_GET_ONLY_WORKFLOW_DEFINITION",
+  "production_backup": "fixtures/tiangong_run_prep/ymYh8t76VP3jGPbr_0fd6b9b7-ee0d-44b3-a494-7469be49bf96_20260822T025148448153Z.authenticated.backup.json",
+  "production_observed_at": "2026-08-22T10:51:48.448153+08:00",
+  "revision_lock": "MATCHED",
+  "production_drift": "NONE",
+  "canonical_sha256": "B99305226761E7566B4C2F4266222BE1EC2EC401FAE917D068F4D19C2D753514",
+  "candidate_sha256": "99BF04515925D7488B50E010B146E382F83F37132D1EFA4822F4F34B191B0A62",
+  "canonical_to_candidate": {
+    "source_nodes": 21,
+    "candidate_nodes": 22,
+    "source_edges": 25,
+    "candidate_edges": 26,
+    "nodes_added": [
+      "输入与路径安全校验"
+    ],
+    "nodes_removed": [],
+    "nodes_modified": {
+      "Read/Write Files from Disk": [
+        "parameters.fileName"
+      ]
+    },
+    "nodes_unchanged": [
+      "Basic LLM Chain",
+      "Convert to File",
+      "Edit Fields",
+      "HTTP其他失败判断",
+      "On form submission",
+      "OpenAI Chat Model",
+      "判断正文是否为空",
+      "提取网页正文",
+      "是否为禁止访问",
+      "是否为限流失败",
+      "是否提供来源网址",
+      "标记为禁止访问",
+      "标记为读取失败",
+      "标记为限流",
+      "标记网页为空",
+      "汇总网页资料",
+      "补齐无网页资料",
+      "读取来源网页",
+      "读取来源网页规范化",
+      "读取网页失败"
+    ],
+    "connections_added": [
+      [
+        "On form submission",
+        "main",
+        0,
+        "输入与路径安全校验",
+        "main",
+        0
+      ],
+      [
+        "输入与路径安全校验",
+        "main",
+        0,
+        "Edit Fields",
+        "main",
+        0
+      ]
+    ],
+    "connections_removed": [
+      [
+        "On form submission",
+        "main",
+        0,
+        "Edit Fields",
+        "main",
+        0
+      ]
+    ],
+    "metadata_changed_paths": [
+      "id",
+      "name",
+      "versionId"
+    ]
+  },
+  "production_to_candidate": {
+    "source_nodes": 11,
+    "candidate_nodes": 22,
+    "source_edges": 12,
+    "candidate_edges": 26,
+    "nodes_added": [
+      "HTTP其他失败判断",
+      "判断正文是否为空",
+      "是否为禁止访问",
+      "是否为限流失败",
+      "标记为禁止访问",
+      "标记为读取失败",
+      "标记为限流",
+      "标记网页为空",
+      "读取来源网页规范化",
+      "读取网页失败",
+      "输入与路径安全校验"
+    ],
+    "nodes_removed": [],
+    "nodes_modified": {
+      "Basic LLM Chain": [
+        "parameters.text"
+      ],
+      "Read/Write Files from Disk": [
+        "parameters.fileName"
+      ],
+      "提取网页正文": [
+        "onError",
+        "parameters.dataPropertyName"
+      ],
+      "汇总网页资料": [
+        "parameters.assignments.assignments[7]",
+        "parameters.assignments.assignments[8]",
+        "parameters.assignments.assignments[9]",
+        "parameters.assignments.assignments[10]"
+      ],
+      "补齐无网页资料": [
+        "parameters.assignments.assignments[0].name",
+        "parameters.assignments.assignments[1].name",
+        "parameters.assignments.assignments[2].name",
+        "parameters.assignments.assignments[3].name",
+        "parameters.assignments.assignments[5].type",
+        "parameters.assignments.assignments[5].value",
+        "parameters.assignments.assignments[7]",
+        "parameters.assignments.assignments[8]",
+        "parameters.assignments.assignments[9]",
+        "parameters.assignments.assignments[10]"
+      ],
+      "读取来源网页": [
+        "onError",
+        "parameters.options.response.response.fullResponse",
+        "parameters.options.response.response.neverError"
+      ]
+    },
+    "nodes_unchanged": [
+      "Convert to File",
+      "Edit Fields",
+      "On form submission",
+      "OpenAI Chat Model",
+      "是否提供来源网址"
+    ],
+    "connections_added": [
+      [
+        "HTTP其他失败判断",
+        "main",
+        0,
+        "标记为读取失败",
+        "main",
+        0
+      ],
+      [
+        "HTTP其他失败判断",
+        "main",
+        1,
+        "提取网页正文",
+        "main",
+        0
+      ],
+      [
+        "On form submission",
+        "main",
+        0,
+        "输入与路径安全校验",
+        "main",
+        0
+      ],
+      [
+        "判断正文是否为空",
+        "main",
+        0,
+        "标记网页为空",
+        "main",
+        0
+      ],
+      [
+        "判断正文是否为空",
+        "main",
+        1,
+        "汇总网页资料",
+        "main",
+        0
+      ],
+      [
+        "提取网页正文",
+        "main",
+        0,
+        "判断正文是否为空",
+        "main",
+        0
+      ],
+      [
+        "是否为禁止访问",
+        "main",
+        0,
+        "标记为禁止访问",
+        "main",
+        0
+      ],
+      [
+        "是否为禁止访问",
+        "main",
+        1,
+        "HTTP其他失败判断",
+        "main",
+        0
+      ],
+      [
+        "是否为限流失败",
+        "main",
+        0,
+        "标记为限流",
+        "main",
+        0
+      ],
+      [
+        "是否为限流失败",
+        "main",
+        1,
+        "是否为禁止访问",
+        "main",
+        0
+      ],
+      [
+        "标记为禁止访问",
+        "main",
+        0,
+        "Basic LLM Chain",
+        "main",
+        0
+      ],
+      [
+        "标记为读取失败",
+        "main",
+        0,
+        "Basic LLM Chain",
+        "main",
+        0
+      ],
+      [
+        "标记为限流",
+        "main",
+        0,
+        "Basic LLM Chain",
+        "main",
+        0
+      ],
+      [
+        "标记网页为空",
+        "main",
+        0,
+        "Basic LLM Chain",
+        "main",
+        0
+      ],
+      [
+        "读取来源网页",
+        "main",
+        0,
+        "读取来源网页规范化",
+        "main",
+        0
+      ],
+      [
+        "读取来源网页",
+        "main",
+        1,
+        "标记为读取失败",
+        "main",
+        0
+      ],
+      [
+        "读取来源网页规范化",
+        "main",
+        0,
+        "是否为限流失败",
+        "main",
+        0
+      ],
+      [
+        "输入与路径安全校验",
+        "main",
+        0,
+        "Edit Fields",
+        "main",
+        0
+      ]
+    ],
+    "connections_removed": [
+      [
+        "On form submission",
+        "main",
+        0,
+        "Edit Fields",
+        "main",
+        0
+      ],
+      [
+        "提取网页正文",
+        "main",
+        0,
+        "汇总网页资料",
+        "main",
+        0
+      ],
+      [
+        "是否提供来源网址",
+        "main",
+        0,
+        "Basic LLM Chain",
+        "main",
+        0
+      ],
+      [
+        "读取来源网页",
+        "main",
+        0,
+        "提取网页正文",
+        "main",
+        0
+      ]
+    ],
+    "metadata_changed_paths": [
+      "activeVersionId",
+      "createdAt",
+      "description",
+      "id",
+      "isArchived",
+      "meta",
+      "name",
+      "settings.onError",
+      "shared",
+      "sourceWorkflowId",
+      "staticData",
+      "triggerCount",
+      "updatedAt",
+      "versionCounter",
+      "versionId",
+      "versionMetadata"
+    ]
+  },
+  "invariants": {
+    "canonical_overwritten": false,
+    "production_written": false,
+    "input_schema_changed": false,
+    "business_output_type_changed": false,
+    "llm_provider_reference_changed_from_canonical": false,
+    "knowledge_root_changed_from_canonical": false
+  }
+}

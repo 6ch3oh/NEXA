@@ -1,0 +1,4 @@
+import { test } from 'node:test'; import assert from 'node:assert/strict'; import { createPrioritySuggestions } from '../src/planning/priority-suggestion.mjs';
+const tasks=[{id:'a',priority:'low',due_at:null},{id:'b',priority:'urgent',due_at:null},{id:'c',priority:'normal',due_at:'2026-08-12'}];
+test('priority suggestion is deterministic and explains rank',()=>{const r=createPrioritySuggestions({tasks,plans:[],plan_date:'2026-08-12',overdue_task_ids:['a']});assert.deepEqual(r.map(x=>x.task_id),['a','c','b']);assert.ok(r[0].reason_codes.includes('OVERDUE'));});
+test('manual position and pin override computed ranking',()=>{const plans=[{task_id:'a',plan_date:'2026-08-12',position:1,pinned:false},{task_id:'b',plan_date:'2026-08-12',position:0,pinned:true}];const r=createPrioritySuggestions({tasks,plans,plan_date:'2026-08-12',overdue_task_ids:['a']});assert.equal(r[0].task_id,'b');assert.equal(r[0].manual_override_preserved,true);});

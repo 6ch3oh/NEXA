@@ -1,0 +1,23 @@
+{
+  "target_model": "synthetic/target-v1",
+  "reference_model": "synthetic/reference-v1",
+  "reference_probe_file": "probes/reference/synthetic-legacy.json",
+  "timestamp": "2026-01-02T00:00:00.000Z",
+  "protocol": "openai-chat",
+  "test_config": { "sys": "synthetic", "temp": 0 },
+  "cosplay_prompt": null,
+  "values": [11, 12, 13, 14],
+  "match_vector": [0, 0, 0, 0],
+  "correct": 0,
+  "total": 4,
+  "hamming": 4,
+  "error_rate": 1,
+  "usage": { "prompt_tokens": 0, "completion_tokens": 0, "total_tokens": 0 },
+  "self_hamming": 0,
+  "self_total": 4,
+  "self_coverage": 1,
+  "target_coverage": 1,
+  "p0_cp99": 0.1,
+  "p_value_binomial": 0.0001,
+  "verdict": "DIFF"
+}

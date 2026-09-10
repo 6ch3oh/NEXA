@@ -1,0 +1,170 @@
+{
+  "task": "NEXA-CUSTOMER-REQUEST-LEDGER-V0.1-001",
+  "schema_version": "0.1",
+  "status": "CUSTOMER_REQUEST_LEDGER_V0.1_VALIDATED",
+  "observed_at": "2026-08-23T15:33:27.041585+00:00",
+  "storage_mode": {
+    "engine": "python_stdlib_sqlite",
+    "shape": "single_module_local_file",
+    "server_process": false,
+    "atomic_transactions": true,
+    "bounded_query_limit": 500,
+    "sample_empty_database_bytes": 90112
+  },
+  "owner_customer_boundary": {
+    "owner_identity": "owner:nexa",
+    "customer_identity_field": "customer_id",
+    "customer_default_knowledge_review": "NOT_REVIEWED",
+    "customer_auto_accepted": false
+  },
+  "request_invocation_cardinality": "1 request -> 0..N ModelInvocationRecord references",
+  "invocation_storage": "minimal linkage and cost projection; no full invocation copy",
+  "result_storage": "bounded summary plus logical result/artifact/markdown references",
+  "outbox": {
+    "event_type": "AI_USAGE_EVENT",
+    "states": [
+      "PENDING",
+      "DELIVERED",
+      "FAILED"
+    ],
+    "transport": "NONE / MODULE_LOCAL ONLY",
+    "external_delivery_attempts": 0
+  },
+  "idempotency": {
+    "key": "AI_USAGE_EVENT:<deterministic invocation_id>",
+    "duplicate_same_payload": "NO_OP",
+    "duplicate_different_payload": "CONFLICT / NO_OVERWRITE"
+  },
+  "retention": {
+    "classes": [
+      "REQUEST_METADATA",
+      "RAW_INPUT",
+      "RESULT",
+      "ARTIFACT",
+      "TRACE"
+    ],
+    "states": [
+      "RETAIN",
+      "DELETE_SCHEDULED",
+      "DELETED"
+    ],
+    "physical_deletion_executed": false
+  },
+  "cost_summary": {
+    "states": [
+      "COMPLETE",
+      "PARTIAL",
+      "UNAVAILABLE",
+      "MIXED_CURRENCY"
+    ],
+    "partial_claimed_exact": false,
+    "unknown_claimed_zero": false
+  },
+  "query_capabilities": [
+    "actor_type",
+    "customer_id",
+    "time_range",
+    "user_tier",
+    "failed",
+    "pending_knowledge_review",
+    "request_summary",
+    "resolved_model"
+  ],
+  "case_results": [
+    {
+      "case_id": "owner_request_zero_invocations",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "basic_customer_one_invocation",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "pro_customer_multiple_invocations",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "two_customers_isolated",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "success_result_references",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "failed_request_and_invocation",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "customer_knowledge_not_auto_accepted",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "local_usage_outbox",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "idempotent_replay_and_conflict",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "partial_unknown_cost",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "retention_state_only",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "secret_and_bounded_storage",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    }
+  ],
+  "tests": {
+    "acceptance": "12/12 PASS",
+    "network_attempts": []
+  },
+  "real_provider_calls": 0,
+  "real_api_cost": 0,
+  "production": {
+    "write": false,
+    "workflow_activate": false,
+    "workflow_execution": false,
+    "n8n_connection": false,
+    "cross_module_write": false
+  },
+  "invariants": {
+    "request_and_invocation_are_distinct": true,
+    "customer_knowledge_never_auto_accepted": true,
+    "no_prompt_or_response_body_storage": true,
+    "no_credential_storage": true,
+    "no_external_database_service": true,
+    "no_new_workflow_engine": true,
+    "no_core_or_executionhub_change": true,
+    "no_external_module_write": true
+  }
+}

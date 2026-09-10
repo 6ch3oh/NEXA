@@ -1,0 +1,50 @@
+{
+  "description": "Local Core V0.1 日历事件夹具。仅包含虚构示例数据，不包含任何 Secret、API Key、真实账号或私密数据。",
+  "events": [
+    {
+      "id": "event_001",
+      "title": "项目周会",
+      "description": "每周固定例会。",
+      "start_at": "2026-08-10T10:00:00+08:00",
+      "end_at": "2026-08-10T11:00:00+08:00",
+      "all_day": false,
+      "timezone": "Asia/Shanghai",
+      "location": "会议室 A",
+      "status": "confirmed",
+      "source": "local",
+      "external_id": null,
+      "created_at": "2026-08-09T09:00:00+08:00",
+      "updated_at": "2026-08-09T09:00:00+08:00"
+    },
+    {
+      "id": "event_002",
+      "title": "公司年会",
+      "description": "全天事件，无具体时刻。",
+      "start_at": "2026-08-15",
+      "end_at": "2026-08-15",
+      "all_day": true,
+      "timezone": "Asia/Shanghai",
+      "location": "总部",
+      "status": "confirmed",
+      "source": "local",
+      "external_id": null,
+      "created_at": "2026-08-09T10:00:00+08:00",
+      "updated_at": "2026-08-09T10:00:00+08:00"
+    },
+    {
+      "id": "event_003",
+      "title": "外部同步会议",
+      "description": "从 Notion 日历导入的虚构示例事件。",
+      "start_at": "2026-08-12T14:00:00+08:00",
+      "end_at": "2026-08-12T15:00:00+08:00",
+      "all_day": false,
+      "timezone": "Asia/Shanghai",
+      "location": "视频会议",
+      "status": "confirmed",
+      "source": "notion",
+      "external_id": "notion_event_xyz456",
+      "created_at": "2026-08-09T11:00:00+08:00",
+      "updated_at": "2026-08-09T11:00:00+08:00"
+    }
+  ]
+}

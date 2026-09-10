@@ -1,0 +1,31 @@
+{
+  "name": "@nexa/cet6-vocabulary",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NEXA CET-6 vocabulary V0.1 core domain contracts",
+  "type": "module",
+  "main": "src/index.mjs",
+  "exports": "./src/index.mjs",
+  "scripts": {
+    "check": "node scripts/check-syntax.mjs",
+    "test": "node --test tests/*.test.mjs && npm run test:source-tools",
+    "test:source-tools": "python -m unittest discover -s tests -p test_ecdict_source_tools.py",
+    "verify": "npm run check && npm test",
+    "start": "node ui/server.mjs",
+    "smoke:tts": "node scripts/smoke-windows-sapi.mjs",
+    "smoke:ui": "node scripts/smoke-ui.mjs",
+    "pilot:build": "node scripts/build-ecdict-pilot.mjs",
+    "pilot:learning": "node scripts/smoke-ecdict-pilot-learning.mjs",
+    "pilot:tts": "node scripts/smoke-ecdict-pilot-tts.mjs",
+    "pilot:ui": "node scripts/smoke-ecdict-pilot-ui.mjs",
+    "expansion:run": "node scripts/run-ecdict-expansion.mjs",
+    "expansion:ui": "node scripts/smoke-ecdict-expansion-ui.mjs",
+    "expansion:tts": "node scripts/smoke-ecdict-expansion-tts.mjs"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  },
+  "dependencies": {
+    "ts-fsrs": "5.4.1"
+  }
+}

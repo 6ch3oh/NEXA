@@ -1,0 +1,266 @@
+{
+  "schema_version": "0.1",
+  "record_type": "PHASE2_BENCHMARK_COVERAGE_CONTRACT",
+  "contract_id": "phase2-benchmark-coverage-v0.1",
+  "version": "0.1.0",
+  "status": "PLANNED_NOT_AUTHORIZED",
+  "purpose": "Define the minimum real evidence, fairness, budget, recommendation activation, and ranking readiness rules for StarBench Phase-2 without authorizing or executing a campaign.",
+  "phase1_dependency": {
+    "manifest_path": "contracts/phase1-v0.1-manifest.json",
+    "manifest_id": "phase1-v0.1-manifest",
+    "manifest_sha256": "341d57171921e15d1c58e1c151dae02c202d05ba7d4d20c54087352a11009d94",
+    "required_status": "FROZEN",
+    "seal_path": "NEXA-SB-PHASE1-SEAL.md",
+    "breaking_changes_allowed": false
+  },
+  "candidate_identity": {
+    "identity_fields": ["provider", "model"],
+    "merge_same_model_across_providers": false,
+    "reason": "Provider-specific latency, availability, billing, and rate-limit behavior are recommendation evidence."
+  },
+  "evidence_units": {
+    "task": "One versioned Benchmark Task and Prompt identity.",
+    "run_observation": "One admitted real provider execution for one candidate and one task.",
+    "task_evidence": "The candidate-specific aggregate of accepted run observations for one task.",
+    "scenario_evidence_count": "The number of distinct required tasks with valid Task Scores, not the number of repeated runs.",
+    "candidate": "One exact provider/model pair."
+  },
+  "real_benchmark_campaign_v0_1": {
+    "contract_version": "0.1",
+    "campaign_instance_required": true,
+    "lifecycle_states": ["DRAFT", "REVIEWED", "AUTHORIZED", "RUNNING", "STOPPED", "COMPLETED", "SEALED"],
+    "execution_allowed_only_in_state": "AUTHORIZED",
+    "required_immutable_snapshot": [
+      "campaign_id",
+      "contract_version",
+      "candidate_provider_model_allowlist",
+      "scenario_allowlist",
+      "benchmark_task_identities",
+      "prompt_identities_and_versions",
+      "evaluation_methods",
+      "parameters",
+      "request_and_cost_budget",
+      "retry_and_stop_policy"
+    ],
+    "current_campaign": {
+      "campaign_id": null,
+      "state": "DRAFT",
+      "authorization_status": "NOT_AUTHORIZED",
+      "execution_allowed": false
+    }
+  },
+  "minimum_campaign_shape": {
+    "scenario_count": 3,
+    "scenario_ids": ["coding", "planning", "instruction_following"],
+    "distinct_tasks_per_scenario": 3,
+    "runs_per_task_per_candidate": 2,
+    "minimum_candidates_for_comparison": 2,
+    "requests_per_candidate_per_scenario": 6,
+    "requests_per_scenario_comparison": 12,
+    "requests_per_candidate_full_coverage": 18,
+    "minimum_full_coverage_requests": 36,
+    "arithmetic": "3 scenarios * 3 tasks * 2 runs * 2 candidates = 36 requests"
+  },
+  "campaign_budget_contract": {
+    "budget_status": "NOT_AUTHORIZED",
+    "max_requests": null,
+    "max_estimated_cost": null,
+    "currency": null,
+    "allowed_models": [],
+    "allowed_providers": [],
+    "allowed_scenarios": [],
+    "stop_on_first_failure": true,
+    "retry_budget": 0,
+    "authorization_effect": false,
+    "rule": "A populated budget record is still a plan until a separate explicit campaign authorization exists."
+  },
+  "candidate_comparison_requirement": {
+    "minimum_candidates": 2,
+    "same_benchmark_task_identity": true,
+    "same_prompt_identity_and_version": true,
+    "same_evaluation_method": true,
+    "same_contract_version": true,
+    "same_required_metric_set": true,
+    "same_run_count_per_task": true,
+    "same_sampling_policy": true,
+    "same_parameters_required": ["temperature", "thinking", "stream"],
+    "max_tokens_policy": "EQUAL_OR_PREDECLARED_EQUIVALENT",
+    "max_tokens_difference_rule": "Any difference must be declared before execution, justified by provider limits, and marked incomparable when truncation can change task success.",
+    "execution_order": "INTERLEAVED_BY_TASK_AND_RUN_INDEX",
+    "time_window": "SAME_AUTHORIZED_CAMPAIGN_WINDOW",
+    "unbalanced_evidence_action": "ABSTAINED",
+    "fixture_mixing_allowed": false
+  },
+  "new_candidate_entry_requirement": {
+    "required_identity_fields": ["provider", "model"],
+    "provider_adapter_contract_review": "PASS_REQUIRED",
+    "phase1_intake_compatibility": "V0_1_COMPATIBLE_REQUIRED",
+    "admission_and_provenance_precheck": "REQUIRED_BEFORE_COMPARISON",
+    "same_campaign_snapshot_as_existing_candidates": true,
+    "matched_task_prompt_and_run_surface_required": true,
+    "backfill_missing_comparable_evidence": "REQUIRES_SEPARATE_AUTHORIZED_REQUEST_BUDGET",
+    "fixture_backfill_allowed": false,
+    "historical_unmatched_evidence_policy": "OBSERVATION_ONLY_NOT_COMPARABLE",
+    "ranking_entry_rule": "The new provider/model candidate enters a Scenario comparison or ranking only after it independently satisfies every evidence and parity gate for that exact scope."
+  },
+  "partial_and_failure_policy": {
+    "maximum_partial_per_candidate_scenario": 1,
+    "maximum_failed_per_candidate_scenario": 1,
+    "maximum_combined_non_success_per_candidate_scenario": 1,
+    "partial_counts_as_success": false,
+    "failed_counts_as_success": false,
+    "partial_or_failed_counts_in_reliability_denominator": true,
+    "missing_observation_value": null,
+    "fabricate_zero_for_missing": false,
+    "over_limit_action": "INSUFFICIENT_EVIDENCE"
+  },
+  "cost_evidence": {
+    "levels": [
+      {
+        "source": "billing_export",
+        "classification": "REAL_SPEND_VERIFIED",
+        "formal_cost_comparison_allowed": true,
+        "requirements": ["currency", "billing_period", "usage_attribution", "provider", "model"]
+      },
+      {
+        "source": "provider_reported",
+        "classification": "OBSERVED_PROVIDER_COST",
+        "formal_cost_comparison_allowed": true,
+        "requirements": ["currency", "request_or_usage_reference", "provider", "model"]
+      },
+      {
+        "source": "locally_calculated_estimate",
+        "classification": "ESTIMATE_ONLY",
+        "formal_cost_comparison_allowed": false,
+        "requirements": ["formula", "inputs", "price_source", "price_effective_at"]
+      },
+      {
+        "source": "official_price_estimate",
+        "classification": "ESTIMATE_ONLY",
+        "formal_cost_comparison_allowed": false,
+        "requirements": ["price_source", "price_effective_at", "usage_assumptions"]
+      },
+      {
+        "source": "unknown",
+        "classification": "UNKNOWN",
+        "formal_cost_comparison_allowed": false,
+        "requirements": []
+      }
+    ],
+    "unknown_cost_policy": "Capability-only recommendation is allowed when all cost gates and cost preference weights are disabled; cheapest-model and cost-efficiency claims are forbidden.",
+    "estimate_label_required": true,
+    "estimate_must_not_claim_real_spend": true
+  },
+  "latency_evidence": {
+    "minimum_successful_observations_per_candidate_scenario": 5,
+    "primary_statistic": "median",
+    "secondary_statistics": ["mean", "min", "max", "interquartile_range", "coefficient_of_variation"],
+    "failed_or_timed_out_in_latency_distribution": false,
+    "failed_or_timed_out_in_reliability_denominator": true,
+    "successful_outlier_removal": "FORBIDDEN_IN_V0_1",
+    "single_observation_claim": "OBSERVATION_ONLY_NOT_STABLE_PERFORMANCE",
+    "comparison_requires_same_campaign_window": true
+  },
+  "recommendation_activation_requirement": {
+    "scope": "SCENARIO_SPECIFIC_REAL_RECOMMENDATION",
+    "requires_all": true,
+    "minimum_real_raw_results_per_candidate": 6,
+    "minimum_real_raw_results_total": 12,
+    "minimum_candidates": 2,
+    "minimum_distinct_tasks_per_candidate": 3,
+    "minimum_successful_results_per_candidate": 5,
+    "minimum_coverage": 1,
+    "minimum_evidence_count": 3,
+    "minimum_confidence": "HIGH",
+    "required_admission": "ADMITTED",
+    "required_provenance": "COMPLETE",
+    "required_secret_status": "CLEAN",
+    "required_compatibility": "V0_1_COMPATIBLE",
+    "allowed_result_record_type": "RAW_RESULT",
+    "allowed_result_source_class": "PROVIDER_EXECUTION",
+    "allowed_profile_source_classes": ["RAW_RESULT", "REAL_EVALUATION"],
+    "test_fixture_allowed": false,
+    "legacy_summary_allowed": false,
+    "candidate_comparison_parity_required": true,
+    "recommendation_status_required": "RECOMMENDED",
+    "recommended_candidate_required": true,
+    "evidence_refs_required": true,
+    "simple_positive_count_rule_forbidden": true,
+    "activation_rule": "At least one named Scenario must pass every evidence, safety, provenance, parity, and recommendation condition; real_raw_result_count > 0 alone never activates readiness."
+  },
+  "ranking_readiness_requirement": {
+    "strictly_stronger_than_recommendation": true,
+    "minimum_scenarios": 3,
+    "required_scenarios": ["coding", "planning", "instruction_following"],
+    "minimum_candidates": 2,
+    "minimum_distinct_tasks_per_candidate": 9,
+    "minimum_real_raw_results_per_candidate": 18,
+    "minimum_real_raw_results_total": 36,
+    "every_scenario_must_meet_recommendation_evidence_gate": true,
+    "same_candidate_set_across_scenarios": true,
+    "scenario_weighting_policy_predeclared": true,
+    "candidate_comparison_parity_required": true,
+    "unknown_dimension_policy": "Exclude an unknown dimension and its claims explicitly; never treat UNKNOWN as zero or best.",
+    "global_ranking_claim_requires_explicit_scope": true,
+    "current_ready": false
+  },
+  "abstain_rules": {
+    "NO_ELIGIBLE_CANDIDATE": "All in-scope candidates fail an explicit hard constraint or allow/deny rule.",
+    "INSUFFICIENT_EVIDENCE": "At least one in-scope candidate exists, but coverage, distinct tasks, successful runs, confidence, required metrics, or repetition thresholds are not met.",
+    "ABSTAINED": "Required data is unknown, evidence is incomparable or unbalanced, source classes are mixed, integrity is ambiguous, or policy explicitly requires abstention.",
+    "RECOMMENDED": "All hard, evidence, provenance, safety, compatibility, parity, and uniqueness conditions pass and a non-null winner with evidence references exists."
+  },
+  "activation_task_boundary": {
+    "benchmark_task_id": "deepseek-real-activation-instruction-v0.1",
+    "classification": "PIPELINE_ACTIVATION_EVIDENCE",
+    "counts_toward_real_result_intake": true,
+    "counts_toward_scenario_capability_coverage": false,
+    "counts_toward_recommendation_evidence": false,
+    "counts_toward_ranking_evidence": false
+  },
+  "phase2_execution_order": [
+    {
+      "stage": 0,
+      "name": "Campaign authorization and immutable snapshot",
+      "network_requests": 0,
+      "stop_condition": "No explicit provider/model allowlist and hard request/cost budget."
+    },
+    {
+      "stage": 1,
+      "name": "Instruction-following paired minimum Suite",
+      "planned_requests": 12,
+      "reason": "Lowest evaluator complexity; validates paired fairness and can unlock only this Scenario first."
+    },
+    {
+      "stage": 2,
+      "name": "Instruction-following activation review",
+      "planned_requests": 0,
+      "stop_condition": "Any safety, provenance, parity, coverage, or stability gate fails."
+    },
+    {
+      "stage": 3,
+      "name": "Coding paired minimum Suite",
+      "planned_requests": 12,
+      "reason": "Adds executable correctness and constraint evidence only after the cheaper Scenario passes."
+    },
+    {
+      "stage": 4,
+      "name": "Planning paired minimum Suite",
+      "planned_requests": 12,
+      "reason": "Adds the remaining high-information Scenario after earlier stop gates pass."
+    },
+    {
+      "stage": 5,
+      "name": "Recommendation and ranking readiness review",
+      "planned_requests": 0,
+      "stop_condition": "Never fill missing evidence with fixtures or an additional unapproved request."
+    }
+  ],
+  "metadata": {
+    "network_required": false,
+    "credential_required": false,
+    "executes_benchmark": false,
+    "creates_budget_authorization": false,
+    "phase1_contract_changes": "NONE"
+  }
+}

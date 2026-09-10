@@ -1,0 +1,26 @@
+{
+  "manifest_id": "phase1-v0.1-manifest",
+  "manifest_version": "0.1.0",
+  "phase": "PHASE_1",
+  "status": "FROZEN",
+  "compatibility_policy": "ADDITIVE_OPTIONAL_FIELDS_OR_NEW_VERSION_ONLY",
+  "breaking_change_policy": "Any removal, type narrowing, semantic reinterpretation, or newly required field requires V0.2 or V1.0 and explicit migration.",
+  "contracts": [
+    { "contract_name": "RAW_RESULT", "version": "0.1", "schema_path": "schemas/raw-result-v0.1.schema.json", "status": "FROZEN", "compatibility_policy": "ADDITIVE_METADATA_ONLY", "breaking_change_policy": "NEW_VERSION_REQUIRED" },
+    { "contract_name": "Canonical Evaluation", "version": "0.1", "schema_path": "schemas/canonical-evaluation-v0.1.schema.json", "status": "FROZEN", "compatibility_policy": "ADDITIVE_METADATA_ONLY", "breaking_change_policy": "NEW_VERSION_REQUIRED" },
+    { "contract_name": "Benchmark Task", "version": "0.1", "schema_path": "schemas/benchmark-task-v0.1.schema.json", "status": "FROZEN", "compatibility_policy": "ADDITIVE_OPTIONAL_ONLY", "breaking_change_policy": "NEW_VERSION_REQUIRED" },
+    { "contract_name": "Benchmark Suite", "version": "0.1", "schema_path": "schemas/benchmark-suite-v0.1.schema.json", "status": "FROZEN", "compatibility_policy": "ADDITIVE_OPTIONAL_ONLY", "breaking_change_policy": "NEW_VERSION_REQUIRED" },
+    { "contract_name": "Metric Definition", "version": "0.1", "schema_path": "schemas/metric-definition-v0.1.schema.json", "status": "FROZEN", "compatibility_policy": "ADDITIVE_OPTIONAL_ONLY", "breaking_change_policy": "NEW_VERSION_REQUIRED" },
+    { "contract_name": "Score Result", "version": "0.1", "schema_path": "schemas/score-result-v0.1.schema.json", "status": "FROZEN", "compatibility_policy": "ADDITIVE_METADATA_ONLY", "breaking_change_policy": "NEW_VERSION_REQUIRED" },
+    { "contract_name": "Scenario Definition", "version": "0.1", "schema_path": "schemas/scenario-definition-v0.1.schema.json", "status": "FROZEN", "compatibility_policy": "ADDITIVE_OPTIONAL_ONLY", "breaking_change_policy": "NEW_VERSION_REQUIRED" },
+    { "contract_name": "Capability Profile", "version": "0.1", "schema_path": "schemas/capability-profile-v0.1.schema.json", "status": "FROZEN", "compatibility_policy": "ADDITIVE_METADATA_ONLY", "breaking_change_policy": "NEW_VERSION_REQUIRED" },
+    { "contract_name": "Recommendation Request", "version": "0.1", "schema_path": "schemas/recommendation-request-v0.1.schema.json", "status": "FROZEN", "compatibility_policy": "ADDITIVE_OPTIONAL_ONLY", "breaking_change_policy": "NEW_VERSION_REQUIRED" },
+    { "contract_name": "Recommendation Policy", "version": "0.1", "schema_path": "schemas/recommendation-policy-v0.1.schema.json", "status": "FROZEN", "compatibility_policy": "NEW_POLICY_VERSION", "breaking_change_policy": "NEW_CONTRACT_VERSION_REQUIRED" },
+    { "contract_name": "Recommendation Decision", "version": "0.1", "schema_path": "schemas/recommendation-decision-v0.1.schema.json", "status": "FROZEN", "compatibility_policy": "ADDITIVE_METADATA_ONLY", "breaking_change_policy": "NEW_VERSION_REQUIRED" },
+    { "contract_name": "Intent Request", "version": "0.1", "schema_path": "schemas/intent-request-v0.1.schema.json", "status": "FROZEN", "compatibility_policy": "ADDITIVE_OPTIONAL_ONLY", "breaking_change_policy": "NEW_VERSION_REQUIRED" },
+    { "contract_name": "Intent Rule", "version": "0.1", "schema_path": "schemas/intent-rule-v0.1.schema.json", "status": "FROZEN", "compatibility_policy": "NEW_RULE_VERSION", "breaking_change_policy": "NEW_CONTRACT_VERSION_REQUIRED" },
+    { "contract_name": "Intent Routing Decision", "version": "0.1", "schema_path": "schemas/intent-routing-decision-v0.1.schema.json", "status": "FROZEN", "compatibility_policy": "ADDITIVE_METADATA_ONLY", "breaking_change_policy": "NEW_VERSION_REQUIRED" },
+    { "contract_name": "Incomplete Result", "version": "0.1", "schema_path": "schemas/incomplete-result-v0.1.schema.json", "status": "INTAKE_READY", "compatibility_policy": "ADDITIVE_OPTIONAL_ONLY", "breaking_change_policy": "NEW_VERSION_REQUIRED" }
+  ],
+  "metadata": { "network_required": false, "real_result_count_at_freeze": 0, "fixture_only_validation": true }
+}

@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "task": "NEXA-CUSTOMER-REQUEST-LEDGER-V0.1-001",
+  "cases": [
+    {"case_id": "owner_request_zero_invocations", "expected": "PASS"},
+    {"case_id": "basic_customer_one_invocation", "expected": "PASS"},
+    {"case_id": "pro_customer_multiple_invocations", "expected": "PASS"},
+    {"case_id": "two_customers_isolated", "expected": "PASS"},
+    {"case_id": "success_result_references", "expected": "PASS"},
+    {"case_id": "failed_request_and_invocation", "expected": "PASS"},
+    {"case_id": "customer_knowledge_not_auto_accepted", "expected": "PASS"},
+    {"case_id": "local_usage_outbox", "expected": "PASS"},
+    {"case_id": "idempotent_replay_and_conflict", "expected": "PASS"},
+    {"case_id": "partial_unknown_cost", "expected": "PASS"},
+    {"case_id": "retention_state_only", "expected": "PASS"},
+    {"case_id": "secret_and_bounded_storage", "expected": "PASS"}
+  ]
+}

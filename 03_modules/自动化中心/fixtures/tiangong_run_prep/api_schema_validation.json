@@ -1,0 +1,43 @@
+{
+  "state": "PASS",
+  "errors": [],
+  "openapi_version": "3.0.0",
+  "api_info_version": "1.1.1",
+  "schema_sha256": "BADB367018E4614D5C76F18C06306017B3E79977150B14F1F0FBC4339BFCE08D",
+  "workflow_additional_properties": false,
+  "workflow_required": [
+    "connections",
+    "name",
+    "nodes",
+    "settings"
+  ],
+  "workflow_request_fields": [
+    "connections",
+    "name",
+    "nodes",
+    "settings"
+  ],
+  "workflow_response_only_fields_present": [],
+  "settings_additional_properties": false,
+  "settings_request_fields": [
+    "availableInMCP",
+    "executionOrder"
+  ],
+  "settings_onError_valid": false,
+  "node_onError_valid": true,
+  "node_level_onError": {
+    "读取来源网页": "continueErrorOutput",
+    "提取网页正文": "continueErrorOutput"
+  },
+  "error_workflow_usage": "NONE",
+  "publish_if_active_false_supported_by_local_instance": false,
+  "future_update_target": "/api/v1/workflows/ymYh8t76VP3jGPbr?publishIfActive=false",
+  "future_update_guard": "LOCAL_INSTANCE_REQUIRES_FAIL_CLOSED_UNPUBLISHED_PRECONDITION",
+  "credential_access": false,
+  "production_write": false,
+  "publish": false,
+  "activate": false,
+  "workflow_execution": false,
+  "secret_exposed": false,
+  "candidate_sha256": "002C8F5520B803FECE8387B3D2BC60E7055D9505B4A40131F87D76EACBC02FC9"
+}

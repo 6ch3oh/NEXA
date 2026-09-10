@@ -1,0 +1,34 @@
+{
+  "protocol": "cloze_stage1",
+  "timestamp": "2026-01-01T00:00:00.000Z",
+  "reference_model": "synthetic/reference-v1",
+  "contrast_model": "synthetic/contrast-v1",
+  "n_original_probes": 1,
+  "n_config_invariant": 1,
+  "n_final_probes": 1,
+  "probes": [
+    {
+      "name": "synthetic runner probe",
+      "domain": "math",
+      "original_value": 42,
+      "cloze_consensus": 42,
+      "consensus_raw": { "t0": 42, "t07_a": 42, "t07_b": 42 }
+    }
+  ],
+  "self_error": 0,
+  "target_results": {
+    "reference-v1": {
+      "model": "synthetic/reference-v1",
+      "is_self": true,
+      "values": [42],
+      "match_vector": [1],
+      "correct": 1,
+      "total": 1,
+      "hamming": 0,
+      "error_rate": 0,
+      "p_value": 1,
+      "significant": false,
+      "domain_breakdown": {}
+    }
+  }
+}

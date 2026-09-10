@@ -1,0 +1,8 @@
+{
+  "area": "DECISION_JOURNAL",
+  "beginner_mode": true,
+  "contract_sha256": "795c7c82e64814c076d323590d5b95eed537b7319148852b1aea2b9821dd6c76",
+  "generated_at": "2026-08-10T12:00:00+00:00",
+  "product_api_version": "nexa.market.product-api.v0.1",
+  "projection_version": "nexa.market.product-golden.v0.1"
+}

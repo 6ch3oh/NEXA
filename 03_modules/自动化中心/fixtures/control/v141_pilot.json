@@ -1,0 +1,90 @@
+{
+  "pilot_id": "knowledge.collect.v141",
+  "foundation_version": "0.1",
+  "classification": "real_source_metadata_with_sandbox_evidence",
+  "capability_id": "knowledge.collect",
+  "canonical_workflow": {
+    "provider_kind": "n8n",
+    "provider_instance_id": null,
+    "external_workflow_id": "ymYh8t76VP3jGPbr",
+    "version": "V1.4.1",
+    "logical_source_ref": "source_import/n8n_工作流开发/output/中国AI知识库采集器_V1.4.1_网页失败兜底版.json",
+    "sha256": "b99305226761e7566b4c2f4266222be1ec2ec401fae917d068f4d19c2d753514"
+  },
+  "sandbox_workflow": {
+    "external_workflow_id": "V141Final403429",
+    "logical_source_ref": "source_import/n8n_工作流开发/_system/n8n_runtime_test/中国AI知识库采集器_V1.4.1_隔离测试版.json",
+    "sha256": "f05b31d86eb0467946546557f71c5aeac91d992451cb0e0000f7824725b9ddb6",
+    "classification": "sandbox_real_execution_with_synthetic_dependencies"
+  },
+  "input_schema": {
+    "required": ["ai_name"],
+    "optional": ["source_text", "source_url"],
+    "additional_fields_allowed": false
+  },
+  "safe_result_schema": {
+    "result_type": "knowledge_markdown_document",
+    "media_type": "text/markdown",
+    "primary_action": "copy_markdown",
+    "raw_execution_payload_allowed": false
+  },
+  "sandbox_evidence": {
+    "case_count": 6,
+    "execution_ids": ["42", "43", "44", "45", "46", "47"],
+    "parsed_result_sha256": "d269b69796f7544d787359eb1e4787618b8dbcea91a7689ba8acdd50b8378b33",
+    "run_summary_sha256": "597fbf61dca418d13178bcefa9e8db36a0ca7ef7eb7303e6b3fa6f1df7f10039"
+  },
+  "control_state": {
+    "availability": "configuration_required",
+    "production_target_resolved": false,
+    "execution_adapter_implemented": false,
+    "production_publish_implemented": false,
+    "user_confirmation_required": true
+  },
+  "health_projection": {
+    "current_run_state": "unknown",
+    "current_runtime_observed": false,
+    "current_runtime_inference_allowed": false,
+    "last_observed_execution_id": "47",
+    "last_observed_at": null,
+    "last_success_at": null,
+    "last_failure_at": null,
+    "consecutive_failures": null,
+    "needs_attention": false,
+    "evidence_basis": "historical_result_only",
+    "limitations": [
+      "sandbox history is not current runtime",
+      "the final retained case has no trusted timestamp",
+      "production provider instance is unresolved"
+    ]
+  },
+  "diagnosis_template": {
+    "workflow_source_refs": [
+      "source_import/n8n_工作流开发/output/中国AI知识库采集器_V1.4.1_网页失败兜底版.json"
+    ],
+    "relevant_execution_ids": [],
+    "safe_evidence_only": true,
+    "cross_module_dispatch_performed": false
+  },
+  "repair_candidate_template": {
+    "state": "draft",
+    "source_revision_required": true,
+    "modified_artifact_must_be_candidate": true,
+    "static_tests": "not_run",
+    "sandbox_validation": "not_run",
+    "publish_eligible": false
+  },
+  "deployment_gate": {
+    "state": "validated",
+    "publish_eligible": false,
+    "production_action_performed": false,
+    "user_approval_required": true,
+    "blockers": [
+      "target_provider_unresolved",
+      "backup_missing",
+      "restore_instructions_missing",
+      "user_approval_required",
+      "production_adapter_not_implemented"
+    ]
+  }
+}

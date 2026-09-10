@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/token-driver-v0.1.schema.json",
+  "title": "Token Driver V0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version","record_type","driver_id","forecast_id","estimator_version","path","phase","work_unit_id","session_id","model_call_id","execution_role","model_class","component_type","estimated_tokens","estimate_basis","source_context","shared_context_ref","risk_ref","historical_evidence_refs","confidence","provenance"],
+  "properties": {
+    "schema_version": {"const": "0.1"},
+    "record_type": {"const": "TOKEN_DRIVER"},
+    "driver_id": {"type": "string", "pattern": "^token_driver_[a-f0-9]{64}$"},
+    "forecast_id": {"type": "string", "minLength": 1},
+    "estimator_version": {"type": "string", "minLength": 1},
+    "path": {"enum": ["OPTIMISTIC_PATH","EXPECTED_PATH","CONSERVATIVE_PATH"]},
+    "phase": {"type": "string", "minLength": 1},
+    "work_unit_id": {"type": "string", "minLength": 1},
+    "session_id": {"type": "string", "minLength": 1},
+    "model_call_id": {"type": "string", "minLength": 1},
+    "execution_role": {"type": "string", "minLength": 1},
+    "model_class": {"type": "string", "minLength": 1},
+    "component_type": {"enum": ["BASE_CONTEXT","SHARED_CONTEXT","INCREMENTAL_CONTEXT","TASK_INSTRUCTION","EXPECTED_OUTPUT","REASONING","REVIEW","ACCEPTANCE","TEST_ANALYSIS","DEBUG_ANALYSIS","SESSION_CONTROL","RISK_EXPANSION","DOCUMENTATION"]},
+    "estimated_tokens": {"type": "integer", "minimum": 0},
+    "estimate_basis": {"type": "array"},
+    "source_context": {"type": "object"},
+    "shared_context_ref": {"type": ["string","null"]},
+    "risk_ref": {"type": "array"},
+    "historical_evidence_refs": {"type": "array"},
+    "confidence": {"enum": ["LOW","MEDIUM","HIGH"]},
+    "provenance": {"type": "object", "required": ["source_record_type","source_component","dimension","actual_component_value","additive"], "properties": {"source_record_type":{"type":"string"},"source_component":{"type":"string"},"dimension":{"enum":["INPUT","OUTPUT","REASONING","CONTROL"]},"actual_component_value":{"const":null},"additive":{"const":true}}}
+  }
+}

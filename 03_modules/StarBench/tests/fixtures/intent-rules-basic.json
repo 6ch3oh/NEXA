@@ -1,0 +1,81 @@
+{
+  "schema_version": "0.1",
+  "record_type": "INTENT_RULE_SET",
+  "rule_set_id": "fixture.intent.rules.basic",
+  "version": "0.1.0",
+  "routing_config": {
+    "minimum_score": 0.35,
+    "ambiguity_margin": 0.15,
+    "confidence_thresholds": { "medium": 0.6, "high": 0.85 }
+  },
+  "source_class": "TEST_FIXTURE",
+  "metadata": { "fixture_only": true, "purpose": "offline deterministic router contract tests" },
+  "rules": [
+    {
+      "schema_version": "0.1", "record_type": "INTENT_RULE", "rule_id": "fixture.intent.coding.basic", "version": "0.1.0",
+      "name": "Bilingual coding signals", "description": "Finite coding keywords and structured hints for offline tests.",
+      "target_scenario_id": "fixture.scenario.coding", "priority": 10,
+      "signals": [
+        { "signal_id": "coding.keyword", "signal_type": "keyword", "field": null, "values": ["bug", "code", "javascript", "修复", "代码"], "match": "ANY", "case_sensitive": false, "weight": 1 },
+        { "signal_id": "coding.task-type", "signal_type": "task_type", "field": "task_type", "values": ["code", "coding"], "match": "ANY", "case_sensitive": false, "weight": 1 },
+        { "signal_id": "coding.domain", "signal_type": "domain_hint", "field": "domain", "values": ["software", "programming", "软件", "编程"], "match": "ANY", "case_sensitive": false, "weight": 0.5 }
+      ],
+      "required_signals": [], "excluded_signals": [], "weight": 1, "reason_code": "CODING_RULE_MATCH", "enabled": true,
+      "source_class": "TEST_FIXTURE", "metadata": { "fixture_only": true }
+    },
+    {
+      "schema_version": "0.1", "record_type": "INTENT_RULE", "rule_id": "fixture.intent.coding.explicit-fix", "version": "0.1.0",
+      "name": "Explicit bug-fix phrase", "description": "High-priority explicit bilingual bug-fix phrases.",
+      "target_scenario_id": "fixture.scenario.coding", "priority": 30,
+      "signals": [
+        { "signal_id": "coding.fix-phrase", "signal_type": "phrase", "field": null, "values": ["fix this bug", "修复这个 javascript bug", "修复这个"], "match": "ANY", "case_sensitive": false, "weight": 1 }
+      ],
+      "required_signals": ["coding.fix-phrase"], "excluded_signals": [], "weight": 1, "reason_code": "EXPLICIT_CODING_PHRASE", "enabled": true,
+      "source_class": "TEST_FIXTURE", "metadata": { "fixture_only": true }
+    },
+    {
+      "schema_version": "0.1", "record_type": "INTENT_RULE", "rule_id": "fixture.intent.planning.basic", "version": "0.1.0",
+      "name": "Bilingual planning signals", "description": "Finite planning keywords and structured hints for offline tests.",
+      "target_scenario_id": "fixture.scenario.planning", "priority": 10,
+      "signals": [
+        { "signal_id": "planning.keyword", "signal_type": "keyword", "field": null, "values": ["plan", "roadmap", "stages", "计划", "规划", "阶段"], "match": "ANY", "case_sensitive": false, "weight": 1 },
+        { "signal_id": "planning.task-type", "signal_type": "task_type", "field": "task_type", "values": ["plan", "planning"], "match": "ANY", "case_sensitive": false, "weight": 1 },
+        { "signal_id": "planning.domain", "signal_type": "domain_hint", "field": "domain", "values": ["project", "delivery", "项目", "交付"], "match": "ANY", "case_sensitive": false, "weight": 0.5 }
+      ],
+      "required_signals": [], "excluded_signals": [], "weight": 1, "reason_code": "PLANNING_RULE_MATCH", "enabled": true,
+      "source_class": "TEST_FIXTURE", "metadata": { "fixture_only": true }
+    },
+    {
+      "schema_version": "0.1", "record_type": "INTENT_RULE", "rule_id": "fixture.intent.planning.explicit-plan", "version": "0.1.0",
+      "name": "Explicit execution-plan phrase", "description": "High-priority bilingual execution-plan phrases.",
+      "target_scenario_id": "fixture.scenario.planning", "priority": 20,
+      "signals": [
+        { "signal_id": "planning.plan-phrase", "signal_type": "phrase", "field": null, "values": ["execution plan", "three-stage plan", "执行计划", "三阶段"], "match": "ANY", "case_sensitive": false, "weight": 1 }
+      ],
+      "required_signals": ["planning.plan-phrase"], "excluded_signals": [], "weight": 1, "reason_code": "EXPLICIT_PLANNING_PHRASE", "enabled": true,
+      "source_class": "TEST_FIXTURE", "metadata": { "fixture_only": true }
+    },
+    {
+      "schema_version": "0.1", "record_type": "INTENT_RULE", "rule_id": "fixture.intent.instruction.basic", "version": "0.1.0",
+      "name": "Bilingual instruction-following signals", "description": "Finite instruction and format signals for offline tests.",
+      "target_scenario_id": "fixture.scenario.instruction-following", "priority": 10,
+      "signals": [
+        { "signal_id": "instruction.keyword", "signal_type": "keyword", "field": null, "values": ["requirements", "format", "instructions", "要求", "格式", "指令"], "match": "ANY", "case_sensitive": false, "weight": 1 },
+        { "signal_id": "instruction.task-type", "signal_type": "task_type", "field": "task_type", "values": ["instruction_following", "instruction"], "match": "ANY", "case_sensitive": false, "weight": 1 },
+        { "signal_id": "instruction.domain", "signal_type": "domain_hint", "field": "domain", "values": ["compliance", "formatting", "合规", "格式化"], "match": "ANY", "case_sensitive": false, "weight": 0.5 }
+      ],
+      "required_signals": [], "excluded_signals": [], "weight": 1, "reason_code": "INSTRUCTION_RULE_MATCH", "enabled": true,
+      "source_class": "TEST_FIXTURE", "metadata": { "fixture_only": true }
+    },
+    {
+      "schema_version": "0.1", "record_type": "INTENT_RULE", "rule_id": "fixture.intent.instruction.explicit", "version": "0.1.0",
+      "name": "Explicit instruction phrase", "description": "High-priority bilingual strict-instruction phrases.",
+      "target_scenario_id": "fixture.scenario.instruction-following", "priority": 20,
+      "signals": [
+        { "signal_id": "instruction.strict-phrase", "signal_type": "phrase", "field": null, "values": ["strictly follow", "follow the requirements", "严格按照", "五条要求"], "match": "ANY", "case_sensitive": false, "weight": 1 }
+      ],
+      "required_signals": ["instruction.strict-phrase"], "excluded_signals": [], "weight": 1, "reason_code": "EXPLICIT_INSTRUCTION_PHRASE", "enabled": true,
+      "source_class": "TEST_FIXTURE", "metadata": { "fixture_only": true }
+    }
+  ]
+}

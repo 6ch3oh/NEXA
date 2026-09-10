@@ -1,0 +1,39 @@
+{
+  "request_id": "ai-selection-1a2b6d1504377ad089d30d68",
+  "board_id": "home",
+  "mode": "AI",
+  "status": "COMPLETED",
+  "readiness": "BOUND",
+  "policy_version": "radar-ai-selection-v0.1",
+  "candidate_count": 15,
+  "target_count": 5,
+  "selected_count": 5,
+  "selected_item_ids": [
+    "selection-0",
+    "selection-1",
+    "selection-2",
+    "selection-3",
+    "selection-4"
+  ],
+  "selected_reasons": [
+    "Matches AI interest and provides NEXA product intelligence relevant to creator operations (自媒体).",
+    "Matches AI interest and covers NEXA plus creator-operations context aligned with board rules.",
+    "Matches AI interest and contains NEXA product intelligence useful for 自媒体 operations.",
+    "Matches AI interest and supports NEXA/creator-intelligence needs.",
+    "Matches AI interest and provides relevant NEXA intelligence for creator operations."
+  ],
+  "requested_at": "2026-08-22T04:06:26.273201Z",
+  "started_at": "2026-08-22T04:06:26.656178Z",
+  "completed_at": "2026-08-22T04:06:32.985520Z",
+  "fallback_reason": null,
+  "evaluator_id": "executionhub-credential-free-consumer",
+  "evaluator_version": "v1",
+  "execution_ref": "consumer-execution-7dc03e68-e396-48c3-ac42-7830391225ed",
+  "model_identity": "deepseek-v4-flash",
+  "input_characters": 4584,
+  "output_characters": 816,
+  "model_call_count": 1,
+  "input_tokens": null,
+  "output_tokens": null,
+  "current": true
+}

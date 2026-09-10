@@ -1,0 +1,28 @@
+{
+  "contract_id": "starbench.desktop-runtime-reader-bindings.v0.1",
+  "contract_version": "0.1.0",
+  "public_entrypoint": "src/public/starbench-desktop-entry.mjs",
+  "factory_export": "createStarBenchDesktopRuntimeReaderBindings",
+  "configuration": {
+    "data_root": "OPTIONAL_OPAQUE_ROOT",
+    "clock": "OPTIONAL_READ_ONLY_CLOCK",
+    "stale_after_ms": "OPTIONAL_NON_NEGATIVE_INTEGER",
+    "default_limit": "OPTIONAL_1_TO_200"
+  },
+  "capabilities": [
+    "evaluation_results",
+    "evaluation_history",
+    "evidence",
+    "request_records",
+    "token_cost_observations",
+    "external_identity_evidence"
+  ],
+  "ownership": "STARBENCH_INTERNAL_COMPOSITION",
+  "private_store_exposure": false,
+  "write_capability_exposed": false,
+  "canonical_identity_authority": "STARBENCH",
+  "external_identity_engine_role": "UNTRUSTED_EXTERNAL_EVIDENCE",
+  "officiality_inference": "NOT_ALLOWED",
+  "provider_calls": false,
+  "network_required": false
+}

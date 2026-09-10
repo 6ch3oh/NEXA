@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/metric-definition-v0.1.schema.json",
+  "title": "StarBench Metric Definition V0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "record_type", "metric_id", "name", "description", "metric_type",
+    "direction", "weight", "range", "normalization", "scorer", "parameters", "required", "metadata"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "record_type": { "const": "METRIC_DEFINITION" },
+    "metric_id": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "metric_type": { "enum": ["binary", "numeric", "categorical", "manual"] },
+    "direction": { "enum": ["higher_is_better", "lower_is_better"] },
+    "weight": { "type": "number", "exclusiveMinimum": 0 },
+    "range": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["min", "max"],
+          "properties": {
+            "min": { "type": "number" },
+            "max": { "type": "number" }
+          }
+        }
+      ]
+    },
+    "normalization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "min", "max", "clamp"],
+      "properties": {
+        "method": { "enum": ["identity", "min_max", "none"] },
+        "min": { "type": ["number", "null"] },
+        "max": { "type": ["number", "null"] },
+        "clamp": { "type": "boolean" }
+      }
+    },
+    "scorer": { "enum": ["exact_match", "rule_based", "numeric", "manual"] },
+    "parameters": { "type": "object" },
+    "required": { "type": "boolean" },
+    "metadata": { "type": "object" }
+  }
+}

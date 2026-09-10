@@ -1,0 +1,142 @@
+[
+  {
+    "name": "list allowed",
+    "command": {
+      "command_id": "fixture_list_1",
+      "command_type": "task.list",
+      "payload": {},
+      "created_at": "2026-08-10T09:00:00+08:00",
+      "risk_level": "low",
+      "requires_confirmation": false,
+      "confirmation_state": "not_required",
+      "source": "local"
+    },
+    "expected_status": "executed"
+  },
+  {
+    "name": "create allowed",
+    "command": {
+      "command_id": "fixture_create_1",
+      "command_type": "task.create",
+      "payload": { "id": "fixture_task_1", "title": "Fixture task" },
+      "created_at": "2026-08-10T09:00:00+08:00",
+      "risk_level": "low",
+      "requires_confirmation": false,
+      "confirmation_state": "not_required",
+      "source": "local"
+    },
+    "expected_status": "executed"
+  },
+  {
+    "name": "delete pending",
+    "command": {
+      "command_id": "fixture_delete_pending",
+      "command_type": "task.delete",
+      "payload": { "task_id": "fixture_task_1" },
+      "created_at": "2026-08-10T09:00:00+08:00",
+      "risk_level": "high",
+      "requires_confirmation": true,
+      "confirmation_state": "pending",
+      "source": "local"
+    },
+    "expected_status": "confirmation_required"
+  },
+  {
+    "name": "delete confirmed",
+    "command": {
+      "command_id": "fixture_delete_confirmed",
+      "command_type": "task.delete",
+      "payload": { "task_id": "fixture_task_1" },
+      "created_at": "2026-08-10T09:00:00+08:00",
+      "risk_level": "high",
+      "requires_confirmation": true,
+      "confirmation_state": "confirmed",
+      "source": "local"
+    },
+    "expected_status": "executed"
+  },
+  {
+    "name": "delete rejected",
+    "command": {
+      "command_id": "fixture_delete_rejected",
+      "command_type": "task.delete",
+      "payload": { "task_id": "fixture_task_1" },
+      "created_at": "2026-08-10T09:00:00+08:00",
+      "risk_level": "high",
+      "requires_confirmation": true,
+      "confirmation_state": "rejected",
+      "source": "local"
+    },
+    "expected_status": "denied"
+  },
+  {
+    "name": "delete expired",
+    "command": {
+      "command_id": "fixture_delete_expired",
+      "command_type": "task.delete",
+      "payload": { "task_id": "fixture_task_1" },
+      "created_at": "2026-08-10T09:00:00+08:00",
+      "risk_level": "high",
+      "requires_confirmation": true,
+      "confirmation_state": "expired",
+      "source": "local"
+    },
+    "expected_status": "denied"
+  },
+  {
+    "name": "unknown command",
+    "command": {
+      "command_id": "fixture_unknown",
+      "command_type": "task.unknown",
+      "payload": {},
+      "created_at": "2026-08-10T09:00:00+08:00",
+      "risk_level": "low",
+      "requires_confirmation": false,
+      "confirmation_state": "not_required",
+      "source": "local"
+    },
+    "expected_status": "unsupported"
+  },
+  {
+    "name": "malformed command",
+    "command": {
+      "command_type": "task.list",
+      "payload": {},
+      "created_at": "2026-08-10T09:00:00+08:00",
+      "risk_level": "low",
+      "requires_confirmation": false,
+      "confirmation_state": "not_required",
+      "source": "local"
+    },
+    "expected_status": "invalid"
+  },
+  {
+    "name": "duplicate command",
+    "command": {
+      "command_id": "fixture_duplicate",
+      "command_type": "task.list",
+      "payload": {},
+      "created_at": "2026-08-10T09:00:00+08:00",
+      "risk_level": "low",
+      "requires_confirmation": false,
+      "confirmation_state": "not_required",
+      "source": "local"
+    },
+    "dispatch_count": 2,
+    "expected_status": "duplicate"
+  },
+  {
+    "name": "unsupported external command",
+    "command": {
+      "command_id": "fixture_external",
+      "command_type": "notion.write",
+      "payload": {},
+      "created_at": "2026-08-10T09:00:00+08:00",
+      "risk_level": "high",
+      "requires_confirmation": true,
+      "confirmation_state": "confirmed",
+      "source": "notion"
+    },
+    "expected_status": "unsupported"
+  }
+]

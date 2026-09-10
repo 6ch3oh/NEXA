@@ -1,0 +1,5 @@
+{
+  "content":{"id":"hist-package-001","creator_id":"creator-synthetic","accounts":["hist-b3"],"topic":"synthetic package","title":"package title","body":"package body","content_type":"IMAGE_POST","platform_intent":["fixture-platform"],"state":"ASSET_PREPARATION","created_at":"2025-03-01T00:00:00Z","provenance":{"source_system":"fixture-legacy","source_reference":"packages/001/content","captured_at":"2026-08-10T00:00:00Z"}},
+  "assets":[{"id":"hist-package-asset-001","type":"COVER","location":"fixture://historical/cover.png","creator_id":"creator-synthetic","account_relations":["hist-b3"],"status":"AVAILABLE","generation_method":"IMPORTED","created_at":"2025-03-01T00:00:00Z","provenance":{"source_system":"fixture-legacy","source_reference":"packages/001/cover","captured_at":"2026-08-10T00:00:00Z"}}],
+  "manifest":{"version":"legacy-1"}
+}

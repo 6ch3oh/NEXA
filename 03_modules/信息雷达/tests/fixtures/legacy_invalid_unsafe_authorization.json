@@ -1,0 +1,8 @@
+{
+  "ai_name": "危险结果",
+  "source_url": "https://example.com/unsafe",
+  "web_text": "",
+  "web_text_length": 0,
+  "webpage_read_status": "failed",
+  "authorization": "Bearer redacted"
+}

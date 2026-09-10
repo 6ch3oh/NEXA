@@ -1,0 +1,21 @@
+{
+  "schema_version": "0.1",
+  "record_type": "SCENARIO_DEFINITION",
+  "scenario_id": "fixture.scenario.coding",
+  "name": "Offline coding capability scenario",
+  "description": "Synthetic engineering scenario for validating a coding-oriented capability profile contract.",
+  "category": "coding",
+  "task_types": ["prompt"],
+  "benchmark_task_refs": [
+    { "benchmark_task_id": "fixture.scoring.exact", "version": "1.0.0", "weight": 1, "required": true }
+  ],
+  "suite_refs": [],
+  "metric_preferences": [
+    { "metric_id": "correctness", "weight": 1, "required": true }
+  ],
+  "weights": { "normalization": "normalize_positive", "coverage_mode": "weighted_task_metric_coverage" },
+  "minimum_coverage": 1,
+  "minimum_evidence": 1,
+  "metadata": { "source_class": "TEST_FIXTURE", "fixture_only": true, "test_mapping": true },
+  "version": "1.0.0"
+}

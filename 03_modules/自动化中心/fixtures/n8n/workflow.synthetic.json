@@ -1,0 +1,76 @@
+{
+  "id": "synthetic-workflow-001",
+  "name": "Synthetic Offline Intake",
+  "active": false,
+  "nodes": [
+    {
+      "id": "synthetic-trigger-001",
+      "name": "Synthetic Form Trigger",
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "parameters": {
+        "formTitle": "Synthetic Offline Intake",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Query",
+              "fieldName": "query",
+              "requiredField": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "synthetic-output-001",
+      "name": "Synthetic Output",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [
+        240,
+        0
+      ],
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "synthetic-assignment-001",
+              "name": "result",
+              "type": "string",
+              "value": "synthetic-result"
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Synthetic Form Trigger": {
+      "main": [
+        [
+          {
+            "node": "Synthetic Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {},
+  "tags": [],
+  "_fixture": {
+    "classification": "synthetic",
+    "sourceDataCopied": false,
+    "runtimeRequired": false,
+    "networkAllowed": false,
+    "executionAllowed": false
+  }
+}

@@ -1,0 +1,262 @@
+{
+  "exact_candidate_loaded": true,
+  "candidate_url": "file:///E:/%E6%98%9F%E6%9E%A2NEXA/01_source/token-monitor/dist-desktop-usability-observability-night001-r12/win-unpacked/resources/app.asar/src/electron/renderer/index.html?period=today&breakdown=tool",
+  "measurements": [
+    {
+      "label": "1366x768@100",
+      "css_viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "device_scale_factor": 1.0000000298023224,
+      "horizontal_overflow_px": 0,
+      "command_visible": true,
+      "command_form": {
+        "width": 760,
+        "height": 44,
+        "left": 303,
+        "right": 1063
+      },
+      "workspace_scrollable": true
+    },
+    {
+      "label": "1920x1080@100",
+      "css_viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "device_scale_factor": 1.0000000298023224,
+      "horizontal_overflow_px": 0,
+      "command_visible": true,
+      "command_form": {
+        "width": 760,
+        "height": 44,
+        "left": 580,
+        "right": 1340
+      },
+      "workspace_scrollable": true
+    },
+    {
+      "label": "1920x1080@125",
+      "css_viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "device_scale_factor": 1.2499999701976776,
+      "horizontal_overflow_px": 0,
+      "command_visible": true,
+      "command_form": {
+        "width": 760,
+        "height": 44,
+        "left": 388,
+        "right": 1148
+      },
+      "workspace_scrollable": true
+    },
+    {
+      "label": "1920x1080@150",
+      "css_viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "device_scale_factor": 1.5,
+      "horizontal_overflow_px": 0,
+      "command_visible": true,
+      "command_form": {
+        "width": 760,
+        "height": 44,
+        "left": 260,
+        "right": 1020
+      },
+      "workspace_scrollable": true
+    },
+    {
+      "label": "2400x1302@100",
+      "css_viewport": {
+        "width": 2400,
+        "height": 1302
+      },
+      "device_scale_factor": 1.0000000298023224,
+      "horizontal_overflow_px": 0,
+      "command_visible": true,
+      "command_form": {
+        "width": 760,
+        "height": 44,
+        "left": 820,
+        "right": 1580
+      },
+      "workspace_scrollable": true
+    }
+  ],
+  "history_toggle": [
+    {
+      "aria_expanded": "true",
+      "panel_state": "history"
+    },
+    {
+      "aria_expanded": "false",
+      "panel_state": "collapsed"
+    },
+    {
+      "aria_expanded": "true",
+      "panel_state": "history"
+    },
+    {
+      "aria_expanded": "false",
+      "panel_state": "collapsed"
+    },
+    {
+      "aria_expanded": "true",
+      "panel_state": "history"
+    },
+    {
+      "aria_expanded": "false",
+      "panel_state": "collapsed"
+    },
+    {
+      "aria_expanded": "true",
+      "panel_state": "history"
+    },
+    {
+      "aria_expanded": "false",
+      "panel_state": "collapsed"
+    },
+    {
+      "aria_expanded": "true",
+      "panel_state": "history"
+    },
+    {
+      "aria_expanded": "false",
+      "panel_state": "collapsed"
+    }
+  ],
+  "model": {
+    "service_model_ids": [
+      "qwen3-4b-instruct-2507",
+      "qwen/qwen3-vl-8b",
+      "text-embedding-nomic-embed-text-v1.5"
+    ],
+    "selected_ui": "qwen3-4b-instruct-2507",
+    "selected_provider": "qwen3-4b-instruct-2507",
+    "readiness": "ready",
+    "selected_capability_title": "服务已列出；加载状态：未知；普通对话：未验证；结构化命令：可用；工具调用：未验证；视觉：未验证"
+  },
+  "non_home_command_hidden": true,
+  "ctrl_k": {
+    "focused": "nexaGlobalCommandInput",
+    "home_visible": true,
+    "command_visible": true
+  },
+  "token_periods": [
+    {
+      "value": "today",
+      "selected": "today",
+      "custom_visible": false
+    },
+    {
+      "value": "yesterday",
+      "selected": "yesterday",
+      "custom_visible": false
+    },
+    {
+      "value": "7d",
+      "selected": "7d",
+      "custom_visible": false
+    },
+    {
+      "value": "month",
+      "selected": "month",
+      "custom_visible": false
+    },
+    {
+      "value": "allTime",
+      "selected": "allTime",
+      "custom_visible": false
+    },
+    {
+      "value": "custom",
+      "selected": "custom",
+      "custom_visible": true
+    }
+  ],
+  "token_period_retained": "month",
+  "study": {
+    "count": 2,
+    "left_changed": true,
+    "right_unchanged": true,
+    "details": [
+      {
+        "hidden": false,
+        "max_height": "220px",
+        "overflow_y": "auto",
+        "scroll_height": 432,
+        "client_height": 219
+      },
+      {
+        "hidden": false,
+        "max_height": "220px",
+        "overflow_y": "auto",
+        "scroll_height": 275,
+        "client_height": 219
+      }
+    ],
+    "popover_count": 0,
+    "refresh_per_card_count": 2
+  },
+  "hardware": {
+    "card_count": 9,
+    "labels": [
+      "CPU",
+      "内存",
+      "GPU · NVIDIA GeForce RTX 5060 Laptop GPU",
+      "显存 · NVIDIA GeForce RTX 5060 Laptop GPU",
+      "GPU · Intel(R) Graphics",
+      "显存 · Intel(R) Graphics",
+      "磁盘 · C:",
+      "磁盘 · D:",
+      "磁盘 · E:"
+    ],
+    "trend_path_count": 4,
+    "latest_sample_label": "最近 1 小时 · 最新 2026/9/7 13:49:37",
+    "unavailable_count": 3,
+    "aggregate_gpu_truthful": false,
+    "gpu_count": 2,
+    "gpu_names": [
+      "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "Intel(R) Graphics"
+    ],
+    "gpu_ids_unique": true,
+    "gpu_physical_separation": true,
+    "gpu_memory_available": true,
+    "gpu_history_points": [
+      4,
+      4
+    ]
+  },
+  "notification": {
+    "visible": true,
+    "text_length": 124,
+    "has_pipeline_copy": true
+  },
+  "diagnostic": {
+    "rendered": false,
+    "copy_action_present": false,
+    "diagnostic_id_present": false,
+    "raw_input_leaked": false,
+    "panel_state": "result"
+  },
+  "screenshots": [
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\night001-final4\\viewport-1366-768-100.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\night001-final4\\viewport-1920-1080-100.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\night001-final4\\viewport-1920-1080-125.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\night001-final4\\viewport-1920-1080-150.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\night001-final4\\viewport-2400-1302-100.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\night001-final4\\study-independent-cards.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\night001-final4\\hardware-real-sample-cards.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\night001-final4\\notification-pipeline-status.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\night001-final4\\diagnostic-product-error.png"
+  ],
+  "failures": [
+    "diagnostic UI or redaction"
+  ]
+}

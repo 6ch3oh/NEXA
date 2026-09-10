@@ -1,0 +1,31 @@
+{
+  "schema_version": "0.1",
+  "record_type": "TEST_FIXTURE",
+  "run_id": "run_fixture_success",
+  "timestamp": "2099-01-01T00:00:00.000Z",
+  "provider": "local-fixture-provider",
+  "model": "local-fixture-model",
+  "benchmark_task": "fixture.echo",
+  "task_identity": { "task_id": "fixture-task-success", "task_version": "test-v1" },
+  "prompt_identity": { "prompt_id": "fixture-prompt-success", "prompt_version": "test-v1" },
+  "parameters": { "mode": "offline-test" },
+  "success": true,
+  "latency_ms": 25,
+  "ttft_ms": null,
+  "prompt_tokens": 4,
+  "completion_tokens": 6,
+  "total_tokens": 10,
+  "throughput_tokens_per_second": 240,
+  "cost": null,
+  "request_provenance": {
+    "provider_identity": "local-fixture-provider",
+    "adapter_identity": "starbench.fixture-file",
+    "adapter_version": "0.1",
+    "endpoint_class": "LOCAL_ONLY",
+    "request_id": "fixture-request-success",
+    "execution_environment": { "runtime": "fixture", "network": "disabled" }
+  },
+  "error": null,
+  "source_class": "TEST_FIXTURE",
+  "metadata": { "fixture": true, "historical": false }
+}

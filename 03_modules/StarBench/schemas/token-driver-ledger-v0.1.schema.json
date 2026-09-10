@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/token-driver-ledger-v0.1.schema.json",
+  "title": "Token Driver Ledger V0.1",
+  "type": "object",
+  "required": ["schema_version","record_type","ledger_id","case_id","forecast_id","estimator_version","path","evidence_class","authority","forecast_total_tokens","drivers","trace","audit","conservation","provenance","metadata"],
+  "properties": {
+    "schema_version":{"const":"0.1"},"record_type":{"const":"TOKEN_DRIVER_LEDGER"},"ledger_id":{"type":"string","pattern":"^token_driver_ledger_[a-f0-9]{64}$"},"case_id":{"type":"string"},"forecast_id":{"type":"string"},"estimator_version":{"type":"string"},"path":{"enum":["OPTIMISTIC_PATH","EXPECTED_PATH","CONSERVATIVE_PATH"]},"evidence_class":{"type":"string"},"authority":{"type":"string"},"forecast_total_tokens":{"type":"integer","minimum":0},"drivers":{"type":"array","items":{"$ref":"token-driver-v0.1.schema.json"}},"trace":{"type":"array"},"audit":{"type":"object"},"conservation":{"type":"object","properties":{"status":{"const":"PASS"},"delta_tokens":{"const":0}}},"provenance":{"type":"object"},"metadata":{"type":"object","properties":{"actual_component_fabrication":{"const":0},"fixed_multiplier":{"const":false},"goal_specific_rule":{"const":false},"production_estimator_changed":{"const":false}}}
+  },
+  "additionalProperties": false
+}

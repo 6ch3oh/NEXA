@@ -1,0 +1,50 @@
+{
+  "version": "0.1",
+  "created_at": "2026-08-22T11:04:34.6412968+08:00",
+  "task": "NEXA-AUTO-TIANGONG-PRODUCTION-RECONCILIATION-AND-UPDATE-001",
+  "status": "PASS",
+  "final_state": "READY_TO_PUBLISH / USER_APPROVAL_REQUIRED",
+  "latest_production_revision": "0fd6b9b7-ee0d-44b3-a494-7469be49bf96",
+  "production_updated_at": "2026-08-03T04:14:22.460000+00:00",
+  "revision_lock": "MATCHED",
+  "fresh_authenticated_backup": "CONFIRMED",
+  "backup_sha256": "7BFC195182AC296B18C7388680786774CAA381C0924FA30EBAFEDA715CD868D2",
+  "candidate_validation": "PASS",
+  "candidate_sha256": "99BF04515925D7488B50E010B146E382F83F37132D1EFA4822F4F34B191B0A62",
+  "sandbox_result": "14/14 PASS",
+  "production_drift": "NONE",
+  "rollback": "READY",
+  "post_publish_verification": "READY_FAIL_CLOSED",
+  "first_run_gate": "READY_BUT_BLOCKED_UNTIL_VERIFIED_UPDATE_AND_SEPARATE_RUN_APPROVAL",
+  "production_write": false,
+  "definition_update": false,
+  "publish": false,
+  "activate": false,
+  "workflow_execution": false,
+  "credential_persisted": false,
+  "secret_exposed": false,
+  "ready_to_publish": true,
+  "user_approval_required": true,
+  "next_allowed_goal": "NEXA-AUTO-TIANGONG-PRODUCTION-PUBLISH-001_AFTER_EXPLICIT_USER_APPROVAL_ONLY",
+  "modified_files": [
+    "src/automation_center/production_update.py",
+    "tests/test_tiangong_production_update.py",
+    "docs/audits/NEXA_AUTO_TIANGONG_PRODUCTION_RECONCILIATION_AND_UPDATE_001.md",
+    "docs/contracts/TIANGONG_PRODUCTION_UPDATE_V0.1.md",
+    "fixtures/tiangong_run_prep/production_update_artifacts.manifest.json",
+    "fixtures/tiangong_run_prep/production_update_reconciliation.json",
+    "fixtures/tiangong_run_prep/restore_dry_run.summary.json"
+  ],
+  "new_files": [
+    "fixtures/tiangong_run_prep/publish_approval.ready.json",
+    "fixtures/tiangong_run_prep/production_update_closeout.json"
+  ],
+  "tests": {
+    "full_regression": "529/529 PASS_REUSED",
+    "targeted_acceptance": "20/20 PASS",
+    "candidate_sandbox": "14/14 PASS"
+  },
+  "full_regression_reused_or_rerun": "REUSED_NOT_RERUN",
+  "production_action_performed": false,
+  "stop_reason": "AWAITING_EXPLICIT_USER_APPROVAL_FOR_DEFINITION_UPDATE_ONLY"
+}

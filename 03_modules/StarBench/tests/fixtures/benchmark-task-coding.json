@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "record_type": "BENCHMARK_TASK",
+  "benchmark_task_id": "fixture.coding.sum",
+  "name": "Offline JavaScript coding fixture",
+  "category": "coding",
+  "task_type": "prompt",
+  "description": "Synthetic local task for validating a small deterministic coding definition.",
+  "prompt": {
+    "instruction": "Return only a JavaScript function named sum that adds two finite numbers.",
+    "input_template": "Implement sum(a, b) using standard JavaScript syntax."
+  },
+  "input_definition": {
+    "language": { "type": "string", "value": "javascript" },
+    "function_name": { "type": "string", "value": "sum" }
+  },
+  "prompt_identity": {
+    "algorithm": "sha256",
+    "prompt_id": "prompt_6a9fbca3b063f88433c55f86006ba23a171aa9e48f8db92026db3997517a5b47",
+    "prompt_version": "1.0.0"
+  },
+  "expected_output": {
+    "type": "code",
+    "reference": "function sum(a, b) { return a + b; }",
+    "criteria": ["function is named sum", "returns the addition result", "contains no network operation"]
+  },
+  "evaluation_method": {
+    "type": "deterministic",
+    "config": { "contract_only": true }
+  },
+  "metrics": ["correctness", "instruction_following", "completion", "latency"],
+  "parameters": { "temperature": 0, "max_output_tokens": 120 },
+  "tags": ["offline", "fixture", "coding"],
+  "source_class": "TEST_FIXTURE",
+  "provenance": { "origin": "LOCAL_AUTHORED", "source_ref": null },
+  "metadata": { "synthetic": true, "real_model_score": false },
+  "created_at": "2099-05-01T00:00:00.000Z",
+  "version": "1.0.0"
+}

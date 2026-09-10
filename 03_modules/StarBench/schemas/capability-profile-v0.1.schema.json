@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/capability-profile-v0.1.schema.json",
+  "title": "StarBench Scenario Capability Profile V0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "record_type", "profile_id", "subject", "provider", "model",
+    "scenario_id", "scenario_version", "capability_score", "coverage", "evidence_count",
+    "included_tasks", "excluded_tasks", "metric_summary", "profile_status", "confidence_state",
+    "source_class", "provenance", "generated_at", "metadata"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "record_type": { "const": "CAPABILITY_PROFILE" },
+    "profile_id": { "type": "string", "pattern": "^profile_[a-f0-9]{64}$" },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["subject_type", "subject_id"],
+      "properties": {
+        "subject_type": { "const": "provider_model" },
+        "subject_id": { "type": "string", "minLength": 1 }
+      }
+    },
+    "provider": { "type": "string", "minLength": 1 },
+    "model": { "type": "string", "minLength": 1 },
+    "scenario_id": { "type": "string", "minLength": 1 },
+    "scenario_version": { "type": "string", "minLength": 1 },
+    "capability_score": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+    "coverage": { "type": "number", "minimum": 0, "maximum": 1 },
+    "evidence_count": { "type": "integer", "minimum": 0 },
+    "included_tasks": { "type": "array", "items": { "type": "object" } },
+    "excluded_tasks": { "type": "array", "items": { "type": "object" } },
+    "metric_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["valid_metric_count", "total_metric_count", "metric_ids"],
+      "properties": {
+        "valid_metric_count": { "type": "integer", "minimum": 0 },
+        "total_metric_count": { "type": "integer", "minimum": 0 },
+        "metric_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
+      }
+    },
+    "profile_status": { "enum": ["COMPLETE", "PARTIAL", "INSUFFICIENT_EVIDENCE"] },
+    "confidence_state": { "enum": ["INSUFFICIENT_EVIDENCE", "LOW", "MEDIUM", "HIGH"] },
+    "source_class": { "enum": ["TEST_FIXTURE", "RAW_RESULT", "REAL_EVALUATION"] },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["builder", "builder_version", "scenario_definition_sha256", "task_score_ids", "evaluation_ids", "suite_score_ids"],
+      "properties": {
+        "builder": { "const": "starbench.capability-profile-builder" },
+        "builder_version": { "const": "0.1" },
+        "scenario_definition_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "task_score_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "evaluation_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "suite_score_ids": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
+      }
+    },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "metadata": { "type": "object" }
+  }
+}

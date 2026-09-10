@@ -1,0 +1,159 @@
+{
+  "observed_at": "2026-08-10T00:00:00.000Z",
+  "timezone": "Asia/Shanghai",
+  "items": {
+    "pending_explicit_due": {
+      "id": "legacy_page_pending",
+      "url": "https://www.notion.so/legacy-page-pending",
+      "title": "Synthetic pending task",
+      "priority": "🔴 高",
+      "due": {
+        "start": "2026-08-12",
+        "end": null,
+        "timeZone": "Asia/Shanghai",
+        "hasTime": false
+      },
+      "status": "待开始",
+      "category": "upcoming"
+    },
+    "in_progress_exact": {
+      "id": "legacy_page_progress",
+      "url": "https://www.notion.so/legacy-page-progress",
+      "title": "Synthetic in-progress task",
+      "priority": "🟡 中",
+      "due": {
+        "start": "2026-08-12T14:30:00+08:00",
+        "end": null,
+        "timeZone": "Asia/Shanghai",
+        "hasTime": true
+      },
+      "status": "进行中",
+      "category": "upcoming"
+    },
+    "completed": {
+      "id": "legacy_page_completed",
+      "url": "https://www.notion.so/legacy-page-completed",
+      "title": "Synthetic completed task",
+      "priority": "🟢 低",
+      "due": null,
+      "status": "已完成"
+    },
+    "no_due": {
+      "id": "legacy_page_no_due",
+      "url": "",
+      "title": "Synthetic unscheduled task",
+      "priority": "",
+      "due": null,
+      "status": "待开始",
+      "category": "nodate"
+    },
+    "ambiguous": {
+      "id": "legacy_page_ambiguous",
+      "url": "",
+      "title": "Synthetic ambiguous task",
+      "priority": "🟡 中",
+      "due": { "start": "有空的时候", "end": null, "timeZone": null, "hasTime": false },
+      "status": "待开始"
+    },
+    "relative": {
+      "id": "legacy_page_relative",
+      "url": "",
+      "title": "Synthetic relative task",
+      "priority": "🟡 中",
+      "due": { "start": "明天", "end": null, "timeZone": null, "hasTime": false },
+      "status": "待开始"
+    },
+    "unknown_status": {
+      "id": "legacy_page_unknown",
+      "url": "",
+      "title": "Synthetic unknown status task",
+      "priority": "🟡 中",
+      "due": null,
+      "status": "等待确认"
+    },
+    "unknown_priority": {
+      "id": "legacy_page_unknown_priority",
+      "url": "",
+      "title": "Synthetic unknown priority task",
+      "priority": "最高",
+      "due": null,
+      "status": "待开始"
+    },
+    "malformed": {
+      "id": "",
+      "url": "",
+      "title": "Synthetic malformed task",
+      "priority": "",
+      "due": null,
+      "status": "待开始"
+    }
+  },
+  "snapshots": {
+    "normal": {
+      "ok": true,
+      "status": "ready",
+      "message": "",
+      "updatedAt": 1786320000000,
+      "sections": { "overdue": [], "today": [], "upcoming": [], "nodate": [] },
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": [
+        {
+          "id": "legacy_page_pending",
+          "url": "https://www.notion.so/legacy-page-pending",
+          "title": "Synthetic pending task",
+          "priority": "🔴 高",
+          "due": { "start": "2026-08-12", "end": null, "timeZone": "Asia/Shanghai", "hasTime": false },
+          "status": "待开始",
+          "category": "upcoming"
+        },
+        {
+          "id": "legacy_page_no_due",
+          "url": "",
+          "title": "Synthetic unscheduled task",
+          "priority": "",
+          "due": null,
+          "status": "待开始",
+          "category": "nodate"
+        }
+      ]
+    },
+    "stale": {
+      "ok": false,
+      "status": "network",
+      "message": "已显示上次成功数据",
+      "updatedAt": 1786320000000,
+      "laterCount": 1,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": [
+        {
+          "id": "legacy_page_pending",
+          "url": "https://www.notion.so/legacy-page-pending",
+          "title": "Synthetic pending task",
+          "priority": "🔴 高",
+          "due": { "start": "2026-08-12", "end": null, "timeZone": "Asia/Shanghai", "hasTime": false },
+          "status": "待开始",
+          "category": "upcoming"
+        }
+      ]
+    },
+    "error": {
+      "ok": false,
+      "status": "invalidToken",
+      "message": "Connection failed",
+      "updatedAt": 0,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": []
+    },
+    "malformed": {
+      "ok": true,
+      "status": "ready",
+      "updatedAt": 1786320000000,
+      "items": [{ "id": "broken", "title": "", "status": "待开始", "due": null }]
+    }
+  }
+}

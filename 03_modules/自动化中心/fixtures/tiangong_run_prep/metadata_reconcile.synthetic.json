@@ -1,0 +1,28 @@
+{
+  "version": "0.1",
+  "state": "KNOWLEDGE_COLLECT_FIRST_RUN_RECONCILED",
+  "authenticated_metadata": {
+    "source": "AUTHENTICATED_N8N_METADATA",
+    "provider_instance_id": "n8n-tiangong-primary",
+    "workflow_external_id": "ymYh8t76VP3jGPbr",
+    "membership": "CONFIRMED",
+    "active": false,
+    "production_revision": "0fd6b9b7-ee0d-44b3-a494-7469be49bf96",
+    "observed_at": "2026-08-13T11:19:19.780687+00:00",
+    "secret_exposed": false
+  },
+  "reconciliation": {
+    "state": "REVISION_DIVERGENCE",
+    "decision": "CANONICAL_UPDATE_REQUIRED",
+    "production_nodes": 11,
+    "canonical_nodes": 21,
+    "production_edges": 12,
+    "canonical_edges": 25,
+    "recommended_authority": "CANONICAL_AS_HARDENED_UPDATE_CANDIDATE"
+  },
+  "run_readiness": "UPDATE_REQUIRED",
+  "credential_persisted": false,
+  "workflow_execution": false,
+  "form_submit": false,
+  "production_write": false
+}

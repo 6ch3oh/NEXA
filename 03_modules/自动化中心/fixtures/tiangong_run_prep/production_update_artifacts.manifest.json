@@ -1,0 +1,55 @@
+{
+  "version": "0.1",
+  "created_at": "2026-08-22T10:51:48.448153+08:00",
+  "source_provenance": "AUTHENTICATED_PRODUCTION_BACKUP_AND_READ_ONLY_CANONICAL",
+  "production_backup": {
+    "backup_id": "tiangong-authenticated-production-backup-20260822T025148448153Z",
+    "provider_instance_id": "n8n-tiangong-primary",
+    "workflow_external_id": "ymYh8t76VP3jGPbr",
+    "revision": "0fd6b9b7-ee0d-44b3-a494-7469be49bf96",
+    "updated_at": "2026-08-03T04:14:22.460000+00:00",
+    "observed_at": "2026-08-22T10:51:48.448153+08:00",
+    "created_at": "2026-08-22T10:51:48.448153+08:00",
+    "sha256": "7BFC195182AC296B18C7388680786774CAA381C0924FA30EBAFEDA715CD868D2",
+    "relative_path": "fixtures/tiangong_run_prep/ymYh8t76VP3jGPbr_0fd6b9b7-ee0d-44b3-a494-7469be49bf96_20260822T025148448153Z.authenticated.backup.json",
+    "definition_artifact": "fixtures/tiangong_run_prep/ymYh8t76VP3jGPbr_0fd6b9b7-ee0d-44b3-a494-7469be49bf96_20260822T025148448153Z.authenticated.backup.json",
+    "definition_artifact_format": "N8N_WORKFLOW_EXPORT_JSON",
+    "source_definition_artifact": "fixtures/tiangong_run_prep/ymYh8t76VP3jGPbr_0fd6b9b7-ee0d-44b3-a494-7469be49bf96_20260822T025148448153Z.authenticated.backup.json",
+    "source_provenance": "AUTHENTICATED_N8N_GET_ONLY_WORKFLOW_DEFINITION",
+    "restore_target_identity": "n8n-tiangong-primary/ymYh8t76VP3jGPbr",
+    "semantic_definition_match": true,
+    "latest_revision_recheck": "MATCHED",
+    "immutable": true
+  },
+  "candidate": {
+    "candidate_id": "knowledge-collect-v141-hardened-001",
+    "version_id": "85c5bce0-2d0f-4d66-9a56-9b12e5209e01",
+    "sha256": "99BF04515925D7488B50E010B146E382F83F37132D1EFA4822F4F34B191B0A62",
+    "relative_path": "fixtures/tiangong_run_prep/knowledge_collect_v141_hardened.candidate.json",
+    "active": false,
+    "production_action_performed": false
+  },
+  "reconciliation": {
+    "relative_path": "fixtures/tiangong_run_prep/production_update_reconciliation.json",
+    "sha256": "0BCB820F1DCB0DB86831FA7374188C6940B6414F58DA2FA2624481FBD7EDA137",
+    "state": "PASS_COMPLETE_STRUCTURAL_ACCOUNTING"
+  },
+  "rollback_validation": {
+    "relative_path": "fixtures/tiangong_run_prep/restore_dry_run.summary.json",
+    "sha256": "7300C2BF0410B1564CB6C0CF63127F5F715693F124254FA0478A6E5CC676F9E9",
+    "state": "PASS_SEMANTIC_EQUIVALENCE_REUSE"
+  },
+  "publish_approval": {
+    "relative_path": "fixtures/tiangong_run_prep/publish_approval.ready.json",
+    "sha256": "F030529CE1E81E2579035F2F70149C5B731331D36F7C5F2DD86285C210744DDC",
+    "state": "INVALIDATED_CANDIDATE_SUPERSEDED",
+    "invalidated": true,
+    "replacement_approval": "fixtures/tiangong_run_prep/publish_approval.api_compatible.ready.json",
+    "user_approval_required": false
+  },
+  "closeout": {
+    "relative_path": "fixtures/tiangong_run_prep/production_update_closeout.json",
+    "sha256": "342D4DA1D76CE49EFB11F189AEDC9A4F84A7246CDD755532146D2BCE16BBD51A",
+    "state": "PASS"
+  }
+}

@@ -1,0 +1,96 @@
+# NEXA public repository guardrails
+# This file is a last-line Git safeguard. The export gate remains the primary boundary.
+
+# Secrets and local configuration
+.env
+.env.*
+!.env.example
+!.env.sample
+**/credentials/
+**/*credentials*.json
+**/*credential*.local
+**/*secret*.local
+**/secrets.local.*
+**/local.properties
+**/auth.json
+**/.auth/
+**/.secrets/
+*.key
+*.p12
+*.pfx
+*.jks
+*.keystore
+id_rsa
+id_ed25519
+
+# Imported / vendored source that is not approved for redistribution
+**/source_import/
+
+# Runtime, evidence, and private user data
+**/.runtime/
+**/.nexa/
+**/.local-data/
+**/.local-state/
+**/.local-cache/
+**/.opencode-data/
+**/.opencode-state/
+**/.opencode-cache/
+**/runtime/
+**/logs/
+**/state/
+**/cache/
+**/caches/
+**/temp/
+**/tmp/
+**/artifacts/
+**/evidence/
+**/quarantine/
+**/user-data/
+**/userdata/
+**/user_data/
+**/private-data/
+**/personal-data/
+*.log
+*.pid
+
+# Dependencies and virtual environments
+**/node_modules/
+**/.venv/
+**/venv/
+**/site-packages/
+**/__pycache__/
+**/.pytest_cache/
+
+# Gradle and build output
+**/.gradle/
+**/.gradle-user-home/
+**/build/
+**/dist/
+**/out/
+**/coverage/
+**/.next/
+
+# Generated applications and native binaries
+*.apk
+*.aab
+*.exe
+*.dll
+*.msi
+*.dmg
+*.appimage
+*.ipa
+
+# Databases and local state
+*.db
+*.db-*
+*.sqlite
+*.sqlite3
+*.wal
+*.shm
+
+# OS and editor temporary files
+.DS_Store
+Thumbs.db
+*.swp
+*.tmp
+*~

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/intent-rule-v0.1.schema.json",
+  "title": "StarBench Intent Rule V0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "record_type", "rule_id", "version", "name", "description", "target_scenario_id", "priority", "signals", "required_signals", "excluded_signals", "weight", "reason_code", "enabled", "source_class", "metadata"],
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "record_type": { "const": "INTENT_RULE" },
+    "rule_id": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+    "version": { "type": "string", "pattern": "^[0-9]+[.][0-9]+[.][0-9]+$" },
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "target_scenario_id": { "type": "string", "minLength": 1 },
+    "priority": { "type": "integer", "minimum": 0 },
+    "signals": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/signal" } },
+    "required_signals": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+    "excluded_signals": { "type": "array", "items": { "$ref": "#/$defs/signal" } },
+    "weight": { "type": "number", "exclusiveMinimum": 0 },
+    "reason_code": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*$" },
+    "enabled": { "type": "boolean" },
+    "source_class": { "enum": ["TEST_FIXTURE", "ROUTING_RULE"] },
+    "metadata": { "type": "object" }
+  },
+  "$defs": {
+    "signal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["signal_id", "signal_type", "field", "values", "match", "case_sensitive", "weight"],
+      "properties": {
+        "signal_id": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+        "signal_type": { "enum": ["keyword", "phrase", "structured_hint", "task_type", "domain_hint"] },
+        "field": { "type": ["string", "null"] },
+        "values": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+        "match": { "enum": ["ANY", "ALL", "EQUALS"] },
+        "case_sensitive": { "type": "boolean" },
+        "weight": { "type": "number", "exclusiveMinimum": 0 }
+      }
+    }
+  }
+}

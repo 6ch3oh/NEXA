@@ -1,0 +1,39 @@
+{
+  "today": {
+    "date": "2026-08-13",
+    "timeline": [
+      { "type": "calendar_event", "start_at": "2026-08-13T09:00:00+08:00", "item": { "id": "event_fixed", "title": "Synthetic fixed meeting", "display_time": "2026-08-13T09:00:00+08:00 - 2026-08-13T10:00:00+08:00", "all_day": false, "location": "Room A", "status": "confirmed", "source": "local", "is_happening_now": false } },
+      { "type": "reminder", "start_at": "2026-08-13T13:45:00+08:00", "item": { "id": "reminder_plan", "title": "Synthetic confirmed task", "display_time": "2026-08-13T13:45:00+08:00", "kind": "upcoming", "state": "ready", "source_type": "task", "source_id": "task_confirmed", "requires_attention": true } },
+      { "type": "task_plan", "start_at": "2026-08-13T14:00:00+08:00", "item": { "plan_id": "plan_confirmed", "task_id": "task_confirmed", "title": "Synthetic confirmed task", "planned_start_at": "2026-08-13T14:00:00+08:00", "planned_end_at": "2026-08-13T15:30:00+08:00", "timezone": "Asia/Shanghai", "position": 0, "pinned": false, "state": "time_confirmed" } }
+    ],
+    "fixed_calendar_events": [{ "id": "event_fixed", "title": "Synthetic fixed meeting", "display_time": "2026-08-13T09:00:00+08:00 - 2026-08-13T10:00:00+08:00", "all_day": false, "location": "Room A", "status": "confirmed", "source": "local", "is_happening_now": false }],
+    "confirmed_task_plans": [{ "plan_id": "plan_confirmed", "task_id": "task_confirmed", "title": "Synthetic confirmed task", "planned_start_at": "2026-08-13T14:00:00+08:00", "planned_end_at": "2026-08-13T15:30:00+08:00", "timezone": "Asia/Shanghai", "position": 0, "pinned": false, "state": "time_confirmed" }],
+    "unplaced_tasks": [{ "id": "task_notion_unplaced", "title": "Synthetic Notion task", "status": "pending", "priority": "high", "display_time": "2026-08-14", "time_state": "date_only", "is_overdue": false, "is_blocked": false, "requires_attention": false, "source": "notion", "plan_id": "plan_unplaced", "position": 1, "pinned": true, "priority_suggestion": { "task_id": "task_notion_unplaced", "suggested_rank": 1, "reason_codes": ["USER_PRIORITY_HIGH"], "human_readable_reason": "user priority high", "manual_override_preserved": true } }],
+    "priority_suggestions": [{ "task_id": "task_notion_unplaced", "suggested_rank": 1, "reason_codes": ["USER_PRIORITY_HIGH"], "human_readable_reason": "user priority high", "manual_override_preserved": true }],
+    "attention": { "overdue": ["task_overdue"], "blocked": ["task_blocked"], "ambiguous": [], "relative_unresolved": [], "reminder_ready": ["reminder_plan"], "confirmation_pending": ["command_pending"], "today_unfinished": ["task_confirmed", "task_notion_unplaced"] },
+    "carryover_from_previous": [{ "task_id": "task_previous", "from_date": "2026-08-12", "suggested_to_date": "2026-08-13", "reason": "TODAY_UNFINISHED", "requires_confirmation": true }],
+    "reminders": [{ "id": "reminder_plan", "title": "Synthetic confirmed task", "display_time": "2026-08-13T13:45:00+08:00", "kind": "upcoming", "state": "ready", "source_type": "task", "source_id": "task_confirmed", "requires_attention": true }],
+    "notion_status": { "ready": true, "host_available": true, "disposed": false },
+    "summary": { "fixed_event_count": 1, "confirmed_task_count": 1, "unplaced_task_count": 1, "attention_count": 6 }
+  },
+  "tomorrow": {
+    "date": "2026-08-14",
+    "fixed_calendar_events": [{ "id": "event_tomorrow", "title": "Synthetic tomorrow event", "display_time": "2026-08-14T10:00:00+08:00 - 2026-08-14T11:00:00+08:00", "all_day": false, "location": "", "status": "confirmed", "source": "local", "is_happening_now": false }],
+    "confirmed_task_plans": [{ "plan_id": "plan_tomorrow_confirmed", "task_id": "task_tomorrow_confirmed", "title": "Synthetic tomorrow confirmed", "planned_start_at": "2026-08-14T15:00:00+08:00", "planned_end_at": "2026-08-14T16:00:00+08:00", "position": 0, "pinned": false }],
+    "unplaced_tasks": [{ "id": "task_tomorrow_unplaced", "title": "Synthetic tomorrow unplaced", "source": "local", "plan_id": "plan_tomorrow_unplaced", "position": 1, "pinned": false, "priority_suggestion": { "task_id": "task_tomorrow_unplaced", "suggested_rank": 1, "reason_codes": ["DUE_ON_PLAN_DATE"], "human_readable_reason": "due on plan date", "manual_override_preserved": true } }],
+    "priority_suggestions": [{ "task_id": "task_tomorrow_unplaced", "suggested_rank": 1, "reason_codes": ["DUE_ON_PLAN_DATE"], "human_readable_reason": "due on plan date", "manual_override_preserved": true }],
+    "suggested_tasks": [],
+    "carryover_suggestions": [{ "task_id": "task_today_unfinished", "plan_id": "plan_today_unfinished", "from_date": "2026-08-13", "suggested_to_date": "2026-08-14", "reason": "TODAY_UNFINISHED", "requires_confirmation": true }],
+    "reminders": [],
+    "planning_progress": { "total_tasks": 2, "time_confirmed_count": 1, "time_unconfirmed_count": 1 },
+    "summary": { "fixed_event_count": 1, "planned_task_count": 2, "carryover_suggestion_count": 1 }
+  },
+  "conflict_warning": {
+    "status": "CONFLICT_WARNING",
+    "conflicts": [
+      { "type": "calendar_event", "id": "event_fixed", "title": "Synthetic fixed meeting", "start_at": "2026-08-13T09:00:00+08:00", "end_at": "2026-08-13T10:00:00+08:00" },
+      { "type": "task_plan", "id": "plan_other", "task_id": "task_other", "start_at": "2026-08-13T14:30:00+08:00", "end_at": "2026-08-13T15:30:00+08:00" }
+    ],
+    "entry_unchanged": true
+  }
+}

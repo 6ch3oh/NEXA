@@ -1,0 +1,25 @@
+{
+  "before": {
+    "source": "device-center-existing-runtime",
+    "max_history_points": 120,
+    "activity_mode": "background",
+    "intervals_ms": {
+      "fast": 30000,
+      "medium": 120000,
+      "slow": 600000
+    }
+  },
+  "after": {
+    "source": "device-center-existing-runtime",
+    "max_history_points": 120,
+    "activity_mode": "background",
+    "intervals_ms": {
+      "fast": 30000,
+      "medium": 120000,
+      "slow": 600000
+    }
+  },
+  "failures": [
+    "foreground cadence"
+  ]
+}

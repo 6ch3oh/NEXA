@@ -1,0 +1,80 @@
+{
+  "version": "0.1",
+  "created_at": "2026-08-22T11:35:54.4505354+08:00",
+  "task": "NEXA-AUTO-TIANGONG-CANDIDATE-API-COMPAT-001",
+  "state": "DEFINITION_UPDATE_REJECTED_NO_CHANGE",
+  "user_approval_required": true,
+  "approval_granted": true,
+  "authorization_consumed": true,
+  "approval_scope": "DEFINITION_UPDATE_ONLY",
+  "approval_recorded_at": "2026-08-22T11:56:44.4567400+08:00",
+  "approval_round": "NEXA-AUTO-TIANGONG-PRODUCTION-PUBLISH-001/R2",
+  "approved_candidate_sha256": "002C8F5520B803FECE8387B3D2BC60E7055D9505B4A40131F87D76EACBC02FC9",
+  "publish_approved": false,
+  "activate_approved": false,
+  "workflow_execution_approved": false,
+  "old_approval_invalidated": true,
+  "old_approval": {
+    "relative_path": "fixtures/tiangong_run_prep/publish_approval.ready.json",
+    "previous_sha256": "44B439ACA6922C733293B605A944549C94AFDA94D62BE65867CA9C3F51B4E552",
+    "invalidated_sha256": "F030529CE1E81E2579035F2F70149C5B731331D36F7C5F2DD86285C210744DDC",
+    "candidate_sha256": "99BF04515925D7488B50E010B146E382F83F37132D1EFA4822F4F34B191B0A62",
+    "authorization_transferable": false
+  },
+  "provider_instance_id": "n8n-tiangong-primary",
+  "workflow_external_id": "ymYh8t76VP3jGPbr",
+  "locked_production_revision": "0fd6b9b7-ee0d-44b3-a494-7469be49bf96",
+  "fresh_authenticated_backup_sha256": "7BFC195182AC296B18C7388680786774CAA381C0924FA30EBAFEDA715CD868D2",
+  "candidate": {
+    "candidate_id": "knowledge-collect-v141-hardened-api-compatible-002",
+    "relative_path": "fixtures/tiangong_run_prep/knowledge_collect_v141_hardened.api_compatible.candidate.json",
+    "sha256": "002C8F5520B803FECE8387B3D2BC60E7055D9505B4A40131F87D76EACBC02FC9",
+    "format": "N8N_PUBLIC_API_UPDATE_REQUEST_BODY",
+    "node_count": 22,
+    "edge_count": 26
+  },
+  "api_schema_validation": {
+    "state": "PASS",
+    "local_schema_sha256": "BADB367018E4614D5C76F18C06306017B3E79977150B14F1F0FBC4339BFCE08D",
+    "relative_path": "fixtures/tiangong_run_prep/api_schema_validation.json"
+  },
+  "failure_handling_equivalence": {
+    "state": "PASS",
+    "nodes_changed": false,
+    "connections_changed": false,
+    "node_level_onError_preserved": true,
+    "error_workflow_added": false,
+    "sandbox": "14/14 PASS"
+  },
+  "future_update_request": {
+    "method": "PUT",
+    "target": "/api/v1/workflows/ymYh8t76VP3jGPbr?publishIfActive=false",
+    "body": "EXACT_NEW_CANDIDATE_BYTES_AFTER_JSON_PARSE",
+    "local_parameter_support": false,
+    "local_instance_guard": "FAIL_CLOSED_UNLESS_PRE_UPDATE_STATE_IS_AUTHENTICATED_INACTIVE_AND_UNPUBLISHED"
+  },
+  "excluded_actions": [
+    "PUBLISH",
+    "ACTIVATE",
+    "WORKFLOW_EXECUTION"
+  ],
+  "side_effects": {
+    "production_write": false,
+    "publish": false,
+    "activate": false,
+    "workflow_execution": false,
+    "credential_access": false,
+    "secret_exposed": false
+  },
+  "definition_update_attempt": {
+    "attempted_at": "2026-08-22T12:03:26.0397828+08:00",
+    "result": "DEFINITION_UPDATE_REJECTED_NO_CHANGE",
+    "http_status": 403,
+    "authenticated_readback": "OLD_LOCKED_DEFINITION_UNCHANGED",
+    "result_relative_path": "fixtures/tiangong_run_prep/definition_update_r2.result.json",
+    "result_sha256": "D3C39B98B9883DA7D3EF1A7D3D33F5798036EF865BC1154CCC5EE413FF7C78C3"
+  },
+  "next_required_action": "CONTROLLER_REVIEW_OF_N8N_HTTP_403_WRITE_PERMISSION",
+  "automatic_retry_allowed": false,
+  "safe_controller": "scripts/tiangong_definition_update.py"
+}

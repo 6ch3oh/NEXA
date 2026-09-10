@@ -1,0 +1,9 @@
+{
+  "before": null,
+  "after": null,
+  "failures": [
+    "foreground cadence",
+    "minimized cadence",
+    "timer ownership"
+  ]
+}

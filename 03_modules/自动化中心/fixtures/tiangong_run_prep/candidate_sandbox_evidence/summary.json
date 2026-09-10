@@ -1,0 +1,167 @@
+{
+  "state": "PASS",
+  "candidate_sha256": "99BF04515925D7488B50E010B146E382F83F37132D1EFA4822F4F34B191B0A62",
+  "started_at": "2026-08-13T13:25:30.040558+00:00",
+  "completed_at": "2026-08-13T13:27:11.561265+00:00",
+  "network": "DOCKER_INTERNAL_ONLY",
+  "production_credentials": false,
+  "production_docker_modified": false,
+  "production_workflow_write": false,
+  "production_execution": false,
+  "cases": [
+    {
+      "case": "success",
+      "expected": "SUCCESS",
+      "passed": true,
+      "import_exit_code": 0,
+      "execute_exit_code": 0,
+      "artifact_count": 1,
+      "artifact_sha256": "9DF2028AA5FA8D75914A2D79F9F98791376D60FF73D828C72203D5EDE2DE6AA9",
+      "production_target_used": false,
+      "external_network_used": false
+    },
+    {
+      "case": "empty",
+      "expected": "SUCCESS",
+      "passed": true,
+      "import_exit_code": 0,
+      "execute_exit_code": 0,
+      "artifact_count": 1,
+      "artifact_sha256": "785149EC0D1F7951AF75CB0E1FC3683CC426B88B998C29A67FF925217A67BD1D",
+      "production_target_used": false,
+      "external_network_used": false
+    },
+    {
+      "case": "forbidden",
+      "expected": "SUCCESS",
+      "passed": true,
+      "import_exit_code": 0,
+      "execute_exit_code": 0,
+      "artifact_count": 1,
+      "artifact_sha256": "D387F7E97035F4EAFDD4DFD10611DDF823427034B58FEE4082247D7FC9CCCB94",
+      "production_target_used": false,
+      "external_network_used": false
+    },
+    {
+      "case": "rate_limited",
+      "expected": "SUCCESS",
+      "passed": true,
+      "import_exit_code": 0,
+      "execute_exit_code": 0,
+      "artifact_count": 1,
+      "artifact_sha256": "F13AAA9C9645F69BFFB47C937D2C41FFA0C0CBE2D4C90C39CE64CA54DFA7FEA5",
+      "production_target_used": false,
+      "external_network_used": false
+    },
+    {
+      "case": "failed",
+      "expected": "SUCCESS",
+      "passed": true,
+      "import_exit_code": 0,
+      "execute_exit_code": 0,
+      "artifact_count": 1,
+      "artifact_sha256": "AEB35441ED574FE09D64ADFCF97B8CEC3DEB73104CF2D22E9A35BCE31A5C82D2",
+      "production_target_used": false,
+      "external_network_used": false
+    },
+    {
+      "case": "not_provided",
+      "expected": "SUCCESS",
+      "passed": true,
+      "import_exit_code": 0,
+      "execute_exit_code": 0,
+      "artifact_count": 1,
+      "artifact_sha256": "71CBE3AB56A89E04995B7F1240FD53CCE17A1E3B661BBE9C1BF3757E946E78F3",
+      "production_target_used": false,
+      "external_network_used": false
+    },
+    {
+      "case": "filename_normal",
+      "expected": "SUCCESS",
+      "passed": true,
+      "import_exit_code": 0,
+      "execute_exit_code": 0,
+      "artifact_count": 1,
+      "artifact_sha256": "0757FECDA5D9AF65D14AF6E35B4DE1E26FE591F10CB05FC7EE05F2810FA876AB",
+      "production_target_used": false,
+      "external_network_used": false
+    },
+    {
+      "case": "filename_chinese",
+      "expected": "SUCCESS",
+      "passed": true,
+      "import_exit_code": 0,
+      "execute_exit_code": 0,
+      "artifact_count": 1,
+      "artifact_sha256": "3918244DA5C4F9FD29EBBEC049740950DBD6B04C35CADC84F9E0D90E85CD365E",
+      "production_target_used": false,
+      "external_network_used": false
+    },
+    {
+      "case": "filename_spaces",
+      "expected": "SUCCESS",
+      "passed": true,
+      "import_exit_code": 0,
+      "execute_exit_code": 0,
+      "artifact_count": 1,
+      "artifact_sha256": "A3009C107098B8ABB71767CDEFA366224F58046CE568CD9A6586C158D509B7C8",
+      "production_target_used": false,
+      "external_network_used": false
+    },
+    {
+      "case": "reject_traversal",
+      "expected": "REJECT",
+      "passed": true,
+      "import_exit_code": 0,
+      "execute_exit_code": 1,
+      "artifact_count": 0,
+      "artifact_sha256": null,
+      "production_target_used": false,
+      "external_network_used": false
+    },
+    {
+      "case": "reject_reserved",
+      "expected": "REJECT",
+      "passed": true,
+      "import_exit_code": 0,
+      "execute_exit_code": 1,
+      "artifact_count": 0,
+      "artifact_sha256": null,
+      "production_target_used": false,
+      "external_network_used": false
+    },
+    {
+      "case": "reject_private_url",
+      "expected": "REJECT",
+      "passed": true,
+      "import_exit_code": 0,
+      "execute_exit_code": 1,
+      "artifact_count": 0,
+      "artifact_sha256": null,
+      "production_target_used": false,
+      "external_network_used": false
+    },
+    {
+      "case": "llm_failure",
+      "expected": "FAIL",
+      "passed": true,
+      "import_exit_code": 0,
+      "execute_exit_code": 1,
+      "artifact_count": 0,
+      "artifact_sha256": null,
+      "production_target_used": false,
+      "external_network_used": false
+    },
+    {
+      "case": "file_failure",
+      "expected": "FAIL",
+      "passed": true,
+      "import_exit_code": 0,
+      "execute_exit_code": 1,
+      "artifact_count": 0,
+      "artifact_sha256": null,
+      "production_target_used": false,
+      "external_network_used": false
+    }
+  ]
+}

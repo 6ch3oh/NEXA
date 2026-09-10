@@ -1,0 +1,13 @@
+{
+  "name": "nexa-dashi-contract",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "NEXA-side read-only Dashi Contract, Adapter, ViewModel and Application API.",
+  "scripts": {
+    "test": "node --test dashi-contract.test.mjs dashi-read-provider.test.mjs dashi-live-read-binding.test.mjs dashi-canonical-binding.test.mjs dashi-application-api.test.mjs dashi-read-experience.test.mjs dashi-source-reconciliation.test.mjs dashi-authoritative-consolidation.test.mjs dashi-desktop-entry.test.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "ai_name": "限流页面示例",
+  "source_url": "https://example.com/rate-limited",
+  "web_text": "",
+  "web_text_length": 0,
+  "webpage_read_status": "rate_limited",
+  "http_status_code": 429,
+  "web_error_code": "HTTP_429",
+  "web_error_message": "Remote server rate limited the request.",
+  "web_checked_at": "2026-08-01T01:34:02Z"
+}

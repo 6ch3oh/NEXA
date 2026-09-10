@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/candidate-rule-refinement-v0.1.schema.json",
+  "title": "Candidate Rule Refinement V0.1",
+  "type": "object",
+  "required": ["schema_version","record_type","refinement_id","rules","evidence_assessment","shadow_v2_decision","shadow_v2_reason","promotion_status","production_estimator_modified","fixed_multiplier","goal_specific_rule","metadata"],
+  "properties": {"schema_version":{"const":"0.1"},"record_type":{"const":"CANDIDATE_RULE_REFINEMENT"},"refinement_id":{"type":"string","pattern":"^candidate_rule_refinement_[a-f0-9]{64}$"},"rules":{"type":"array","minItems":2},"evidence_assessment":{"type":"object"},"shadow_v2_decision":{"enum":["SHADOW_V2_READY","NOT_JUSTIFIED"]},"shadow_v2_reason":{"type":"string"},"promotion_status":{"const":"NO_AUTOMATIC_PROMOTION"},"production_estimator_modified":{"const":false},"fixed_multiplier":{"const":false},"goal_specific_rule":{"const":false},"metadata":{"type":"object"}},
+  "additionalProperties": false
+}

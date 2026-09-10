@@ -1,0 +1,83 @@
+{
+  "version": "0.1",
+  "observed_at": "2026-08-22T11:22:16.8154164+08:00",
+  "task": "NEXA-AUTO-TIANGONG-PRODUCTION-PUBLISH-001",
+  "status": "STOPPED_DEFINITION_UPDATE_PRECHECK_FAILED",
+  "stop_reason": "CANDIDATE_API_SCHEMA_INCOMPATIBLE",
+  "user_approval_scope": "DEFINITION_UPDATE_ONLY",
+  "user_approval_recorded": true,
+  "provider_instance_id": "n8n-tiangong-primary",
+  "workflow_external_id": "ymYh8t76VP3jGPbr",
+  "pre_update_production_revision": "0fd6b9b7-ee0d-44b3-a494-7469be49bf96",
+  "pre_update_revision_lock": "ON_DISK_MATCHED_LIVE_AUTHENTICATED_RECHECK_NOT_STARTED",
+  "backup_confirmed": true,
+  "backup_sha256": "7BFC195182AC296B18C7388680786774CAA381C0924FA30EBAFEDA715CD868D2",
+  "candidate": {
+    "id": "knowledge-collect-v141-hardened-001",
+    "sha256": "99BF04515925D7488B50E010B146E382F83F37132D1EFA4822F4F34B191B0A62",
+    "local_validation": "PASS",
+    "sandbox": "14/14 PASS",
+    "settings_fields": [
+      "executionOrder",
+      "binaryMode",
+      "availableInMCP",
+      "onError"
+    ],
+    "unsupported_by_instance_public_api": [
+      "settings.onError"
+    ]
+  },
+  "instance_public_api": {
+    "source": "http://127.0.0.1:5678/api/v1/docs/swagger-ui-init.js",
+    "source_access": "UNAUTHENTICATED_GET_ONLY",
+    "source_status": 200,
+    "update_operation": "PUT /api/v1/workflows/{id}",
+    "workflow_settings_additional_properties": false,
+    "accepted_settings_fields": [
+      "saveExecutionProgress",
+      "saveManualExecutions",
+      "saveDataErrorExecution",
+      "saveDataSuccessExecution",
+      "executionTimeout",
+      "errorWorkflow",
+      "timezone",
+      "executionOrder",
+      "callerPolicy",
+      "callerIds",
+      "timeSavedPerExecution",
+      "redactionPolicy",
+      "availableInMCP",
+      "customTelemetryTags"
+    ],
+    "publish_if_active_false_parameter_supported": false,
+    "documented_update_behavior": "AUTO_REPUBLISH_IF_WORKFLOW_IS_PUBLISHED"
+  },
+  "decision": {
+    "exact_approved_candidate_can_be_submitted_via_public_api": false,
+    "strip_unsupported_setting": "FORBIDDEN_UNAPPROVED_CANDIDATE_CHANGE",
+    "alternate_write_channel": "FORBIDDEN",
+    "credential_requested": false,
+    "definition_update_attempted": false
+  },
+  "post_update_production_revision": null,
+  "revision_changed_as_expected": null,
+  "post_update_semantic_match": "NOT_PERFORMED",
+  "safety_hardening_verified": "LOCAL_CANDIDATE_ONLY_NOT_PRODUCTION",
+  "production_drift": "NOT_EVALUATED_LIVE_WRITE_NEVER_STARTED",
+  "production_write": false,
+  "publish": false,
+  "activate": false,
+  "workflow_execution": false,
+  "credential_persisted": false,
+  "secret_exposed": false,
+  "rollback_ready": true,
+  "modified_files": [],
+  "new_files": [
+    "fixtures/tiangong_run_prep/definition_update_preflight.blocked.json",
+    "docs/audits/NEXA_AUTO_TIANGONG_PRODUCTION_PUBLISH_001.md"
+  ],
+  "tests": "PREVIOUS_20/20_FOCUSED_AND_14/14_SANDBOX_REUSED",
+  "full_regression": "529/529_PASS_REUSED_NOT_RERUN",
+  "next_allowed_action": "CONTROLLER_DECISION_ON_API_COMPATIBLE_CANDIDATE_CORRECTION_AND_REVALIDATION",
+  "user_approval_required": true
+}

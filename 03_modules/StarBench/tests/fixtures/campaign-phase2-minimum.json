@@ -1,0 +1,6 @@
+{
+  "schema_version":"0.1","record_type":"CAMPAIGN_DEFINITION","campaign_id":"fixture.phase2.minimum","version":"1.0.0","suite_id":"phase2-minimum-suite-v0.1","suite_version":"1.0.0",
+  "candidate_refs":[{"candidate_id":"fixture-candidate-a","version":"1.0.0"},{"candidate_id":"fixture-candidate-b","version":"1.0.0"}],"runs_per_task":2,"scenario_scope":["planning","coding","instruction_following"],
+  "budget_policy_ref":null,"budget_status":"NOT_AUTHORIZED_REAL_EXECUTION","stop_policy":{"on_failure":"CONTINUE","max_failures":null},"retry_policy":{"retry_budget":0},"campaign_state":"TEST_ONLY","source_class":"TEST_FIXTURE","created_at":"2099-08-01T00:00:00.000Z",
+  "metadata":{"synthetic":true,"execution_mode":"LOCAL_FIXTURE_ONLY","planned_request_count":36,"max_requests":36,"attempted_requests":0,"remaining_requests":36,"real_request_count":0}
+}

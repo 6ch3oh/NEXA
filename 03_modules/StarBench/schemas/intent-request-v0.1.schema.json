@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/intent-request-v0.1.schema.json",
+  "title": "StarBench Intent Request V0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "record_type", "request_id", "task_text", "structured_hints", "allowed_scenarios", "excluded_scenarios", "language", "source_class", "requested_at", "metadata"],
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "record_type": { "const": "INTENT_REQUEST" },
+    "request_id": { "type": "string", "pattern": "^intent_[A-Za-z0-9_-]+$" },
+    "task_text": { "type": "string" },
+    "structured_hints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "task_type": { "type": ["string", "null"] },
+        "domain": { "type": ["string", "null"] },
+        "priority": { "type": ["string", "null"] },
+        "cost_sensitivity": { "type": ["string", "null"] },
+        "latency_sensitivity": { "type": ["string", "null"] }
+      }
+    },
+    "allowed_scenarios": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "excluded_scenarios": { "type": "array", "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "language": { "enum": ["zh", "en", "mixed", "unspecified"] },
+    "source_class": { "enum": ["TEST_FIXTURE", "REAL_USER_INPUT"] },
+    "requested_at": { "type": "string", "format": "date-time" },
+    "metadata": { "type": "object" }
+  }
+}

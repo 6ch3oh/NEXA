@@ -1,0 +1,211 @@
+{
+  "schema_version": "0.1",
+  "record_type": "SCENARIO_EVIDENCE_REQUIREMENT",
+  "contract_id": "scenario-evidence-requirement-v0.1",
+  "version": "0.1.0",
+  "status": "PLANNED_NOT_AUTHORIZED",
+  "purpose": "Define the smallest diverse, repeated, candidate-comparable real evidence set for the three Phase-2 Scenario categories.",
+  "phase1_scenario_references": [
+    {
+      "scenario": "coding",
+      "existing_definition": "tests/fixtures/scenario-coding.json",
+      "existing_definition_source": "TEST_FIXTURE",
+      "promotion_to_real_definition": false
+    },
+    {
+      "scenario": "planning",
+      "existing_definition": "tests/fixtures/scenario-planning.json",
+      "existing_definition_source": "TEST_FIXTURE",
+      "promotion_to_real_definition": false
+    },
+    {
+      "scenario": "instruction_following",
+      "existing_definition": "tests/fixtures/scenario-instruction-following.json",
+      "existing_definition_source": "TEST_FIXTURE",
+      "promotion_to_real_definition": false
+    }
+  ],
+  "shared_requirement": {
+    "minimum_tasks": 3,
+    "minimum_successful_results_per_candidate": 5,
+    "minimum_success_per_task": 1,
+    "minimum_coverage": 1,
+    "minimum_evidence_count": 3,
+    "minimum_confidence": "HIGH",
+    "minimum_provider_model_observations": 6,
+    "minimum_candidates_for_recommendation": 2,
+    "runs_per_task_per_candidate": 2,
+    "repeat_run_required_for_recommendation": true,
+    "deterministic_single_run_use": "PRELIMINARY_EVIDENCE_ONLY",
+    "minimum_success_rate": 0.8333333333333334,
+    "maximum_partial_results": 1,
+    "maximum_failed_results": 1,
+    "maximum_combined_partial_or_failed": 1,
+    "partial_counts_as_success": false,
+    "failed_counts_as_success": false,
+    "all_required_tasks_must_have_evidence": true,
+    "required_result_source": "RAW_RESULT/PROVIDER_EXECUTION",
+    "required_provenance": "COMPLETE",
+    "required_secret_status": "CLEAN",
+    "required_compatibility": "V0_1_COMPATIBLE",
+    "test_fixture_allowed": false,
+    "activation_task_allowed": false
+  },
+  "repeat_and_stability": {
+    "score_variance": "Report population variance across valid repeated numeric scores for each task and candidate; disagreement is retained, never averaged away without disclosure.",
+    "success_rate": "successful admitted runs / all attempted runs, with PARTIAL, FAILED, and timeout attempts retained in the denominator.",
+    "latency_variation": "Across successful admitted runs report median as primary plus mean, min, max, interquartile range, and coefficient of variation.",
+    "failed_latency_handling": "Exclude FAILED and timeout durations from the latency distribution but retain them in reliability reporting.",
+    "outlier_policy": "Do not remove successful latency observations in V0.1.",
+    "stability_interpretation": "Two runs are a minimum instability screen, not a high-powered statistical estimate."
+  },
+  "scenarios": [
+    {
+      "scenario": "coding",
+      "minimum_tasks": 3,
+      "minimum_successful_results": 5,
+      "minimum_coverage": 1,
+      "minimum_evidence_count": 3,
+      "minimum_confidence": "HIGH",
+      "required_metric_types": ["binary", "numeric"],
+      "required_scorers": ["numeric", "rule_based"],
+      "required_task_diversity": ["code_generation", "bug_fix", "instruction_constraints"],
+      "minimum_provider_model_observations": 6,
+      "repeat_run_required": true,
+      "runs_per_task": 2,
+      "maximum_partial_results": 1,
+      "maximum_failed_results": 1,
+      "maximum_combined_partial_or_failed": 1,
+      "minimum_real_benchmark_set": [
+        {
+          "task_key": "coding.code_generation",
+          "definition_status": "PLANNED_NOT_AUTHORED",
+          "purpose": "Generate one small function under explicit interface and forbidden-operation constraints.",
+          "deterministic_evaluation": "Locally executed bounded tests produce a numeric pass ratio; rule checks enforce output and forbidden-operation constraints."
+        },
+        {
+          "task_key": "coding.bug_fix",
+          "definition_status": "PLANNED_NOT_AUTHORED",
+          "purpose": "Repair one localized defect without changing an explicit public contract.",
+          "deterministic_evaluation": "Regression and non-regression tests produce a numeric pass ratio; contract-preservation rules are binary."
+        },
+        {
+          "task_key": "coding.instruction_constraints",
+          "definition_status": "PLANNED_NOT_AUTHORED",
+          "purpose": "Produce a constrained code change with required and forbidden elements.",
+          "deterministic_evaluation": "Rule-based checks score required fields, forbidden content, and requested format."
+        }
+      ],
+      "insufficient_evidence_when": [
+        "fewer than three distinct required tasks have valid Task Scores",
+        "fewer than five of six observations succeed",
+        "any diversity class has no valid evidence",
+        "coverage is below one or confidence is below HIGH",
+        "required correctness or constraint metrics are missing"
+      ]
+    },
+    {
+      "scenario": "planning",
+      "minimum_tasks": 3,
+      "minimum_successful_results": 5,
+      "minimum_coverage": 1,
+      "minimum_evidence_count": 3,
+      "minimum_confidence": "HIGH",
+      "required_metric_types": ["binary", "numeric"],
+      "required_scorers": ["rule_based", "numeric"],
+      "required_task_diversity": ["multi_constraint_planning", "dependency_ordering", "resource_and_risk_handling"],
+      "minimum_provider_model_observations": 6,
+      "repeat_run_required": true,
+      "runs_per_task": 2,
+      "maximum_partial_results": 1,
+      "maximum_failed_results": 1,
+      "maximum_combined_partial_or_failed": 1,
+      "minimum_real_benchmark_set": [
+        {
+          "task_key": "planning.multi_constraint",
+          "definition_status": "PLANNED_NOT_AUTHORED",
+          "purpose": "Produce a structured plan satisfying several explicit hard constraints.",
+          "deterministic_evaluation": "Rule checks score every required constraint and numeric coverage records the satisfied fraction."
+        },
+        {
+          "task_key": "planning.dependency_ordering",
+          "definition_status": "PLANNED_NOT_AUTHORED",
+          "purpose": "Order dependent steps while preserving prerequisites and stop conditions.",
+          "deterministic_evaluation": "Structured dependency checks validate precedence and required milestones."
+        },
+        {
+          "task_key": "planning.resource_and_risk",
+          "definition_status": "PLANNED_NOT_AUTHORED",
+          "purpose": "Allocate limited resources and identify mitigations for declared risks.",
+          "deterministic_evaluation": "Required-field, budget-bound, forbidden-action, and mitigation coverage checks are rule-based and numeric."
+        }
+      ],
+      "insufficient_evidence_when": [
+        "fewer than three distinct required tasks have valid Task Scores",
+        "fewer than five of six observations succeed",
+        "any dependency, constraint, or resource-risk diversity class is missing",
+        "coverage is below one or confidence is below HIGH",
+        "required feasibility or constraint metrics are missing"
+      ]
+    },
+    {
+      "scenario": "instruction_following",
+      "minimum_tasks": 3,
+      "minimum_successful_results": 5,
+      "minimum_coverage": 1,
+      "minimum_evidence_count": 3,
+      "minimum_confidence": "HIGH",
+      "required_metric_types": ["binary"],
+      "required_scorers": ["exact_match", "rule_based"],
+      "required_task_diversity": ["format_constraints", "multi_condition_following", "prohibited_item_compliance"],
+      "minimum_provider_model_observations": 6,
+      "repeat_run_required": true,
+      "runs_per_task": 2,
+      "maximum_partial_results": 1,
+      "maximum_failed_results": 1,
+      "maximum_combined_partial_or_failed": 1,
+      "minimum_real_benchmark_set": [
+        {
+          "task_key": "instruction_following.format_constraints",
+          "definition_status": "PLANNED_NOT_AUTHORED",
+          "purpose": "Return a short answer in one exact machine-checkable format.",
+          "deterministic_evaluation": "Exact Match or required-field checks with only explicitly declared normalization."
+        },
+        {
+          "task_key": "instruction_following.multi_condition",
+          "definition_status": "PLANNED_NOT_AUTHORED",
+          "purpose": "Satisfy multiple simultaneous content and structure requirements.",
+          "deterministic_evaluation": "Rule-based contains, required-fields, and bounded numeric checks cover every condition."
+        },
+        {
+          "task_key": "instruction_following.prohibited_items",
+          "definition_status": "PLANNED_NOT_AUTHORED",
+          "purpose": "Follow positive requirements while omitting explicitly prohibited content.",
+          "deterministic_evaluation": "Rule-based required and not-contains checks must both pass."
+        }
+      ],
+      "insufficient_evidence_when": [
+        "fewer than three distinct required tasks have valid Task Scores",
+        "fewer than five of six observations succeed",
+        "any format, multi-condition, or prohibition diversity class is missing",
+        "coverage is below one or confidence is below HIGH",
+        "required Exact Match or rule-based evidence is missing"
+      ]
+    }
+  ],
+  "minimum_set_rationale": {
+    "why_three_tasks": "Three is the smallest set that covers all three mandated diversity classes and reaches the existing Capability Profile HIGH-confidence evidence floor of three distinct tasks when coverage is at least 0.9.",
+    "why_two_runs": "Two runs per task are the smallest repeat design that can reveal immediate non-determinism while keeping the campaign bounded; a single deterministic run remains preliminary only.",
+    "why_five_successes": "Five successes out of six permit one operational failure without hiding broad instability and preserve evidence for every required task.",
+    "why_two_candidates": "A real comparative recommendation requires at least two separately identified provider/model candidates measured on the same evidence surface.",
+    "minimum_distinct_tasks_total": 9,
+    "minimum_requests_for_one_scenario_comparison": 12,
+    "minimum_requests_for_all_three_scenarios": 36
+  },
+  "metadata": {
+    "network_required": false,
+    "credential_required": false,
+    "executes_benchmark": false,
+    "phase1_contract_changes": "NONE"
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "inactive_error": {
+    "id": "synthetic-workflow-error-001",
+    "name": "Repeated Synthetic Name",
+    "active": false,
+    "nodes": [
+      {
+        "id": "synthetic-error-trigger-001",
+        "name": "Ignored Provider Label",
+        "type": "n8n-nodes-base.errorTrigger",
+        "typeVersion": 1,
+        "position": [0, 0],
+        "parameters": {
+          "ignored": "synthetic-parameter"
+        }
+      }
+    ]
+  },
+  "missing_active": {
+    "id": "synthetic-workflow-missing-active-001",
+    "name": "Missing Active",
+    "nodes": []
+  },
+  "unknown_trigger": {
+    "id": "synthetic-workflow-unknown-trigger-001",
+    "name": "Unknown Trigger",
+    "active": true,
+    "nodes": [
+      {
+        "id": "synthetic-future-trigger-001",
+        "name": "Ignored Future Label",
+        "type": "n8n-nodes-base.futureTrigger",
+        "typeVersion": 1,
+        "position": [0, 0],
+        "parameters": {}
+      }
+    ]
+  },
+  "missing_id": {
+    "name": "Must Not Become Identity",
+    "active": false,
+    "nodes": []
+  },
+  "sensitive_raw": {
+    "id": "synthetic-workflow-sensitive-001",
+    "name": "Synthetic Sensitive Case",
+    "active": false,
+    "nodes": [
+      {
+        "id": "synthetic-form-trigger-sensitive-001",
+        "name": "Ignored Sensitive Node",
+        "type": "n8n-nodes-base.formTrigger",
+        "typeVersion": 2,
+        "position": [0, 0],
+        "parameters": {
+          "authorization": "FAKE_TEST_TOKEN",
+          "nested": {
+            "cookie": "FAKE_TEST_COOKIE"
+          }
+        },
+        "credentials": {
+          "fakeCredential": {
+            "token": "FAKE_TEST_TOKEN"
+          }
+        }
+      }
+    ]
+  }
+}

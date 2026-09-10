@@ -1,0 +1,31 @@
+{
+  "protocol": "cloze_stage1",
+  "timestamp": "2026-01-01T00:00:00.000Z",
+  "reference_model": "synthetic/reference-v1",
+  "contrast_model": "synthetic/contrast-v1",
+  "n_original_probes": 4,
+  "n_config_invariant": 4,
+  "n_final_probes": 4,
+  "probes": [
+    { "name": "synthetic-one", "domain": "math", "original_value": 1, "cloze_consensus": 1, "consensus_raw": { "t0": 1, "t07_a": 1, "t07_b": 1 } },
+    { "name": "synthetic-two", "domain": "math", "original_value": 2, "cloze_consensus": 2, "consensus_raw": { "t0": 2, "t07_a": 2, "t07_b": 2 } },
+    { "name": "synthetic-three", "domain": "math", "original_value": 3, "cloze_consensus": 3, "consensus_raw": { "t0": 3, "t07_a": 3, "t07_b": 3 } },
+    { "name": "synthetic-four", "domain": "math", "original_value": 4, "cloze_consensus": 4, "consensus_raw": { "t0": 4, "t07_a": 4, "t07_b": 4 } }
+  ],
+  "self_error": 0,
+  "target_results": {
+    "reference-v1": {
+      "model": "synthetic/reference-v1",
+      "is_self": true,
+      "values": [1, 2, 3, 4],
+      "match_vector": [1, 1, 1, 1],
+      "correct": 4,
+      "total": 4,
+      "hamming": 0,
+      "error_rate": 0,
+      "p_value": 1,
+      "significant": false,
+      "domain_breakdown": {}
+    }
+  }
+}

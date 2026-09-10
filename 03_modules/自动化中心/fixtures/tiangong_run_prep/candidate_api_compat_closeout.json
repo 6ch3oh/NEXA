@@ -1,0 +1,61 @@
+{
+  "version": "0.1",
+  "created_at": "2026-08-22T11:35:54.4505354+08:00",
+  "task": "NEXA-AUTO-TIANGONG-CANDIDATE-API-COMPAT-001",
+  "status": "PASS_API_COMPATIBLE_CANDIDATE_VALIDATED",
+  "final_state": "READY_FOR_DEFINITION_UPDATE_REAPPROVAL",
+  "root_cause": "LEGACY_BUILD_V141_INSERTED_UNSUPPORTED_WORKFLOW_LEVEL_SETTINGS_ONERROR",
+  "local_n8n_api_schema_identity": {
+    "openapi": "3.0.0",
+    "api_info_version": "1.1.1",
+    "sha256": "BADB367018E4614D5C76F18C06306017B3E79977150B14F1F0FBC4339BFCE08D"
+  },
+  "workflow_level_onerror_valid": false,
+  "node_level_onerror_usage": {
+    "读取来源网页": "continueErrorOutput",
+    "提取网页正文": "continueErrorOutput"
+  },
+  "error_workflow_usage": "NONE",
+  "error_trigger": "PRESERVED_NOT_USED_AS_INLINE_FAILURE_HANDLER",
+  "old_candidate_sha256": "99BF04515925D7488B50E010B146E382F83F37132D1EFA4822F4F34B191B0A62",
+  "new_candidate_sha256": "002C8F5520B803FECE8387B3D2BC60E7055D9505B4A40131F87D76EACBC02FC9",
+  "old_approval_invalidated": true,
+  "api_schema_validation": "PASS",
+  "sandbox_result": "14/14 PASS",
+  "focused_tests": "29/29 PASS",
+  "full_regression": "529/529 PASS_REUSED_NOT_RERUN",
+  "failure_handling_equivalence": "PASS_NODES_CONNECTIONS_IDENTICAL_AND_14_CASE_OUTPUTS_IDENTICAL",
+  "safety_hardening_status": "PASS_FILENAME_SSRF_HTTP_EMPTY_FAILURE_AND_RESULT_ARTIFACT",
+  "production_write": false,
+  "publish": false,
+  "activate": false,
+  "workflow_execution": false,
+  "credential_access": false,
+  "secret_exposed": false,
+  "new_approval_package": "fixtures/tiangong_run_prep/publish_approval.api_compatible.ready.json",
+  "modified_files": [
+    "src/automation_center/production_update.py",
+    "scripts/run_tiangong_candidate_sandbox.py",
+    "scripts/validate_tiangong_candidate_safety.js",
+    "tests/test_tiangong_production_update.py",
+    "fixtures/tiangong_run_prep/publish_approval.ready.json",
+    "fixtures/tiangong_run_prep/production_update_artifacts.manifest.json"
+  ],
+  "new_files": [
+    "scripts/build_tiangong_api_compatible_candidate.py",
+    "scripts/validate_tiangong_api_candidate.py",
+    "tests/test_tiangong_api_compat_candidate.py",
+    "fixtures/tiangong_run_prep/knowledge_collect_v141_hardened.api_compatible.candidate.json",
+    "fixtures/tiangong_run_prep/candidate_api_compat.diff.json",
+    "fixtures/tiangong_run_prep/api_schema_validation.json",
+    "fixtures/tiangong_run_prep/candidate_api_compat_sandbox_evidence/summary.json",
+    "fixtures/tiangong_run_prep/publish_approval.api_compatible.ready.json",
+    "fixtures/tiangong_run_prep/api_compatible_candidate.manifest.json",
+    "fixtures/tiangong_run_prep/candidate_api_compat_closeout.json",
+    "docs/contracts/TIANGONG_API_COMPATIBLE_CANDIDATE_V0.1.md",
+    "docs/audits/NEXA_AUTO_TIANGONG_CANDIDATE_API_COMPAT_001.md"
+  ],
+  "ready_for_definition_update_reapproval": true,
+  "user_approval_required": true,
+  "stop_reason": "NEW_CANDIDATE_REQUIRES_EXPLICIT_DEFINITION_UPDATE_REAPPROVAL"
+}

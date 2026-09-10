@@ -1,0 +1,118 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/canonical-evaluation-v0.1.schema.json",
+  "title": "StarBench Canonical Evaluation V0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "evaluation_id",
+    "run_id",
+    "timestamp",
+    "provider",
+    "model",
+    "benchmark_task",
+    "task_identity",
+    "success",
+    "latency_ms",
+    "ttft_ms",
+    "prompt_tokens",
+    "completion_tokens",
+    "total_tokens",
+    "throughput_tokens_per_second",
+    "cost",
+    "provenance",
+    "error",
+    "raw_source_identity",
+    "metadata"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "evaluation_id": { "type": "string", "pattern": "^eval_[a-f0-9]{32}$" },
+    "run_id": { "type": "string", "pattern": "^run_[A-Za-z0-9_-]+$" },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "provider": { "type": "string", "minLength": 1 },
+    "model": { "type": "string", "minLength": 1 },
+    "benchmark_task": { "type": "string", "minLength": 1 },
+    "task_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task_id"],
+      "properties": {
+        "task_id": { "type": "string", "minLength": 1 },
+        "task_version": { "type": ["string", "null"] }
+      }
+    },
+    "success": { "type": "boolean" },
+    "latency_ms": { "type": ["number", "null"], "minimum": 0 },
+    "ttft_ms": { "type": ["number", "null"], "minimum": 0 },
+    "prompt_tokens": { "type": ["integer", "null"], "minimum": 0 },
+    "completion_tokens": { "type": ["integer", "null"], "minimum": 0 },
+    "total_tokens": { "type": ["integer", "null"], "minimum": 0 },
+    "throughput_tokens_per_second": { "type": ["number", "null"], "minimum": 0 },
+    "cost": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["amount", "currency", "source"],
+          "properties": {
+            "amount": { "type": "number", "minimum": 0 },
+            "currency": { "type": "string", "minLength": 1 },
+            "source": { "const": "OBSERVED" }
+          }
+        }
+      ]
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider_identity", "adapter_identity", "adapter_version", "endpoint_class", "request_id", "execution_environment", "parameters", "prompt_identity"],
+      "properties": {
+        "provider_identity": { "type": "string", "minLength": 1 },
+        "adapter_identity": { "type": "string", "minLength": 1 },
+        "adapter_version": { "type": "string", "minLength": 1 },
+        "endpoint_class": { "type": "string", "minLength": 1 },
+        "request_id": { "type": ["string", "null"] },
+        "execution_environment": { "type": "object" },
+        "parameters": { "type": "object" },
+        "prompt_identity": { "type": "object" }
+      }
+    },
+    "error": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["category", "safe_message", "status_code", "retryable"],
+          "properties": {
+            "category": { "type": "string", "minLength": 1 },
+            "safe_message": { "type": "string" },
+            "status_code": { "type": ["integer", "null"] },
+            "retryable": { "type": "boolean" }
+          }
+        }
+      ]
+    },
+    "raw_source_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["raw_schema_version", "raw_run_id", "raw_record_sha256", "source_class"],
+      "properties": {
+        "raw_schema_version": { "const": "0.1" },
+        "raw_run_id": { "type": "string" },
+        "raw_record_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "source_class": { "enum": ["PROVIDER_EXECUTION", "TEST_FIXTURE"] }
+      }
+    },
+    "metadata": { "type": "object" }
+  },
+  "allOf": [
+    {
+      "if": { "properties": { "success": { "const": true } } },
+      "then": { "properties": { "error": { "type": "null" } } }
+    }
+  ]
+}

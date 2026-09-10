@@ -1,0 +1,143 @@
+{
+  "description": "Deterministic local confirmation-state and command-policy cases. No secrets or external identifiers.",
+  "cases": [
+    {
+      "name": "local read does not require confirmation",
+      "confirmation": {
+        "confirmation_id": "confirmation_none",
+        "command_id": "command_list",
+        "state": "not_required",
+        "reason": "",
+        "requested_at": null,
+        "resolved_at": null,
+        "expires_at": null
+      },
+      "command": {
+        "command_id": "command_list",
+        "command_type": "task.list",
+        "payload": {},
+        "created_at": "2026-08-10T08:00:00+08:00",
+        "risk_level": "low",
+        "requires_confirmation": false,
+        "confirmation_state": "not_required",
+        "source": "local"
+      },
+      "expected_policy": "allow"
+    },
+    {
+      "name": "confirmation required",
+      "confirmation": {
+        "confirmation_id": "confirmation_required",
+        "command_id": "command_delete_required",
+        "state": "required",
+        "reason": "Delete is destructive",
+        "requested_at": "2026-08-10T08:00:00+08:00",
+        "resolved_at": null,
+        "expires_at": "2026-08-10T09:00:00+08:00"
+      },
+      "command": {
+        "command_id": "command_delete_required",
+        "command_type": "task.delete",
+        "payload": { "id": "task_old" },
+        "created_at": "2026-08-10T08:00:00+08:00",
+        "risk_level": "high",
+        "requires_confirmation": true,
+        "confirmation_state": "required",
+        "source": "local"
+      },
+      "expected_policy": "require_confirmation"
+    },
+    {
+      "name": "confirmation pending",
+      "confirmation": {
+        "confirmation_id": "confirmation_pending",
+        "command_id": "command_delete_pending",
+        "state": "pending",
+        "reason": "Awaiting user response",
+        "requested_at": "2026-08-10T08:00:00+08:00",
+        "resolved_at": null,
+        "expires_at": "2026-08-10T09:00:00+08:00"
+      },
+      "command": {
+        "command_id": "command_delete_pending",
+        "command_type": "calendar.delete",
+        "payload": { "id": "event_old" },
+        "created_at": "2026-08-10T08:00:00+08:00",
+        "risk_level": "high",
+        "requires_confirmation": true,
+        "confirmation_state": "pending",
+        "source": "local"
+      },
+      "expected_policy": "require_confirmation"
+    },
+    {
+      "name": "confirmation confirmed",
+      "confirmation": {
+        "confirmation_id": "confirmation_confirmed",
+        "command_id": "command_delete_confirmed",
+        "state": "confirmed",
+        "reason": "User explicitly confirmed",
+        "requested_at": "2026-08-10T08:00:00+08:00",
+        "resolved_at": "2026-08-10T08:05:00+08:00",
+        "expires_at": "2026-08-10T09:00:00+08:00"
+      },
+      "command": {
+        "command_id": "command_delete_confirmed",
+        "command_type": "task.delete",
+        "payload": { "id": "task_old" },
+        "created_at": "2026-08-10T08:00:00+08:00",
+        "risk_level": "high",
+        "requires_confirmation": true,
+        "confirmation_state": "confirmed",
+        "source": "local"
+      },
+      "expected_policy": "allow"
+    },
+    {
+      "name": "confirmation rejected",
+      "confirmation": {
+        "confirmation_id": "confirmation_rejected",
+        "command_id": "command_delete_rejected",
+        "state": "rejected",
+        "reason": "User rejected",
+        "requested_at": "2026-08-10T08:00:00+08:00",
+        "resolved_at": "2026-08-10T08:05:00+08:00",
+        "expires_at": "2026-08-10T09:00:00+08:00"
+      },
+      "command": {
+        "command_id": "command_delete_rejected",
+        "command_type": "task.delete",
+        "payload": { "id": "task_old" },
+        "created_at": "2026-08-10T08:00:00+08:00",
+        "risk_level": "high",
+        "requires_confirmation": true,
+        "confirmation_state": "rejected",
+        "source": "local"
+      },
+      "expected_policy": "deny"
+    },
+    {
+      "name": "confirmation expired",
+      "confirmation": {
+        "confirmation_id": "confirmation_expired",
+        "command_id": "command_delete_expired",
+        "state": "expired",
+        "reason": "Confirmation window elapsed",
+        "requested_at": "2026-08-10T08:00:00+08:00",
+        "resolved_at": "2026-08-10T09:00:00+08:00",
+        "expires_at": "2026-08-10T09:00:00+08:00"
+      },
+      "command": {
+        "command_id": "command_delete_expired",
+        "command_type": "calendar.delete",
+        "payload": { "id": "event_old" },
+        "created_at": "2026-08-10T08:00:00+08:00",
+        "risk_level": "high",
+        "requires_confirmation": true,
+        "confirmation_state": "expired",
+        "source": "local"
+      },
+      "expected_policy": "deny"
+    }
+  ]
+}

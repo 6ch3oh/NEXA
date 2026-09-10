@@ -1,0 +1,59 @@
+{
+  "version": "0.1",
+  "task": "NEXA-AUTO-TIANGONG-PUBLISH-ONLY-001",
+  "status": "STOPPED_API_SEMANTIC_CONFLICT_PUBLISH_IS_ACTIVATE",
+  "user_approval_scope": "PUBLISH_ONLY",
+  "target_workflow": "ymYh8t76VP3jGPbr",
+  "approved_candidate_sha256": "002C8F5520B803FECE8387B3D2BC60E7055D9505B4A40131F87D76EACBC02FC9",
+  "pre_publish_revision": "cc645caf-2d26-4750-979d-4f924e01b7cf",
+  "pre_publish_state": "DEFINITION_UPDATED_POST_UPDATE_VERIFIED_UNPUBLISHED_INACTIVE",
+  "latest_definition_evidence": "fixtures/tiangong_run_prep/definition_update_r2.result.json",
+  "latest_readback_evidence": "fixtures/tiangong_run_prep/ymYh8t76VP3jGPbr_cc645caf-2d26-4750-979d-4f924e01b7cf_20260822T045945937172Z.post_update.authenticated.json",
+  "local_n8n": {
+    "observed_version": "2.32.7",
+    "openapi": "3.0.0",
+    "public_api_version": "1.1.1",
+    "openapi_source": "http://127.0.0.1:5678/api/v1/docs/swagger-ui-init.js",
+    "openapi_access": "UNAUTHENTICATED_GET_ONLY"
+  },
+  "publish_operation": {
+    "independent_publish_path_exists": false,
+    "method": "POST",
+    "path": "/api/v1/workflows/ymYh8t76VP3jGPbr/activate",
+    "operation_id": "activateWorkflow",
+    "summary": "Publish a workflow",
+    "description": "Publish a workflow. In n8n v1, this action was termed activating a workflow.",
+    "required_scope": "workflow:activate",
+    "minimum_revision_bound_request_body": {
+      "versionId": "cc645caf-2d26-4750-979d-4f924e01b7cf"
+    }
+  },
+  "authorization_conflict": {
+    "publish_authorized": true,
+    "activate_authorized": false,
+    "activate_must_remain_zero": true,
+    "provider_operation_combines_publish_and_activate": true,
+    "safe_to_call": false
+  },
+  "publish": false,
+  "published_revision": null,
+  "post_publish_verified": false,
+  "post_publish_semantic_match": "NOT_PERFORMED",
+  "activate": false,
+  "workflow_execution": false,
+  "credential_requested": false,
+  "credential_persisted": false,
+  "secret_exposed": false,
+  "rollback_ready": true,
+  "rollback_backup_sha256": "7BFC195182AC296B18C7388680786774CAA381C0924FA30EBAFEDA715CD868D2",
+  "modified_files": [],
+  "new_files": [
+    "fixtures/tiangong_run_prep/publish_only_preflight.blocked.json",
+    "docs/audits/NEXA_AUTO_TIANGONG_PUBLISH_ONLY_001.md"
+  ],
+  "tests": "NOT_RERUN_READ_ONLY_OPENAPI_PREFLIGHT_NO_CODE_CHANGE",
+  "full_regression": "529/529 PASS_REUSED_NOT_RERUN",
+  "next_allowed_action": "CONTROLLER_CLARIFICATION_REQUIRED_ON_PROVIDER_COMBINED_PUBLISH_ACTIVATE_SEMANTICS",
+  "user_approval_required": true,
+  "stop_reason": "LOCAL_N8N_HAS_NO_INDEPENDENT_PUBLISH_OPERATION; THE_ONLY_PUBLISH_OPERATION_IS activateWorkflow AND REQUIRES workflow:activate"
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "record_type": "BENCHMARK_TASK",
+  "benchmark_task_id": "fixture.planning.rollout",
+  "name": "Offline rollout planning fixture",
+  "category": "planning",
+  "task_type": "prompt",
+  "description": "Synthetic local task for validating a structured rollout plan.",
+  "prompt": {
+    "instruction": "Create a concise three-step rollout plan. Include one risk and one mitigation for every step.",
+    "input_template": "Plan the offline rollout of {{feature}} for {{audience}}."
+  },
+  "input_definition": {
+    "feature": { "type": "string", "value": "a local fixture feature" },
+    "audience": { "type": "string", "value": "a synthetic test team" }
+  },
+  "prompt_identity": {
+    "algorithm": "sha256",
+    "prompt_id": "prompt_12f0ecf3cf51907361b8d119e75e2fa572a867d815297b377a2a87e72a70b67f",
+    "prompt_version": "1.0.0"
+  },
+  "expected_output": {
+    "type": "structured",
+    "reference": null,
+    "criteria": ["exactly three ordered steps", "one risk per step", "one mitigation per step"]
+  },
+  "evaluation_method": {
+    "type": "rule_based",
+    "config": { "contract_only": true }
+  },
+  "metrics": ["correctness", "completion", "latency", "token_usage"],
+  "parameters": { "temperature": 0, "max_output_tokens": 240 },
+  "tags": ["offline", "fixture", "planning"],
+  "source_class": "TEST_FIXTURE",
+  "provenance": { "origin": "LOCAL_AUTHORED", "source_ref": null },
+  "metadata": { "synthetic": true, "real_model_score": false },
+  "created_at": "2099-05-01T00:00:00.000Z",
+  "version": "1.0.0"
+}

@@ -1,0 +1,43 @@
+{
+  "api_version": "0.1.0",
+  "entrypoint": "src/index.mjs",
+  "configuration": {
+    "dataRoot": "<absolute-platform-data-root>",
+    "timezone": "Asia/Shanghai",
+    "clock": "<function-returning-explicit-ISO-timestamp>"
+  },
+  "exports": [
+    "CALENDAR_HOME_SUBLABEL_PRIORITY",
+    "CALENDAR_HOME_SUMMARY_CONTRACT_VERSION",
+    "CALENDAR_HOME_WIDGET_CONTRACT_VERSION",
+    "CALENDAR_LOCAL_AI_CONTRACT_VERSION",
+    "CALENDAR_LOCAL_AI_PROPOSAL_STATES",
+    "CALENDAR_LOCAL_AI_STATES",
+    "TODAY_TOMORROW_PUBLIC_API_VERSION",
+    "createCalendarHomeSummaryAdapter",
+    "createCalendarHomeWidgetAdapter",
+    "createCalendarLocalAiAdapter",
+    "createTodayTomorrowApplication"
+  ],
+  "lifecycle": ["created", "started", "stopped"],
+  "reads": ["getToday", "getTomorrow", "getTask", "listTasks", "getReminders"],
+  "actions": [
+    "execute",
+    "assignTaskToDay",
+    "confirmTaskTime",
+    "changeTaskTime",
+    "removeTaskTime",
+    "reorderTasks",
+    "confirmCarryover",
+    "rejectCarryover"
+  ],
+  "consumer_forbidden_knowledge": [
+    "SQLite connection",
+    "Repository",
+    "Daily Plan Store",
+    "Reminder Store",
+    "Command Dispatcher",
+    "database filename",
+    "schema"
+  ]
+}

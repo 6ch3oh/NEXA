@@ -1,0 +1,717 @@
+{
+  "task": "NEXA-CUSTOMER-REQUEST-OWNER-READ-PROJECTION-V0.1-001",
+  "schema_version": "0.1",
+  "status": "OWNER_READ_PROJECTION_V0.1_READY",
+  "observed_at": "2026-08-23T15:56:46.638353+00:00",
+  "application_contract": {
+    "methods": [
+      "getOverview",
+      "listCustomers",
+      "getCustomer",
+      "listRequests",
+      "getRequest",
+      "listKnowledgeReviewQueue",
+      "getModelUsage",
+      "getTierUsage",
+      "listRecentActivity"
+    ],
+    "http_server": false,
+    "ui_runtime": false,
+    "write_methods": []
+  },
+  "time_windows": {
+    "presets": [
+      "TODAY",
+      "YESTERDAY",
+      "LAST_7_DAYS",
+      "LAST_30_DAYS",
+      "CUSTOM"
+    ],
+    "interval": "half-open [from_at, to_at) resolved to UTC",
+    "timezone_hardcoded_globally": false,
+    "asia_shanghai_compatibility": "UTC+8 fixed fallback when Windows IANA data is absent"
+  },
+  "pagination": {
+    "mode": "controlled_offset",
+    "default_limit": 50,
+    "maximum_limit": 500,
+    "limit_above_500": "REJECT",
+    "stable_order_tiebreaker": "request_id/customer_id"
+  },
+  "storage": {
+    "source": "existing Request Ledger SQLite file",
+    "repository_connection": "mode=ro + PRAGMA query_only",
+    "query_only": true,
+    "second_database": false,
+    "cache": false,
+    "fixture_database_bytes": 110592,
+    "added_invocation_projection_columns": [
+      "input_tokens",
+      "output_tokens",
+      "total_tokens",
+      "latency_ms",
+      "safe_error"
+    ],
+    "indexes": [
+      "ix_invocations_model",
+      "ix_invocations_provider_model_time",
+      "ix_invocations_request",
+      "ix_invocations_time",
+      "ix_requests_actor_time",
+      "ix_requests_capability_time",
+      "ix_requests_customer_time",
+      "ix_requests_review_time",
+      "ix_requests_status_time",
+      "ix_requests_tier_time",
+      "ix_requests_time"
+    ]
+  },
+  "overview_sample": {
+    "window": {
+      "from_at": "2026-08-23T16:00:00+00:00",
+      "to_at": "2026-08-24T04:00:00+00:00",
+      "timezone_name": "Asia/Shanghai",
+      "preset": "TODAY"
+    },
+    "unique_customer_count": 4,
+    "owner_request_count": 1,
+    "customer_request_count": 4,
+    "request_counts": {
+      "total_requests": 5,
+      "succeeded": 2,
+      "partial_success": 0,
+      "failed": 1,
+      "rejected": 1,
+      "running": 1
+    },
+    "invocation_count": 3,
+    "token_summary": {
+      "input_tokens_known": 30,
+      "output_tokens_known": 15,
+      "total_tokens_known": 45,
+      "token_unknown_count": 0
+    },
+    "cost_summary": {
+      "known_cost_subtotal": 0.3,
+      "cost_currency": "USD",
+      "cost_completeness": "PARTIAL",
+      "unknown_cost_invocation_count": 1,
+      "mixed_currency": false,
+      "currency_subtotals": [
+        {
+          "currency": "USD",
+          "amount": 0.3,
+          "invocation_count": 2
+        }
+      ]
+    },
+    "knowledge_review": {
+      "not_reviewed": 2,
+      "pending_review": 1,
+      "accepted": 1,
+      "rejected": 0
+    },
+    "recent_requests": [
+      {
+        "request_id": "erin-rejected",
+        "actor_type": "CUSTOMER",
+        "customer_id": "customer-erin",
+        "user_tier": "FREE",
+        "capability_id": "knowledge.collect",
+        "status": "REJECTED",
+        "created_at": "2026-08-23T20:00:00+00:00",
+        "completed_at": "2026-08-23T20:00:01+00:00",
+        "invocation_count": 0,
+        "resolved_models_summary": [],
+        "resolved_providers_summary": [],
+        "cost_summary": {
+          "known_cost_subtotal": null,
+          "cost_currency": null,
+          "cost_completeness": "UNAVAILABLE",
+          "unknown_cost_invocation_count": 0,
+          "mixed_currency": false,
+          "currency_subtotals": []
+        },
+        "result_status": "NOT_AVAILABLE",
+        "result_summary": null,
+        "result_ref": null,
+        "markdown_ref": null,
+        "knowledge_review_state": "NOT_REVIEWED"
+      },
+      {
+        "request_id": "dave-running",
+        "actor_type": "CUSTOMER",
+        "customer_id": "customer-dave",
+        "user_tier": "PREMIUM",
+        "capability_id": "knowledge.collect",
+        "status": "RUNNING",
+        "created_at": "2026-08-23T19:00:00+00:00",
+        "completed_at": null,
+        "invocation_count": 0,
+        "resolved_models_summary": [],
+        "resolved_providers_summary": [],
+        "cost_summary": {
+          "known_cost_subtotal": null,
+          "cost_currency": null,
+          "cost_completeness": "UNAVAILABLE",
+          "unknown_cost_invocation_count": 0,
+          "mixed_currency": false,
+          "currency_subtotals": []
+        },
+        "result_status": "NOT_AVAILABLE",
+        "result_summary": null,
+        "result_ref": null,
+        "markdown_ref": null,
+        "knowledge_review_state": "NOT_REVIEWED"
+      },
+      {
+        "request_id": "bob-today",
+        "actor_type": "CUSTOMER",
+        "customer_id": "customer-bob",
+        "user_tier": "PRO",
+        "capability_id": "knowledge.collect",
+        "status": "FAILED",
+        "created_at": "2026-08-23T18:00:00+00:00",
+        "completed_at": "2026-08-23T18:00:04+00:00",
+        "invocation_count": 1,
+        "resolved_models_summary": [
+          "model-b"
+        ],
+        "resolved_providers_summary": [
+          "provider-b"
+        ],
+        "cost_summary": {
+          "known_cost_subtotal": null,
+          "cost_currency": null,
+          "cost_completeness": "UNAVAILABLE",
+          "unknown_cost_invocation_count": 1,
+          "mixed_currency": false,
+          "currency_subtotals": []
+        },
+        "result_status": "FAILED",
+        "result_summary": "Bob request failed safely",
+        "result_ref": "result:bob-today",
+        "markdown_ref": null,
+        "knowledge_review_state": "PENDING_REVIEW"
+      },
+      {
+        "request_id": "alice-today",
+        "actor_type": "CUSTOMER",
+        "customer_id": "customer-alice",
+        "user_tier": "BASIC",
+        "capability_id": "knowledge.collect",
+        "status": "SUCCEEDED",
+        "created_at": "2026-08-23T17:00:00+00:00",
+        "completed_at": "2026-08-23T17:00:04+00:00",
+        "invocation_count": 2,
+        "resolved_models_summary": [
+          "model-a"
+        ],
+        "resolved_providers_summary": [
+          "provider-a"
+        ],
+        "cost_summary": {
+          "known_cost_subtotal": 0.3,
+          "cost_currency": "USD",
+          "cost_completeness": "COMPLETE",
+          "unknown_cost_invocation_count": 0,
+          "mixed_currency": false,
+          "currency_subtotals": [
+            {
+              "currency": "USD",
+              "amount": 0.3,
+              "invocation_count": 2
+            }
+          ]
+        },
+        "result_status": "AVAILABLE",
+        "result_summary": "Alice received a safe Markdown result",
+        "result_ref": "result:alice-today",
+        "markdown_ref": "markdown:alice-report",
+        "knowledge_review_state": "ACCEPTED"
+      },
+      {
+        "request_id": "owner-today",
+        "actor_type": "OWNER",
+        "customer_id": "owner:nexa",
+        "user_tier": "OWNER",
+        "capability_id": "knowledge.collect",
+        "status": "SUCCEEDED",
+        "created_at": "2026-08-23T16:30:00+00:00",
+        "completed_at": "2026-08-23T16:30:04+00:00",
+        "invocation_count": 0,
+        "resolved_models_summary": [],
+        "resolved_providers_summary": [],
+        "cost_summary": {
+          "known_cost_subtotal": null,
+          "cost_currency": null,
+          "cost_completeness": "UNAVAILABLE",
+          "unknown_cost_invocation_count": 0,
+          "mixed_currency": false,
+          "currency_subtotals": []
+        },
+        "result_status": "NOT_AVAILABLE",
+        "result_summary": null,
+        "result_ref": null,
+        "markdown_ref": null,
+        "knowledge_review_state": "NOT_APPLICABLE"
+      }
+    ]
+  },
+  "customer_page_sample": {
+    "items": [
+      {
+        "customer_id": "customer-erin",
+        "user_tier": "FREE",
+        "first_seen_at": "2026-08-23T20:00:00+00:00",
+        "last_seen_at": "2026-08-23T20:00:00+00:00",
+        "request_count": 1,
+        "success_count": 0,
+        "failed_count": 0,
+        "invocation_count": 0,
+        "known_token_total": 0,
+        "cost_summary": {
+          "known_cost_subtotal": null,
+          "cost_currency": null,
+          "cost_completeness": "UNAVAILABLE",
+          "unknown_cost_invocation_count": 0,
+          "mixed_currency": false,
+          "currency_subtotals": []
+        },
+        "pending_review_count": 1,
+        "is_active": true
+      },
+      {
+        "customer_id": "customer-dave",
+        "user_tier": "PREMIUM",
+        "first_seen_at": "2026-08-23T19:00:00+00:00",
+        "last_seen_at": "2026-08-23T19:00:00+00:00",
+        "request_count": 1,
+        "success_count": 0,
+        "failed_count": 0,
+        "invocation_count": 0,
+        "known_token_total": 0,
+        "cost_summary": {
+          "known_cost_subtotal": null,
+          "cost_currency": null,
+          "cost_completeness": "UNAVAILABLE",
+          "unknown_cost_invocation_count": 0,
+          "mixed_currency": false,
+          "currency_subtotals": []
+        },
+        "pending_review_count": 1,
+        "is_active": true
+      }
+    ],
+    "page": {
+      "limit": 2,
+      "offset": 0,
+      "has_more": true,
+      "next_offset": 2
+    },
+    "active_since": "2026-07-25T04:00:00+00:00"
+  },
+  "request_detail_sample": {
+    "request_id": "alice-today",
+    "actor_type": "CUSTOMER",
+    "customer_id": "customer-alice",
+    "user_tier": "BASIC",
+    "capability_id": "knowledge.collect",
+    "status": "SUCCEEDED",
+    "created_at": "2026-08-23T17:00:00+00:00",
+    "started_at": "2026-08-23T17:00:03+00:00",
+    "completed_at": "2026-08-23T17:00:04+00:00",
+    "updated_at": "2026-08-23T17:00:06+00:00",
+    "input_type": "REFERENCE",
+    "input_summary": "Safe summary for alice-today",
+    "source_url": "https://example.invalid/source",
+    "input_ref": "large-input:alice-today",
+    "invocations": [
+      {
+        "invocation_id": "nexa-inv-9a70e33d6779ebf0b40008f6c2f581ab",
+        "model_profile": "basic.profile",
+        "provider": "provider-a",
+        "model": "model-a",
+        "status": "SUCCESS",
+        "input_tokens": 10,
+        "output_tokens": 5,
+        "total_tokens": 15,
+        "cost_amount": 0.1,
+        "cost_currency": "USD",
+        "cost_source": "LITELLM_CALCULATED",
+        "latency_ms": 10,
+        "safe_error": null,
+        "occurred_at": "2026-08-23T17:00:11.010000+00:00"
+      },
+      {
+        "invocation_id": "nexa-inv-b5411f8830635f6ebac20bdf3de730b0",
+        "model_profile": "basic.profile",
+        "provider": "provider-a",
+        "model": "model-a",
+        "status": "SUCCESS",
+        "input_tokens": 10,
+        "output_tokens": 5,
+        "total_tokens": 15,
+        "cost_amount": 0.2,
+        "cost_currency": "USD",
+        "cost_source": "LITELLM_CALCULATED",
+        "latency_ms": 20,
+        "safe_error": null,
+        "occurred_at": "2026-08-23T17:00:12.020000+00:00"
+      }
+    ],
+    "invocation_count": 2,
+    "invocations_truncated": false,
+    "cost_summary": {
+      "known_cost_subtotal": 0.3,
+      "cost_currency": "USD",
+      "cost_completeness": "COMPLETE",
+      "unknown_cost_invocation_count": 0,
+      "mixed_currency": false,
+      "currency_subtotals": [
+        {
+          "currency": "USD",
+          "amount": 0.3,
+          "invocation_count": 2
+        }
+      ]
+    },
+    "result_status": "AVAILABLE",
+    "result_summary": "Alice received a safe Markdown result",
+    "result_ref": "result:alice-today",
+    "markdown_ref": "markdown:alice-report",
+    "artifact_refs": [
+      "artifact:alice-report"
+    ],
+    "artifact_refs_truncated": false,
+    "knowledge_review": {
+      "state": "ACCEPTED",
+      "destination_ref": "knowledge:alice-approved",
+      "future_allowed_actions": [
+        "VIEW_REVIEW_DECISION"
+      ],
+      "write_enabled": false
+    }
+  },
+  "model_usage_sample": [
+    {
+      "provider": "provider-a",
+      "model": "model-a",
+      "request_count": 2,
+      "invocation_count": 3,
+      "known_tokens": 45,
+      "cost_summary": {
+        "known_cost_subtotal": null,
+        "cost_currency": null,
+        "cost_completeness": "MIXED_CURRENCY",
+        "unknown_cost_invocation_count": 0,
+        "mixed_currency": true,
+        "currency_subtotals": [
+          {
+            "currency": "CNY",
+            "amount": 0.5,
+            "invocation_count": 1
+          },
+          {
+            "currency": "USD",
+            "amount": 0.3,
+            "invocation_count": 2
+          }
+        ]
+      },
+      "failure_count": 0,
+      "average_latency_ms": 13.333333333333334,
+      "latency_sample_count": 3,
+      "last_used_at": "2026-08-23T17:00:12.020000+00:00"
+    },
+    {
+      "provider": "provider-b",
+      "model": "model-b",
+      "request_count": 1,
+      "invocation_count": 1,
+      "known_tokens": 15,
+      "cost_summary": {
+        "known_cost_subtotal": null,
+        "cost_currency": null,
+        "cost_completeness": "UNAVAILABLE",
+        "unknown_cost_invocation_count": 1,
+        "mixed_currency": false,
+        "currency_subtotals": []
+      },
+      "failure_count": 1,
+      "average_latency_ms": 10.0,
+      "latency_sample_count": 1,
+      "last_used_at": "2026-08-23T18:00:11.010000+00:00"
+    }
+  ],
+  "tier_usage_sample": [
+    {
+      "user_tier": "FREE",
+      "unique_users": 1,
+      "requests": 1,
+      "invocations": 0,
+      "known_tokens": 0,
+      "cost_summary": {
+        "known_cost_subtotal": null,
+        "cost_currency": null,
+        "cost_completeness": "UNAVAILABLE",
+        "unknown_cost_invocation_count": 0,
+        "mixed_currency": false,
+        "currency_subtotals": []
+      },
+      "success_rate": 0.0,
+      "pending_review": 1
+    },
+    {
+      "user_tier": "BASIC",
+      "unique_users": 1,
+      "requests": 1,
+      "invocations": 2,
+      "known_tokens": 30,
+      "cost_summary": {
+        "known_cost_subtotal": 0.3,
+        "cost_currency": "USD",
+        "cost_completeness": "COMPLETE",
+        "unknown_cost_invocation_count": 0,
+        "mixed_currency": false,
+        "currency_subtotals": [
+          {
+            "currency": "USD",
+            "amount": 0.3,
+            "invocation_count": 2
+          }
+        ]
+      },
+      "success_rate": 1.0,
+      "pending_review": 0
+    },
+    {
+      "user_tier": "PRO",
+      "unique_users": 2,
+      "requests": 2,
+      "invocations": 2,
+      "known_tokens": 30,
+      "cost_summary": {
+        "known_cost_subtotal": 0.5,
+        "cost_currency": "CNY",
+        "cost_completeness": "PARTIAL",
+        "unknown_cost_invocation_count": 1,
+        "mixed_currency": false,
+        "currency_subtotals": [
+          {
+            "currency": "CNY",
+            "amount": 0.5,
+            "invocation_count": 1
+          }
+        ]
+      },
+      "success_rate": 0.0,
+      "pending_review": 1
+    },
+    {
+      "user_tier": "PREMIUM",
+      "unique_users": 1,
+      "requests": 1,
+      "invocations": 0,
+      "known_tokens": 0,
+      "cost_summary": {
+        "known_cost_subtotal": null,
+        "cost_currency": null,
+        "cost_completeness": "UNAVAILABLE",
+        "unknown_cost_invocation_count": 0,
+        "mixed_currency": false,
+        "currency_subtotals": []
+      },
+      "success_rate": null,
+      "pending_review": 1
+    },
+    {
+      "user_tier": "OWNER",
+      "unique_users": 1,
+      "requests": 1,
+      "invocations": 0,
+      "known_tokens": 0,
+      "cost_summary": {
+        "known_cost_subtotal": null,
+        "cost_currency": null,
+        "cost_completeness": "UNAVAILABLE",
+        "unknown_cost_invocation_count": 0,
+        "mixed_currency": false,
+        "currency_subtotals": []
+      },
+      "success_rate": 1.0,
+      "pending_review": 0
+    }
+  ],
+  "knowledge_queue_sample": {
+    "items": [
+      {
+        "request_id": "erin-rejected",
+        "customer_id": "customer-erin",
+        "user_tier": "FREE",
+        "input_summary": "Safe summary for erin-rejected",
+        "result_summary": null,
+        "resolved_models": [],
+        "created_at": "2026-08-23T20:00:00+00:00",
+        "result_ref": null,
+        "markdown_ref": null,
+        "review_state": "NOT_REVIEWED"
+      },
+      {
+        "request_id": "dave-running",
+        "customer_id": "customer-dave",
+        "user_tier": "PREMIUM",
+        "input_summary": "Safe summary for dave-running",
+        "result_summary": null,
+        "resolved_models": [],
+        "created_at": "2026-08-23T19:00:00+00:00",
+        "result_ref": null,
+        "markdown_ref": null,
+        "review_state": "NOT_REVIEWED"
+      },
+      {
+        "request_id": "bob-today",
+        "customer_id": "customer-bob",
+        "user_tier": "PRO",
+        "input_summary": "Safe summary for bob-today",
+        "result_summary": "Bob request failed safely",
+        "resolved_models": [
+          "model-b"
+        ],
+        "created_at": "2026-08-23T18:00:00+00:00",
+        "result_ref": "result:bob-today",
+        "markdown_ref": null,
+        "review_state": "PENDING_REVIEW"
+      }
+    ],
+    "page": {
+      "limit": 10,
+      "offset": 0,
+      "has_more": false,
+      "next_offset": null
+    }
+  },
+  "cost_accuracy": {
+    "unknown_as_zero": false,
+    "partial_claimed_exact": false,
+    "mixed_currency_added": false,
+    "currency_subtotals_preserved": true
+  },
+  "case_results": [
+    {
+      "case_id": "overview_owner_customer_mix",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "today_timezone_boundary",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "customer_list_pagination",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "customer_detail_isolation",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "request_combined_filters",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "request_detail_multiple_invocations",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "model_usage",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "tier_usage",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "partial_cost",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "mixed_currency",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "pending_review_queue",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "request_pagination",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "secret_safety",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "large_input_reference_only",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    },
+    {
+      "case_id": "query_limit_500",
+      "expected": "PASS",
+      "observed": "PASS",
+      "passed": true
+    }
+  ],
+  "tests": {
+    "acceptance": "15/15 PASS",
+    "network_attempts": []
+  },
+  "real_provider_calls": 0,
+  "real_api_cost": 0,
+  "production": {
+    "database_rows_created": 0,
+    "n8n_write": false,
+    "workflow_activate": false,
+    "workflow_execute": false,
+    "cross_module_write": false,
+    "langfuse_started": false,
+    "refine_started": false
+  },
+  "invariants": {
+    "owner_customer_separate": true,
+    "request_invocation_separate": true,
+    "large_input_body_not_read": true,
+    "credential_not_projected": true,
+    "sql_filter_order_limit_used": true,
+    "no_second_event_store": true,
+    "no_second_summary_database": true,
+    "owner_model_choice_unchanged": true
+  }
+}

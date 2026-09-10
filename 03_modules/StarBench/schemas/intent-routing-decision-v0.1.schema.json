@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/intent-routing-decision-v0.1.schema.json",
+  "title": "StarBench Intent Routing Decision V0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "record_type", "decision_id", "request_id", "status", "selected_scenario_id", "candidate_scenarios", "matched_rules", "matched_signals", "routing_score", "confidence", "reason_codes", "explanation", "source_class", "generated_at", "metadata"],
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "record_type": { "const": "INTENT_ROUTING_DECISION" },
+    "decision_id": { "type": "string", "pattern": "^intentdecision_[a-f0-9]{64}$" },
+    "request_id": { "type": "string", "minLength": 1 },
+    "status": { "enum": ["ROUTED", "AMBIGUOUS", "NO_MATCH", "ABSTAINED", "INVALID_REQUEST"] },
+    "selected_scenario_id": { "type": ["string", "null"] },
+    "candidate_scenarios": { "type": "array", "items": { "type": "object" } },
+    "matched_rules": { "type": "array", "items": { "type": "object" } },
+    "matched_signals": { "type": "array", "items": { "type": "object" } },
+    "routing_score": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+    "confidence": { "enum": ["LOW", "MEDIUM", "HIGH"] },
+    "reason_codes": { "type": "array", "uniqueItems": true, "items": { "type": "string", "pattern": "^[A-Z][A-Z0-9_]*$" } },
+    "explanation": { "type": "string" },
+    "source_class": { "enum": ["TEST_FIXTURE", "REAL_USER_INTENT"] },
+    "generated_at": { "type": "string", "format": "date-time" },
+    "metadata": { "type": "object" }
+  }
+}

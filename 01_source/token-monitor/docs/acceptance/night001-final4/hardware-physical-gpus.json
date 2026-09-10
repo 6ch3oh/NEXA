@@ -1,0 +1,31 @@
+{
+  "card_count": 9,
+  "labels": [
+    "CPU",
+    "内存",
+    "GPU · NVIDIA GeForce RTX 5060 Laptop GPU",
+    "显存 · NVIDIA GeForce RTX 5060 Laptop GPU",
+    "GPU · Intel(R) Graphics",
+    "显存 · Intel(R) Graphics",
+    "磁盘 · C:",
+    "磁盘 · D:",
+    "磁盘 · E:"
+  ],
+  "gpu_count": 2,
+  "gpu_names": [
+    "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "Intel(R) Graphics"
+  ],
+  "gpu_ids_unique": true,
+  "physical_separation": true,
+  "utilization_available": true,
+  "dedicated_memory_available": true,
+  "shared_memory_available": true,
+  "history_points": [
+    5,
+    5
+  ],
+  "activity_mode": "background",
+  "screenshot": "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\night001-final4\\hardware-physical-gpus.png",
+  "failures": []
+}

@@ -1,0 +1,23 @@
+{
+  "schema_version": "0.1",
+  "record_type": "RECOMMENDATION_POLICY",
+  "policy_id": "fixture.policy.high-confidence",
+  "version": "0.1.0",
+  "name": "Fixture high-confidence recommendation policy",
+  "description": "Offline-only policy with stricter evidence gates and an explicit confidence preference.",
+  "applicable_scenarios": ["fixture.scenario.coding", "fixture.scenario.planning", "fixture.scenario.instruction-following"],
+  "hard_gates": { "minimum_capability_score": 0.6, "unknown_constraint_behavior": "REJECT_UNKNOWN" },
+  "evidence_gates": { "minimum_confidence": "MEDIUM", "minimum_coverage": 0.75, "minimum_evidence": 2 },
+  "preference_weights": { "capability": 0.3, "cost_efficiency": 0, "latency": 0, "throughput": 0, "confidence": 0.4, "coverage": 0.3 },
+  "normalization_rules": {
+    "cost": { "min": 0, "max": 10, "direction": "lower_is_better", "clamp": true },
+    "latency": { "min": 0, "max": 100, "direction": "lower_is_better", "clamp": true },
+    "throughput": { "min": 0, "max": 100, "direction": "higher_is_better", "clamp": true },
+    "confidence_values": { "INSUFFICIENT_EVIDENCE": 0, "LOW": 0.25, "MEDIUM": 0.65, "HIGH": 1 }
+  },
+  "missing_preference_handling": "RENORMALIZE_AVAILABLE",
+  "tie_policy": { "epsilon": 0.000001, "outcome": "TIE", "secondary_keys": ["confidence", "coverage", "candidate_id"] },
+  "abstain_policy": { "on_unknown_hard_constraint": "REJECT_UNKNOWN", "on_no_eligible": "NO_ELIGIBLE_CANDIDATE", "on_all_insufficient": "INSUFFICIENT_EVIDENCE" },
+  "explanation_rules": { "include_gate_results": true, "include_contributions": true, "maximum_reason_codes": 20 },
+  "metadata": { "fixture_only": true }
+}

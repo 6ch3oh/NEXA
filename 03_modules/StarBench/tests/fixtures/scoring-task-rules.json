@@ -1,0 +1,96 @@
+{
+  "schema_version": "0.1",
+  "record_type": "BENCHMARK_TASK",
+  "benchmark_task_id": "fixture.scoring.rules",
+  "name": "Offline rule and numeric scoring fixture",
+  "category": "instruction_following",
+  "task_type": "prompt",
+  "description": "Synthetic task for rule-based, numeric, manual, weighted, and coverage scoring.",
+  "prompt": {
+    "instruction": "Return a short plan that contains BLUE and never contains RED.",
+    "input_template": "Write one line beginning with BLUE."
+  },
+  "input_definition": {
+    "required_prefix": { "type": "string", "value": "BLUE" },
+    "forbidden_text": { "type": "string", "value": "RED" }
+  },
+  "prompt_identity": {
+    "algorithm": "sha256",
+    "prompt_id": "prompt_9ac876626ff00f4ccc5e42f1745e78c8c7b87988138a6a5dc804e770a271f7f1",
+    "prompt_version": "1.0.0"
+  },
+  "expected_output": {
+    "type": "text",
+    "reference": null,
+    "criteria": ["contains BLUE", "does not contain RED", "begins with BLUE"]
+  },
+  "evaluation_method": {
+    "type": "rule_based",
+    "config": {
+      "metric_definitions": [
+        {
+          "schema_version": "0.1",
+          "record_type": "METRIC_DEFINITION",
+          "metric_id": "instruction_following",
+          "name": "Instruction rules",
+          "description": "Equal-fraction aggregation of task-authored deterministic rules.",
+          "metric_type": "binary",
+          "direction": "higher_is_better",
+          "weight": 0.5,
+          "range": { "min": 0, "max": 1 },
+          "normalization": { "method": "identity", "min": 0, "max": 1, "clamp": true },
+          "scorer": "rule_based",
+          "parameters": {
+            "rules": [
+              { "rule_id": "contains-blue", "type": "contains", "value": "BLUE" },
+              { "rule_id": "not-red", "type": "not_contains", "value": "RED" },
+              { "rule_id": "starts-blue", "type": "regex", "pattern": "^BLUE", "flags": "u" }
+            ]
+          },
+          "required": true,
+          "metadata": { "synthetic": true }
+        },
+        {
+          "schema_version": "0.1",
+          "record_type": "METRIC_DEFINITION",
+          "metric_id": "latency",
+          "name": "Observed latency",
+          "description": "Lower-is-better latency normalized over an explicit fixture-only range.",
+          "metric_type": "numeric",
+          "direction": "lower_is_better",
+          "weight": 0.3,
+          "range": { "min": 0, "max": 100 },
+          "normalization": { "method": "min_max", "min": 0, "max": 100, "clamp": true },
+          "scorer": "numeric",
+          "parameters": { "source_field": "latency_ms" },
+          "required": true,
+          "metadata": { "synthetic": true, "unit": "ms" }
+        },
+        {
+          "schema_version": "0.1",
+          "record_type": "METRIC_DEFINITION",
+          "metric_id": "completion",
+          "name": "Manual quality review",
+          "description": "Manual-only quality dimension with no automatic score.",
+          "metric_type": "manual",
+          "direction": "higher_is_better",
+          "weight": 0.2,
+          "range": null,
+          "normalization": { "method": "none", "min": null, "max": null, "clamp": false },
+          "scorer": "manual",
+          "parameters": {},
+          "required": false,
+          "metadata": { "synthetic": true }
+        }
+      ]
+    }
+  },
+  "metrics": ["instruction_following", "latency", "completion"],
+  "parameters": { "temperature": 0, "max_output_tokens": 64 },
+  "tags": ["offline", "fixture", "scoring", "rules"],
+  "source_class": "TEST_FIXTURE",
+  "provenance": { "origin": "LOCAL_AUTHORED", "source_ref": null },
+  "metadata": { "synthetic": true, "real_model_score": false },
+  "created_at": "2099-07-01T00:00:00.000Z",
+  "version": "1.0.0"
+}

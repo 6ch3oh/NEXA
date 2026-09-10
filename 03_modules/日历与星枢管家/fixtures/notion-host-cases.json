@@ -1,0 +1,117 @@
+{
+  "now": "2026-08-10T08:00:00+08:00",
+  "later_now": "2026-08-10T09:00:00+08:00",
+  "timezone": "Asia/Shanghai",
+  "external_target": "https://www.notion.so/host-page-001",
+  "authority_proof": {
+    "fresh": true,
+    "complete": true,
+    "authoritative": true,
+    "source": "explicit_caller_policy"
+  },
+  "snapshots": {
+    "get_success": {
+      "ok": true,
+      "status": "ready",
+      "message": "",
+      "updatedAt": 1786320000000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": [
+        {
+          "id": "host_page_001",
+          "url": "https://www.notion.so/host-page-001",
+          "title": "Synthetic host-bound task",
+          "priority": "🟡 中",
+          "due": {
+            "start": "2026-08-12",
+            "end": null,
+            "timeZone": "Asia/Shanghai",
+            "hasTime": false
+          },
+          "status": "待开始",
+          "category": "upcoming"
+        }
+      ]
+    },
+    "refresh_success": {
+      "ok": true,
+      "status": "ready",
+      "message": "",
+      "updatedAt": 1786323600000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": [
+        {
+          "id": "host_page_001",
+          "url": "https://www.notion.so/host-page-001",
+          "title": "Synthetic host-refreshed task",
+          "priority": "🔴 高",
+          "due": {
+            "start": "2026-08-13T14:30:00+08:00",
+            "end": null,
+            "timeZone": "Asia/Shanghai",
+            "hasTime": true
+          },
+          "status": "进行中",
+          "category": "upcoming"
+        }
+      ]
+    },
+    "fresh_complete_empty": {
+      "ok": true,
+      "status": "ready",
+      "message": "",
+      "updatedAt": 1786323600000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": []
+    },
+    "stale": {
+      "ok": false,
+      "status": "network",
+      "message": "已显示上次成功数据",
+      "updatedAt": 1786320000000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": [
+        {
+          "id": "host_page_001",
+          "url": "https://www.notion.so/host-page-001",
+          "title": "Stale host task must not overwrite",
+          "priority": "🟢 低",
+          "due": null,
+          "status": "进行中"
+        }
+      ]
+    },
+    "cache_miss": {
+      "ok": false,
+      "status": "cacheMiss",
+      "message": "No cached snapshot",
+      "updatedAt": 0,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": []
+    },
+    "malformed_schema": {
+      "ok": true,
+      "status": "ready",
+      "updatedAt": 1786323600000,
+      "items": "not-an-array"
+    }
+  },
+  "host_responses": {
+    "invalid": "not-an-object",
+    "test_success": { "ok": true, "status": "ready" },
+    "test_failure": { "ok": false, "status": "invalidToken", "message": "Connection failed" },
+    "open_success": { "ok": true },
+    "open_failure": { "ok": false, "error": "url not in allowlist" }
+  },
+  "missing_capabilities": ["get", "refresh", "test", "open"]
+}

@@ -1,0 +1,29 @@
+{
+  "classification": "SYNTHETIC_TIAN_GONG_MANUAL_RUN_PREP_REFERENCE",
+  "state": "TIANGONG_KNOWLEDGE_COLLECT_MANUAL_RUN_PREP_READY",
+  "provider": {
+    "display_name": "天工",
+    "provider_instance_id": "n8n-tiangong-primary",
+    "provider_kind": "n8n",
+    "confirmation": "USER_CONFIRMED",
+    "identity_derived_from_endpoint_or_container": false
+  },
+  "capability_id": "knowledge.collect",
+  "current_readiness": {
+    "provider_health": "NOT_OBSERVED",
+    "auth": "AUTH_REQUIRED",
+    "workflow_metadata": "AUTH_REQUIRED",
+    "form_surface": "METADATA_REQUIRED",
+    "manual_run": "AUTH_REQUIRED",
+    "runtime_observation": "AUTH_REQUIRED",
+    "artifact_correlation": "CORRELATION_NOT_CONFIRMED",
+    "artifact_copy": "IMPLEMENTATION_READY",
+    "repair": "BLOCKED_METADATA_REQUIRED",
+    "publish": "BLOCKED_EXTERNAL"
+  },
+  "execution_enabled": false,
+  "secret_exposed": false,
+  "form_submitted": false,
+  "production_action_performed": false,
+  "second_workflow_engine": false
+}

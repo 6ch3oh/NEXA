@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/recommendation-request-v0.1.schema.json",
+  "title": "StarBench Recommendation Request V0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "record_type", "request_id", "scenario_id", "task_context", "candidate_scope",
+    "hard_constraints", "preferences", "minimum_confidence", "minimum_coverage", "minimum_evidence",
+    "source_policy", "requested_at", "metadata"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "record_type": { "const": "RECOMMENDATION_REQUEST" },
+    "request_id": { "type": "string", "pattern": "^request_[A-Za-z0-9_-]+$" },
+    "scenario_id": { "type": "string", "minLength": 1 },
+    "task_context": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary", "attributes"],
+      "properties": {
+        "summary": { "type": ["string", "null"] },
+        "attributes": { "type": "object" }
+      }
+    },
+    "candidate_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["candidates"],
+      "properties": {
+        "candidates": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["provider", "model", "profile_id"],
+            "properties": {
+              "provider": { "type": "string", "minLength": 1 },
+              "model": { "type": "string", "minLength": 1 },
+              "profile_id": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+    "hard_constraints": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "minimum_capability_score", "maximum_latency_ms", "maximum_cost", "provider_allowlist",
+        "provider_denylist", "model_allowlist", "model_denylist", "required_metrics"
+      ],
+      "properties": {
+        "minimum_capability_score": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+        "maximum_latency_ms": { "type": ["number", "null"], "minimum": 0 },
+        "maximum_cost": { "type": ["number", "null"], "minimum": 0 },
+        "provider_allowlist": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "provider_denylist": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "model_allowlist": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "model_denylist": { "type": "array", "uniqueItems": true, "items": { "type": "string" } },
+        "required_metrics": { "type": "array", "uniqueItems": true, "items": { "type": "string" } }
+      }
+    },
+    "preferences": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["weight_overrides"],
+      "properties": {
+        "weight_overrides": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "capability": { "type": "number", "minimum": 0 },
+            "cost_efficiency": { "type": "number", "minimum": 0 },
+            "latency": { "type": "number", "minimum": 0 },
+            "throughput": { "type": "number", "minimum": 0 },
+            "confidence": { "type": "number", "minimum": 0 },
+            "coverage": { "type": "number", "minimum": 0 }
+          }
+        }
+      }
+    },
+    "minimum_confidence": { "enum": ["INSUFFICIENT_EVIDENCE", "LOW", "MEDIUM", "HIGH"] },
+    "minimum_coverage": { "type": "number", "minimum": 0, "maximum": 1 },
+    "minimum_evidence": { "type": "integer", "minimum": 1 },
+    "source_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed_source_classes", "fixture_decision_only"],
+      "properties": {
+        "allowed_source_classes": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "enum": ["TEST_FIXTURE", "RAW_RESULT", "REAL_EVALUATION"] } },
+        "fixture_decision_only": { "type": "boolean" }
+      }
+    },
+    "requested_at": { "type": "string", "format": "date-time" },
+    "metadata": { "type": "object" }
+  }
+}

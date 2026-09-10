@@ -1,0 +1,30 @@
+{
+  "reference_model": "synthetic/reference-v1",
+  "total_probes": 4,
+  "generation_mode": "adaptive_frontier",
+  "verification_mode": "cloze_3config_consensus",
+  "numbering_format": "(N)",
+  "min_probes_target": 4,
+  "probes": [
+    { "name": "synthetic-one", "domain": "math", "value": 1, "contrast_value": 11, "contrast_agrees": false, "difficulty_tier": 0 },
+    { "name": "synthetic-two", "domain": "math", "value": 2, "contrast_value": 12, "contrast_agrees": false, "difficulty_tier": 0 },
+    { "name": "synthetic-three", "domain": "math", "value": 3, "contrast_value": 13, "contrast_agrees": false, "difficulty_tier": 0 },
+    { "name": "synthetic-four", "domain": "math", "value": 4, "contrast_value": 14, "contrast_agrees": false, "difficulty_tier": 0 }
+  ],
+  "self_error": 0,
+  "target_results": {
+    "reference-v1": {
+      "model": "synthetic/reference-v1",
+      "is_self": true,
+      "values": [1, 2, 3, 4],
+      "match_vector": [1, 1, 1, 1],
+      "correct": 4,
+      "total": 4,
+      "hamming": 0,
+      "error_rate": 0,
+      "p_value": 1,
+      "significant": false,
+      "domain_breakdown": {}
+    }
+  }
+}

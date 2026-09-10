@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.1",
+  "record_type": "ENTITLEMENT_SNAPSHOT_REF",
+  "snapshot_ref": "identity-entitlement-fixture-v1",
+  "authority": "03-01 AI资产成本",
+  "subscription_identity": { "subscription_id": "synthetic-subscription", "plan_id": "synthetic-plan", "plan_name": "Synthetic Test Plan" },
+  "quota_cycle": { "cycle_start": "2026-08-01T00:00:00.000Z", "cycle_end": "2026-09-01T00:00:00.000Z" },
+  "usage_state": "KNOWN",
+  "remaining_state": { "status": "KNOWN", "value": 10, "unit": "REQUESTS" },
+  "reset_time": "2026-09-01T00:00:00.000Z",
+  "model_specific_quota": {},
+  "request_limit": 10,
+  "task_limit": null,
+  "token_usage": 90,
+  "freshness_status": "CURRENT",
+  "metadata": { "source_class": "TEST_FIXTURE", "monetary_conversion_allowed": false }
+}

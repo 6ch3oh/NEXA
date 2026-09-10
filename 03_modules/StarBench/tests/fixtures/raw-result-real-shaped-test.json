@@ -1,0 +1,39 @@
+{
+  "schema_version": "0.1",
+  "record_type": "TEST_FIXTURE",
+  "run_id": "run_fixture_real_shaped",
+  "timestamp": "2099-12-10T00:01:00.000Z",
+  "provider": "fixture-provider-real-shaped",
+  "model": "fixture-model-real-shaped",
+  "benchmark_task": "fixture.intake.complete",
+  "task_identity": { "task_id": "fixture.intake.complete", "task_version": "1.0.0" },
+  "prompt_identity": { "prompt_id": "fixture.intake.complete.prompt", "prompt_version": "1.0.0" },
+  "parameters": { "fixture_mode": "real-shaped-no-network" },
+  "success": true,
+  "latency_ms": 100,
+  "ttft_ms": 20,
+  "prompt_tokens": 5,
+  "completion_tokens": 10,
+  "total_tokens": 15,
+  "throughput_tokens_per_second": 100,
+  "cost": null,
+  "request_provenance": {
+    "provider_identity": "fixture-provider-real-shaped",
+    "adapter_identity": "starbench.fixture-intake-adapter",
+    "adapter_version": "0.1",
+    "endpoint_class": "FIXTURE_REAL_SHAPED",
+    "request_id": "fixture-request-real-shaped",
+    "execution_environment": { "runtime": "fixture", "network": "disabled" }
+  },
+  "error": null,
+  "source_class": "TEST_FIXTURE",
+  "metadata": {
+    "fixture_only": true,
+    "real_execution": false,
+    "response_reference": "fixture-response-reference",
+    "measurement_provenance": {
+      "throughput": { "state": "OBSERVED", "source": "computed", "formula": "completion_tokens / (latency_ms / 1000)", "input_fields": ["completion_tokens", "latency_ms"] },
+      "cost": { "state": "UNAVAILABLE", "source": null }
+    }
+  }
+}

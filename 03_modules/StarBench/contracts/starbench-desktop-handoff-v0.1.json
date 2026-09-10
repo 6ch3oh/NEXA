@@ -1,0 +1,49 @@
+{
+  "contract_id": "starbench.desktop-entry-handoff.v0.1",
+  "contract_version": "0.1.0",
+  "module_id": "04_STARBENCH",
+  "product_name": "星测",
+  "entrypoint": "src/public/starbench-desktop-entry.mjs",
+  "factory_export": "createStarBenchDesktopApplication",
+  "navigation": {
+    "placement": "INDEPENDENT_MODULE_ENTRY",
+    "label": "星测",
+    "route": null,
+    "homepage_widget": false
+  },
+  "ui_host": {
+    "ready": false,
+    "owner": "NEXA_CORE_ASSEMBLY",
+    "requirement": "Core supplies route and presentation host without importing StarBench private modules."
+  },
+  "lifecycle": ["start", "stop", "getReadiness", "read"],
+  "statuses": ["ready", "empty", "partial", "unavailable", "stale", "error"],
+  "product_state_projection": {
+    "location": "response.summary",
+    "semantics": {
+      "EMPTY": "数据源正常，当前没有记录。",
+      "UNAVAILABLE": "当前没有可读取的数据来源，不需要用户配置。",
+      "STALE": "存在数据，但数据可能已过期。",
+      "ERROR": "能力原本可读取，但本次读取失败。"
+    },
+    "user_configuration_required_for_unavailable": false,
+    "internal_implementation_terms_exposed": false
+  },
+  "safe_read_capabilities": [
+    "evaluation_results",
+    "evaluation_history",
+    "evidence",
+    "request_records",
+    "token_cost_observations",
+    "external_identity_evidence"
+  ],
+  "execution_capabilities": [],
+  "authority": {
+    "canonical_identity": "STARBENCH",
+    "external_identity_engine": "UNTRUSTED_EXTERNAL_EVIDENCE",
+    "officiality_inference": "NOT_ALLOWED"
+  },
+  "automatic_execution": false,
+  "provider_calls": false,
+  "network_required": false
+}

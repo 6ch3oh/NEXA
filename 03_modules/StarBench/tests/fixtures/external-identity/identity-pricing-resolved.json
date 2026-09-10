@@ -1,0 +1,17 @@
+{
+  "schema_version": "0.1",
+  "record_type": "RESOLVED_PRICING_SNAPSHOT",
+  "snapshot_ref": "identity-pricing-fixture-v1",
+  "authority": "03-01 AI资产成本",
+  "provider": "synthetic-provider",
+  "model": "synthetic-model",
+  "model_class": "OTHER_API_MODEL",
+  "billing_mode": "API_TOKEN_BILLED",
+  "snapshot_version": "fixture-v1",
+  "snapshot_timestamp": "2026-08-23T00:00:00.000Z",
+  "freshness_status": "CURRENT",
+  "currency": "CNY",
+  "billing_unit_tokens": 1000,
+  "prices": { "input": "1.00", "cached_input": "0.25", "output": "4.00", "reasoning": "2.00" },
+  "metadata": { "source_class": "TEST_FIXTURE", "network_lookup": false }
+}

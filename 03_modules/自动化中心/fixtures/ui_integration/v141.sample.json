@@ -1,0 +1,34 @@
+{
+  "classification": "UI_COMPATIBILITY_SAMPLE_NO_RAW_SOURCE",
+  "ui_integration_version": "0.1",
+  "state": "AUTOMATION_READ_UI_INTEGRATION_READY",
+  "public_read_api": "AutomationReadAPI",
+  "authority": {
+    "workflow_definition": "Legacy n8n Workflow JSON",
+    "execution": "n8n Runtime",
+    "original_result_and_evidence": "Legacy / n8n assets",
+    "normalized_read_view": "NEXA AutomationReadAPI"
+  },
+  "workflow_sample": {
+    "capability_id": "knowledge.collect",
+    "workflow_external_id": "ymYh8t76VP3jGPbr",
+    "provider_instance_configuration": "REQUIRED_BEFORE_BOOTSTRAP",
+    "definition_status": "INACTIVE",
+    "workflow_runtime_observation": "NOT_OBSERVED",
+    "current_provider_runtime": "NOT_OBSERVED",
+    "historical_provider_runtime_observation": {
+      "state": "RUNNING",
+      "observed_on": "2026-08-12",
+      "freshness": "HISTORICAL_NOT_CURRENT"
+    },
+    "sandbox_workflow_external_id": "V141Final403429",
+    "sandbox_execution_ids": ["42", "43", "44", "45", "46", "47"],
+    "result_type": "knowledge_markdown_document",
+    "primary_result_action": "COPY_MARKDOWN",
+    "copy_markdown": "NOT_READY",
+    "execution_enabled": false,
+    "production_revision": "AUTH_REQUIRED",
+    "form_url": "UNRESOLVED"
+  },
+  "source_data_copied": false
+}

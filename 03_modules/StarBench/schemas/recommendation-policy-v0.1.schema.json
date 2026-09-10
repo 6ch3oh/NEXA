@@ -1,0 +1,120 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/recommendation-policy-v0.1.schema.json",
+  "title": "StarBench Recommendation Policy V0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "record_type", "policy_id", "version", "name", "description",
+    "applicable_scenarios", "hard_gates", "evidence_gates", "preference_weights",
+    "normalization_rules", "missing_preference_handling", "tie_policy", "abstain_policy",
+    "explanation_rules", "metadata"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "record_type": { "const": "RECOMMENDATION_POLICY" },
+    "policy_id": { "type": "string", "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)*$" },
+    "version": { "type": "string", "pattern": "^[0-9]+[.][0-9]+[.][0-9]+$" },
+    "name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string", "minLength": 1 },
+    "applicable_scenarios": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "minLength": 1 } },
+    "hard_gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimum_capability_score", "unknown_constraint_behavior"],
+      "properties": {
+        "minimum_capability_score": { "type": "number", "minimum": 0, "maximum": 1 },
+        "unknown_constraint_behavior": { "enum": ["REJECT_UNKNOWN", "ABSTAIN_UNKNOWN"] }
+      }
+    },
+    "evidence_gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimum_confidence", "minimum_coverage", "minimum_evidence"],
+      "properties": {
+        "minimum_confidence": { "enum": ["INSUFFICIENT_EVIDENCE", "LOW", "MEDIUM", "HIGH"] },
+        "minimum_coverage": { "type": "number", "minimum": 0, "maximum": 1 },
+        "minimum_evidence": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "preference_weights": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capability", "cost_efficiency", "latency", "throughput", "confidence", "coverage"],
+      "properties": {
+        "capability": { "type": "number", "minimum": 0 },
+        "cost_efficiency": { "type": "number", "minimum": 0 },
+        "latency": { "type": "number", "minimum": 0 },
+        "throughput": { "type": "number", "minimum": 0 },
+        "confidence": { "type": "number", "minimum": 0 },
+        "coverage": { "type": "number", "minimum": 0 }
+      }
+    },
+    "normalization_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cost", "latency", "throughput", "confidence_values"],
+      "properties": {
+        "cost": { "$ref": "#/$defs/bounds" },
+        "latency": { "$ref": "#/$defs/bounds" },
+        "throughput": { "$ref": "#/$defs/bounds" },
+        "confidence_values": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["INSUFFICIENT_EVIDENCE", "LOW", "MEDIUM", "HIGH"],
+          "properties": {
+            "INSUFFICIENT_EVIDENCE": { "type": "number", "minimum": 0, "maximum": 1 },
+            "LOW": { "type": "number", "minimum": 0, "maximum": 1 },
+            "MEDIUM": { "type": "number", "minimum": 0, "maximum": 1 },
+            "HIGH": { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        }
+      }
+    },
+    "missing_preference_handling": { "enum": ["RENORMALIZE_AVAILABLE", "REJECT_CANDIDATE", "ABSTAIN"] },
+    "tie_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["epsilon", "outcome", "secondary_keys"],
+      "properties": {
+        "epsilon": { "type": "number", "minimum": 0, "maximum": 1 },
+        "outcome": { "const": "TIE" },
+        "secondary_keys": { "type": "array", "items": { "enum": ["confidence", "coverage", "candidate_id"] } }
+      }
+    },
+    "abstain_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["on_unknown_hard_constraint", "on_no_eligible", "on_all_insufficient"],
+      "properties": {
+        "on_unknown_hard_constraint": { "enum": ["REJECT_UNKNOWN", "ABSTAIN_UNKNOWN"] },
+        "on_no_eligible": { "enum": ["NO_ELIGIBLE_CANDIDATE", "ABSTAINED"] },
+        "on_all_insufficient": { "const": "INSUFFICIENT_EVIDENCE" }
+      }
+    },
+    "explanation_rules": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["include_gate_results", "include_contributions", "maximum_reason_codes"],
+      "properties": {
+        "include_gate_results": { "type": "boolean" },
+        "include_contributions": { "type": "boolean" },
+        "maximum_reason_codes": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "metadata": { "type": "object" }
+  },
+  "$defs": {
+    "bounds": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["min", "max", "direction", "clamp"],
+      "properties": {
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "direction": { "enum": ["higher_is_better", "lower_is_better"] },
+        "clamp": { "type": "boolean" }
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "now": "2026-08-12T08:00:00+08:00",
+  "timezone": "Asia/Shanghai",
+  "today": "2026-08-12",
+  "tomorrow": "2026-08-13",
+  "confirmed_start": "2026-08-12T14:00:00+08:00",
+  "confirmed_end": "2026-08-12T15:30:00+08:00",
+  "changed_start": "2026-08-12T16:00:00+08:00",
+  "changed_end": "2026-08-12T17:00:00+08:00",
+  "tomorrow_start": "2026-08-13T15:00:00+08:00",
+  "tomorrow_end": "2026-08-13T16:00:00+08:00",
+  "event_start": "2026-08-12T14:30:00+08:00",
+  "event_end": "2026-08-12T15:00:00+08:00",
+  "cases": {
+    "today_task_no_time": { "task_id": "task_today_unplaced", "plan_date": "2026-08-12", "time_confirmation_state": "time_unconfirmed" },
+    "today_confirmed_time": { "task_id": "task_today_confirmed", "plan_date": "2026-08-12", "planned_start_at": "2026-08-12T14:00:00+08:00", "planned_end_at": "2026-08-12T15:30:00+08:00", "time_confirmation_state": "time_confirmed" },
+    "tomorrow_task_no_time": { "task_id": "task_tomorrow_unplaced", "plan_date": "2026-08-13", "time_confirmation_state": "time_unconfirmed" },
+    "tomorrow_confirmed_time": { "task_id": "task_tomorrow_confirmed", "plan_date": "2026-08-13", "planned_start_at": "2026-08-13T15:00:00+08:00", "planned_end_at": "2026-08-13T16:00:00+08:00", "time_confirmation_state": "time_confirmed" },
+    "overdue": { "task_id": "task_overdue", "reason_code": "OVERDUE" },
+    "blocked": { "task_id": "task_blocked", "dependency_id": "task_dependency_pending" },
+    "notion_task": { "task_id": "task_notion", "source": "notion", "external_id": "synthetic_page_001" },
+    "calendar_conflict": { "event_id": "event_conflict", "expected": "CONFLICT_WARNING", "auto_shift": false },
+    "carryover_candidate": { "task_id": "task_carryover", "requires_confirmation": true },
+    "carryover_confirmed": { "task_id": "task_carryover_confirmed", "decision": "confirmed", "preserve_history": true },
+    "carryover_rejected": { "task_id": "task_carryover_rejected", "decision": "rejected", "preserve_plan_date": true },
+    "priority_suggestion": { "task_id": "task_priority", "reason_codes": ["DUE_ON_PLAN_DATE", "USER_PRIORITY_HIGH"] },
+    "manual_ordering": { "ordered_plan_ids": ["plan_pinned", "plan_second"], "pinned_plan_id": "plan_pinned" },
+    "reminder_reconciliation": { "change_cancels_old": true, "remove_cancels_old": true, "terminal_lifecycle_preserved": true },
+    "mobile_handoff": { "actions": ["complete", "snooze", "open_nexa"], "delivery": false }
+  }
+}

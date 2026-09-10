@@ -1,0 +1,8 @@
+{
+  "ai_name": "空成功结果",
+  "source_url": "https://example.com/empty-success",
+  "web_text": "",
+  "web_text_length": 0,
+  "webpage_read_status": "success",
+  "http_status_code": 200
+}

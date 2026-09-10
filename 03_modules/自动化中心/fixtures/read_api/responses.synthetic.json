@@ -1,0 +1,150 @@
+{
+  "classification": "synthetic_ui_compatibility_fixture",
+  "source_data_copied": false,
+  "api_version": "0.1",
+  "overview": {
+    "api_version": "0.1",
+    "ok": true,
+    "data": {
+      "total_workflows": 1,
+      "workflows_with_historical_results": 1,
+      "workflows_without_observed_historical_results": 0,
+      "historical_result_count": 2,
+      "historical_execution_success_count": 2,
+      "historical_execution_failed_count": 0,
+      "historical_business_success_count": 1,
+      "historical_business_partial_count": 1,
+      "historical_business_failed_count": 0,
+      "sandbox_result_count": 2,
+      "undated_result_count": 1,
+      "unresolved_result_count": 1,
+      "orphan_result_workflow_count": 0,
+      "runtime_observed_count": 0,
+      "runtime_status": "not_observed"
+    }
+  },
+  "workflow_list": {
+    "api_version": "0.1",
+    "ok": true,
+    "data": [
+      {
+        "identity": {
+          "provider_kind": "synthetic",
+          "provider_instance_id": "synthetic-instance-001",
+          "external_workflow_id": "synthetic-workflow-001"
+        },
+        "display_name": "Synthetic Workflow",
+        "definition_status": "inactive",
+        "runtime_status": "not_observed",
+        "runtime_observed": false,
+        "workflow_classification": "static_with_historical_results",
+        "snapshot_selection": {
+          "policy": "strict_unique",
+          "selection_state": "selected"
+        },
+        "historical_summary": {
+          "historical_result_count": 2,
+          "execution_success_count": 2,
+          "business_success_count": 1,
+          "business_partial_count": 1,
+          "sandbox_result_count": 2,
+          "undated_result_count": 1
+        },
+        "latest_result_state": "selected",
+        "latest_execution_status": "success",
+        "latest_business_status": "success",
+        "diagnostics": []
+      }
+    ]
+  },
+  "workflow_detail": {
+    "api_version": "0.1",
+    "ok": true,
+    "data": {
+      "identity": {
+        "provider_kind": "synthetic",
+        "provider_instance_id": "synthetic-instance-001",
+        "external_workflow_id": "synthetic-workflow-001"
+      },
+      "display_name": "Synthetic Workflow",
+      "definition_status": "inactive",
+      "runtime_status": "not_observed",
+      "runtime_observed": false,
+      "static_evidence": [
+        {
+          "source_type": "synthetic_fixture",
+          "authority": "synthetic",
+          "synthetic": true,
+          "sanitized": true,
+          "integrity_hash_prefix": "000000000000"
+        }
+      ],
+      "historical_result_count": 2,
+      "current_runtime_inference_allowed": false
+    }
+  },
+  "result_list": {
+    "api_version": "0.1",
+    "ok": true,
+    "data": [
+      {
+        "execution_identity": {
+          "provider_kind": "synthetic",
+          "provider_instance_id": "synthetic-instance-001",
+          "execution_external_id": "synthetic-execution-001"
+        },
+        "workflow_external_id": "synthetic-workflow-001",
+        "execution_status": "success",
+        "business_status": "partial",
+        "observed_at": "2026-08-11T00:00:00+00:00",
+        "safe_result_summary": "Synthetic historical result summary",
+        "caller_declared_context": true,
+        "historical_result_only": true,
+        "current_runtime_inference_allowed": false,
+        "evidence": {
+          "source_classification": "sandbox_real_execution_with_synthetic_dependencies",
+          "provenance_completeness": "complete",
+          "source_integrity_prefix": "000000000000",
+          "sanitized_result_integrity_prefix": "111111111111"
+        }
+      }
+    ]
+  },
+  "result_detail": {
+    "api_version": "0.1",
+    "ok": true,
+    "data": {
+      "execution_external_id": "synthetic-execution-001",
+      "workflow_external_id": "synthetic-workflow-001",
+      "execution_status": "success",
+      "business_status": "partial",
+      "observed_at": "2026-08-11T00:00:00+00:00",
+      "safe_result_summary": "Synthetic historical result summary",
+      "caller_declared_context": true,
+      "provenance_completeness": "complete"
+    }
+  },
+  "unresolved_result": {
+    "api_version": "0.1",
+    "ok": true,
+    "data": [
+      {
+        "unresolved_reason": "provider_instance_unresolved",
+        "known_provider_kind": "synthetic",
+        "provider_instance_state": "unresolved",
+        "result": {
+          "execution_identity": null,
+          "workflow_identity": null,
+          "workflow_external_id": "synthetic-workflow-unresolved",
+          "execution_external_id": "synthetic-execution-unresolved",
+          "execution_status": "unknown",
+          "business_status": "unknown",
+          "observed_at": null,
+          "evidence": {
+            "provenance_completeness": "partial"
+          }
+        }
+      }
+    ]
+  }
+}

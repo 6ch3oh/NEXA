@@ -1,0 +1,26 @@
+{
+  "version": "0.1",
+  "task": "NEXA-AUTO-TIANGONG-PRODUCTION-PUBLISH-001",
+  "round": "R2_HTTP_403_READ_ONLY_SCOPE_DIAGNOSIS",
+  "state": "USER_AUTH_ACTION_REQUIRED",
+  "observed_fact": "GET_WORKFLOW_SUCCEEDED_BUT_PUT_WORKFLOW_RETURNED_HTTP_403",
+  "local_openapi": {
+    "version": "1.1.1",
+    "get_workflow_required_scope": "workflow:read",
+    "put_workflow_required_scope": "workflow:update",
+    "discover_endpoint": "/api/v1/discover?resource=workflow",
+    "discover_description": "FILTERED_CAPABILITY_MAP_BASED_ON_CALLER_API_KEY_SCOPES"
+  },
+  "safe_diagnostic_script": "scripts/tiangong_workflow_scope_discovery.py",
+  "safe_diagnostic_script_sha256": "46B291E6A502B1084097C3E0338286E1923B465F5975E7CE322EB2CD3B1C942E",
+  "diagnostic_method": "SINGLE_AUTHENTICATED_GET_ONLY",
+  "focused_tests": "42/42 PASS",
+  "production_write": false,
+  "publish": false,
+  "activate": false,
+  "workflow_execution": false,
+  "credential_persisted": false,
+  "secret_exposed": false,
+  "automatic_retry": false,
+  "stop_reason": "CURRENT_API_KEY_EFFECTIVE_WORKFLOW_CAPABILITIES_REQUIRE_HIDDEN_LOCAL_DISCOVERY"
+}

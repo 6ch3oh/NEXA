@@ -1,0 +1,8 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema","$id":"https://nexa.local/starbench/candidate-definition-v0.1.schema.json","title":"StarBench Candidate Definition V0.1","type":"object","additionalProperties":false,
+  "required":["schema_version","record_type","candidate_id","version","provider","model","variant","parameters","status","source_class","created_at","metadata"],
+  "properties":{
+    "schema_version":{"const":"0.1"},"record_type":{"const":"CANDIDATE_DEFINITION"},"candidate_id":{"type":"string","pattern":"^[a-z0-9]+(?:[._-][a-z0-9]+)*$"},"version":{"type":"string","pattern":"^[0-9]+[.][0-9]+[.][0-9]+$"},
+    "provider":{"type":"string","minLength":1},"model":{"type":"string","minLength":1},"variant":{"type":["string","null"]},"parameters":{"type":"object"},"status":{"enum":["NOT_AUTHORIZED","TEST_ONLY","ACTIVE","RETIRED"]},"source_class":{"enum":["TEST_FIXTURE","AUTHORED_DEFINITION"]},"created_at":{"type":"string","format":"date-time"},"metadata":{"type":"object"}
+  }
+}

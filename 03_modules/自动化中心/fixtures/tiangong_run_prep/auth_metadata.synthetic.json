@@ -1,0 +1,21 @@
+{
+  "version": "0.1",
+  "state_without_runtime_credential": "CREDENTIAL_USER_ACTION_REQUIRED",
+  "auth_mechanism": "N8N_PUBLIC_API_KEY",
+  "auth_header_name": "X-N8N-API-KEY",
+  "credential_ref_id": "tiangong-n8n-api-key",
+  "credential_source": "EXTERNAL_RUNTIME_PROVIDER",
+  "secret_exposed": false,
+  "provider_instance_id": "n8n-tiangong-primary",
+  "workflow_external_id": "ymYh8t76VP3jGPbr",
+  "canonical_revision": "802897a6-0644-4927-9bad-3ecc34d8a28b",
+  "production_revision": null,
+  "workflow_membership": "AUTH_REQUIRED",
+  "active": null,
+  "form_surface": "AUTH_REQUIRED",
+  "run_readiness": "AUTH_REQUIRED",
+  "execution_enabled": false,
+  "workflow_execution_performed": false,
+  "form_submit_performed": false,
+  "production_write_performed": false
+}

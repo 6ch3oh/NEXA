@@ -1,0 +1,179 @@
+{
+  "task": "NEXA-LITELLM-STABLE-OSS-CORE-NONPROD-POC-001",
+  "status": "LITELLM_STABLE_OSS_CORE_NONPROD_POC_VALIDATED",
+  "observed_at": "2026-08-23T12:33:59.309792+00:00",
+  "architecture_role": "ADOPT_AS_LIBRARY / OSS CORE",
+  "architecture_decision_changed": {
+    "recorded": true,
+    "from": "ADOPT_AS_SERVICE",
+    "to": "ADOPT_AS_LIBRARY / OSS CORE",
+    "reason": "NEXA uses the official MIT Core package in process; proxy/Enterprise are excluded"
+  },
+  "old_pinned_commit_role": {
+    "commit": "b9bff0998c9c89034314a81000ff8f9ff9158a01",
+    "role": "UPSTREAM_AUDIT_REFERENCE_ONLY"
+  },
+  "artifact": {
+    "stable_version": "1.98.0",
+    "official_wheel": "litellm-1.98.0-cp310-abi3-win_amd64.whl",
+    "wheel_sha256": "1daac9a9a9d052fdbe58ee711c9924dc81d349d4621286cbd96d77baa12158c4",
+    "release_tag": "v1.98.0",
+    "release_commit": "d8f71d7bdbd7c9873d98293f83d64c6db72847e6",
+    "pypi_wheel_uploaded_at": "2026-08-22T22:19:19.55836Z",
+    "github_release_published_at": "2026-08-23T00:28:24Z",
+    "python_version": "3.13.14",
+    "python_requires": ">=3.10, <3.15",
+    "license_expression": "MIT",
+    "source_build_required": false,
+    "litellm_module": ".runtime/litellm_core_poc/venv/Lib/site-packages/litellm/__init__.py",
+    "native_module": ".runtime/litellm_core_poc/venv/Lib/site-packages/litellm/rust_bridge/_native.pyd",
+    "runtime_bytes": 240670836
+  },
+  "third_party_dependencies": {
+    "direct_core_count": 14,
+    "direct_core_requirements": [
+      "fastuuid>=0.14.0,<1.0",
+      "httpx>=0.28.0,<1.0",
+      "openai>=2.20.0,<3.0.0",
+      "python-dotenv>=1.0.0,<2.0",
+      "tiktoken>=0.8.0,<1.0",
+      "importlib-metadata>=8.0.0,<9.0",
+      "tokenizers>=0.21.0,<1.0",
+      "click>=8.0.0,<9.0",
+      "jinja2>=3.1.6,<4.0",
+      "aiohttp>=3.14.2,<4.0",
+      "pydantic>=2.10.0,<3.0.0",
+      "pydantic-settings>=2.14.1,<3.0",
+      "jsonschema>=4.0.0,<5.0",
+      "boto3>=1.43.1,<2.0"
+    ],
+    "proxy_dependencies_selected": false,
+    "enterprise_dependency_selected": false
+  },
+  "dependency_gate": {
+    "enterprise_installed": false,
+    "proxy_extra_installed": false,
+    "proxy_service_started": false
+  },
+  "runtime_mode": "module-local isolated venv; in-process LiteLLM Core; official mock_response",
+  "real_provider_calls": 0,
+  "real_api_cost": 0,
+  "credential_access": false,
+  "network_attempts": [],
+  "fallback_default": "OFF",
+  "caller_contract_fields": [
+    "request_id",
+    "customer_id",
+    "user_tier",
+    "capability_id",
+    "model_profile",
+    "input",
+    "metadata"
+  ],
+  "results": {
+    "basic": {
+      "request_id": "poc-core-basic-001",
+      "requested_profile": "knowledge.basic",
+      "resolved_alias": "nexa-knowledge-basic-alias-a",
+      "resolved_provider": "mock-provider-a",
+      "resolved_model": "nexa-mock-provider-a",
+      "status": "success",
+      "usage": {
+        "prompt_tokens": 10,
+        "completion_tokens": 20,
+        "total_tokens": 30
+      },
+      "estimated_cost": null,
+      "actual_cost": null,
+      "latency_ms": 20,
+      "provider_request_id": "chatcmpl-c387ae42-7f34-40ee-bfce-ad5cbbf7b596"
+    },
+    "pro_before_owner_change": {
+      "request_id": "poc-core-pro-before-001",
+      "requested_profile": "knowledge.pro",
+      "resolved_alias": "nexa-knowledge-pro-alias-b",
+      "resolved_provider": "mock-provider-b",
+      "resolved_model": "nexa-mock-provider-b",
+      "status": "success",
+      "usage": {
+        "prompt_tokens": 10,
+        "completion_tokens": 20,
+        "total_tokens": 30
+      },
+      "estimated_cost": null,
+      "actual_cost": null,
+      "latency_ms": 4,
+      "provider_request_id": "chatcmpl-1b98b75e-2731-4fa1-adb3-c426feb185a9"
+    },
+    "pro_after_owner_change": {
+      "request_id": "poc-core-pro-after-001",
+      "requested_profile": "knowledge.pro",
+      "resolved_alias": "nexa-knowledge-pro-alias-c",
+      "resolved_provider": "mock-provider-c",
+      "resolved_model": "nexa-mock-provider-c",
+      "status": "success",
+      "usage": {
+        "prompt_tokens": 10,
+        "completion_tokens": 20,
+        "total_tokens": 30
+      },
+      "estimated_cost": null,
+      "actual_cost": null,
+      "latency_ms": 5,
+      "provider_request_id": "chatcmpl-21c06eb8-5722-423b-8eaa-f10d3582c096"
+    }
+  },
+  "owner_config_changes": [
+    {
+      "path": "$.profiles[1].litellm_alias",
+      "before": "nexa-knowledge-pro-alias-b",
+      "after": "nexa-knowledge-pro-alias-c"
+    }
+  ],
+  "core_calls": [
+    {
+      "request_id": "poc-core-basic-001",
+      "alias": "nexa-knowledge-basic-alias-a",
+      "provider_model": "openai/nexa-mock-provider-a",
+      "provider_label": "mock-provider-a"
+    },
+    {
+      "request_id": "poc-core-pro-before-001",
+      "alias": "nexa-knowledge-pro-alias-b",
+      "provider_model": "openai/nexa-mock-provider-b",
+      "provider_label": "mock-provider-b"
+    },
+    {
+      "request_id": "poc-core-pro-after-001",
+      "alias": "nexa-knowledge-pro-alias-c",
+      "provider_model": "openai/nexa-mock-provider-c",
+      "provider_label": "mock-provider-c"
+    }
+  ],
+  "fail_closed": {
+    "request_tier": "FREE",
+    "error": {
+      "code": "TIER_CAPABILITY_NOT_CONFIGURED",
+      "message": "no enabled binding for FREE/knowledge.collect"
+    },
+    "core_call_count_before": 3,
+    "core_call_count_after": 3
+  },
+  "production": {
+    "write": false,
+    "workflow_activate": false,
+    "workflow_execution": false,
+    "n8n_contacted": false
+  },
+  "invariants": {
+    "litellm_package_entered": true,
+    "native_prebuilt_loaded": true,
+    "basic_reached_alias_a": true,
+    "pro_reached_alias_b": true,
+    "owner_changed_pro_to_alias_c": true,
+    "caller_contract_unchanged": true,
+    "unknown_tier_failed_before_core": true,
+    "zero_network_attempts": true,
+    "n8n_legacy_preserved": true
+  }
+}

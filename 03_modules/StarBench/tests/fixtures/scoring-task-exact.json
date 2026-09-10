@@ -1,0 +1,57 @@
+{
+  "schema_version": "0.1",
+  "record_type": "BENCHMARK_TASK",
+  "benchmark_task_id": "fixture.scoring.exact",
+  "name": "Offline exact-match scoring fixture",
+  "category": "instruction_following",
+  "task_type": "prompt",
+  "description": "Synthetic task for deterministic exact-match scoring.",
+  "prompt": {
+    "instruction": "Return exactly the required color word and no explanation.",
+    "input_template": "Return BLUE."
+  },
+  "input_definition": {
+    "required_text": { "type": "string", "value": "BLUE" }
+  },
+  "prompt_identity": {
+    "algorithm": "sha256",
+    "prompt_id": "prompt_172fe2eef40d97f522a576f1d85ada197fb5810849f528b148f0fcc97681b278",
+    "prompt_version": "1.0.0"
+  },
+  "expected_output": {
+    "type": "text",
+    "reference": "BLUE",
+    "criteria": ["matches BLUE after explicitly configured normalization"]
+  },
+  "evaluation_method": {
+    "type": "exact_match",
+    "config": {
+      "metric_definitions": [
+        {
+          "schema_version": "0.1",
+          "record_type": "METRIC_DEFINITION",
+          "metric_id": "correctness",
+          "name": "Exact correctness",
+          "description": "Binary exact-match correctness using explicit text normalization.",
+          "metric_type": "binary",
+          "direction": "higher_is_better",
+          "weight": 1,
+          "range": { "min": 0, "max": 1 },
+          "normalization": { "method": "identity", "min": 0, "max": 1, "clamp": true },
+          "scorer": "exact_match",
+          "parameters": { "normalization": ["trim", "newline_lf", "lowercase"] },
+          "required": true,
+          "metadata": { "synthetic": true }
+        }
+      ]
+    }
+  },
+  "metrics": ["correctness"],
+  "parameters": { "temperature": 0, "max_output_tokens": 8 },
+  "tags": ["offline", "fixture", "scoring", "exact-match"],
+  "source_class": "TEST_FIXTURE",
+  "provenance": { "origin": "LOCAL_AUTHORED", "source_ref": null },
+  "metadata": { "synthetic": true, "real_model_score": false },
+  "created_at": "2099-07-01T00:00:00.000Z",
+  "version": "1.0.0"
+}

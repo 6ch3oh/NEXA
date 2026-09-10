@@ -1,0 +1,9 @@
+{
+  "schema_version":"0.1","record_type":"PROJECT_ESTIMATE_BRIEF","project_id":"fixture-simple","project_name":"Simple Offline Notes","project_goal":"Add one offline notes export feature to an existing module","product_scope":["offline notes export"],"known_modules":["notes"],"planned_features":["export notes as markdown"],"existing_assets":["notes service","unit test setup"],"legacy_assets":[],"dependencies":[],"technical_constraints":["business runtime network disabled"],"risk_constraints":[],"expected_deliverables":["implementation","offline tests","acceptance note"],
+  "known_task_plan":[
+    {"task_id":"plan-export","phase":"UNDERSTANDING","task_type":"PRODUCT_PLANNING","description":"Confirm the export contract and acceptance examples","dependencies":[],"expected_output":"Export contract","tests_required":false,"review_required":false},
+    {"task_id":"implement-export","phase":"CONSTRUCTION","task_type":"CODE_IMPLEMENTATION","description":"Implement markdown export in the notes module","dependencies":["plan-export"],"expected_output":"Working export implementation","tests_required":true,"review_required":false},
+    {"task_id":"accept-export","phase":"ACCEPTANCE","task_type":"FINAL_ACCEPTANCE","description":"Verify export examples and offline regression","dependencies":["implement-export"],"expected_output":"Acceptance result","tests_required":true,"review_required":true}
+  ],
+  "preferred_models":["CODEX","CHAT_REASONING"],"resource_constraints":{"business_runtime_network":0,"real_api_calls":0},"pricing_snapshot_ref":null,"entitlement_snapshot_ref":null,"metadata":{"source_class":"TEST_FIXTURE"}
+}

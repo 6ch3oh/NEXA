@@ -1,0 +1,6 @@
+import { test } from 'node:test'; import assert from 'node:assert/strict';
+import { createDailyPlanEntry, updateDailyPlanEntry } from '../src/domain/daily-plan-entry.mjs';
+const now='2026-08-12T08:00:00+08:00';
+test('DailyPlanEntry assigns a day without inventing exact time',()=>{const e=createDailyPlanEntry({id:'p1',task_id:'t1',plan_date:'2026-08-12'},{now});assert.equal(e.time_confirmation_state,'time_unconfirmed');assert.equal(e.planned_start_at,null);assert.equal(e.state,'day_assigned');});
+test('confirmed planning time is independent and validated',()=>{const e=createDailyPlanEntry({id:'p1',task_id:'t1',plan_date:'2026-08-12',planned_start_at:'2026-08-12T14:00:00+08:00',planned_end_at:'2026-08-12T15:00:00+08:00',timezone:'Asia/Shanghai',time_confirmation_state:'time_confirmed',state:'time_confirmed'},{now});assert.equal(e.plan_date,'2026-08-12');assert.throws(()=>updateDailyPlanEntry(e,{planned_end_at:'2026-08-12T13:00:00+08:00'},{now}),/later/);});
+test('invalid date and unconfirmed hidden time fail closed',()=>{assert.throws(()=>createDailyPlanEntry({id:'p',task_id:'t',plan_date:'2026-02-30'},{now}),/ISO date/);assert.throws(()=>createDailyPlanEntry({id:'p',task_id:'t',plan_date:'2026-08-12',planned_start_at:'2026-08-12T10:00:00+08:00'},{now}),/unconfirmed/);});

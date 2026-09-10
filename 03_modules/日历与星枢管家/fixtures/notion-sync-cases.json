@@ -1,0 +1,243 @@
+{
+  "timezone": "Asia/Shanghai",
+  "now": "2026-08-10T08:00:00+08:00",
+  "later_now": "2026-08-10T09:00:00+08:00",
+  "base_item": {
+    "id": "sync_page_001",
+    "url": "https://www.notion.so/sync-page-001",
+    "title": "Synthetic sync task",
+    "priority": "🔴 高",
+    "due": {
+      "start": "2026-08-12",
+      "end": null,
+      "timeZone": "Asia/Shanghai",
+      "hasTime": false
+    },
+    "status": "待开始",
+    "category": "upcoming"
+  },
+  "snapshots": {
+    "first_import": {
+      "ok": true,
+      "status": "ready",
+      "message": "",
+      "updatedAt": 1786320000000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": [
+        {
+          "id": "sync_page_001",
+          "url": "https://www.notion.so/sync-page-001",
+          "title": "Synthetic sync task",
+          "priority": "🔴 高",
+          "due": { "start": "2026-08-12", "end": null, "timeZone": "Asia/Shanghai", "hasTime": false },
+          "status": "待开始",
+          "category": "upcoming"
+        }
+      ]
+    },
+    "title_update": {
+      "ok": true,
+      "status": "ready",
+      "updatedAt": 1786323600000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": [
+        {
+          "id": "sync_page_001",
+          "url": "https://www.notion.so/sync-page-001",
+          "title": "Synthetic renamed task",
+          "priority": "🔴 高",
+          "due": { "start": "2026-08-12", "end": null, "timeZone": "Asia/Shanghai", "hasTime": false },
+          "status": "待开始",
+          "category": "upcoming"
+        }
+      ]
+    },
+    "completed_update": {
+      "ok": true,
+      "status": "ready",
+      "updatedAt": 1786323600000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": [
+        {
+          "id": "sync_page_001",
+          "url": "https://www.notion.so/sync-page-001",
+          "title": "Synthetic sync task",
+          "priority": "🔴 高",
+          "due": { "start": "2026-08-12", "end": null, "timeZone": "Asia/Shanghai", "hasTime": false },
+          "status": "已完成"
+        }
+      ]
+    },
+    "due_update": {
+      "ok": true,
+      "status": "ready",
+      "updatedAt": 1786323600000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": [
+        {
+          "id": "sync_page_001",
+          "url": "https://www.notion.so/sync-page-001",
+          "title": "Synthetic sync task",
+          "priority": "🔴 高",
+          "due": { "start": "2026-08-13T14:30:00+08:00", "end": null, "timeZone": "Asia/Shanghai", "hasTime": true },
+          "status": "待开始",
+          "category": "upcoming"
+        }
+      ]
+    },
+    "due_removed": {
+      "ok": true,
+      "status": "ready",
+      "updatedAt": 1786323600000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": [
+        {
+          "id": "sync_page_001",
+          "url": "https://www.notion.so/sync-page-001",
+          "title": "Synthetic sync task",
+          "priority": "🔴 高",
+          "due": null,
+          "status": "待开始",
+          "category": "nodate"
+        }
+      ]
+    },
+    "priority_update": {
+      "ok": true,
+      "status": "ready",
+      "updatedAt": 1786323600000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": [
+        {
+          "id": "sync_page_001",
+          "url": "https://www.notion.so/sync-page-001",
+          "title": "Synthetic sync task",
+          "priority": "🟢 低",
+          "due": { "start": "2026-08-12", "end": null, "timeZone": "Asia/Shanghai", "hasTime": false },
+          "status": "待开始",
+          "category": "upcoming"
+        }
+      ]
+    },
+    "missing_priority": {
+      "ok": true,
+      "status": "ready",
+      "updatedAt": 1786323600000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": [
+        {
+          "id": "sync_page_001",
+          "url": "https://www.notion.so/sync-page-001",
+          "title": "Synthetic sync task with local extensions",
+          "priority": "",
+          "due": { "start": "2026-08-12", "end": null, "timeZone": "Asia/Shanghai", "hasTime": false },
+          "status": "待开始",
+          "category": "upcoming"
+        }
+      ]
+    },
+    "fresh_empty": {
+      "ok": true,
+      "status": "ready",
+      "updatedAt": 1786323600000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": []
+    },
+    "stale_empty": {
+      "ok": false,
+      "status": "network",
+      "message": "已显示上次成功数据",
+      "updatedAt": 1786320000000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": []
+    },
+    "stale_changed": {
+      "ok": false,
+      "status": "network",
+      "message": "已显示上次成功数据",
+      "updatedAt": 1786320000000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": [
+        {
+          "id": "sync_page_001",
+          "url": "https://www.notion.so/sync-page-001",
+          "title": "Stale title must not overwrite local",
+          "priority": "🟢 低",
+          "due": null,
+          "status": "进行中"
+        }
+      ]
+    },
+    "unknown_status": {
+      "ok": true,
+      "status": "ready",
+      "updatedAt": 1786323600000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": [
+        {
+          "id": "sync_page_unknown",
+          "url": "",
+          "title": "Synthetic unknown status",
+          "priority": "🟡 中",
+          "due": null,
+          "status": "等待确认"
+        }
+      ]
+    },
+    "mixed_malformed": {
+      "ok": true,
+      "status": "ready",
+      "updatedAt": 1786323600000,
+      "laterCount": 0,
+      "overdueCount": 0,
+      "todayCount": 0,
+      "items": [
+        {
+          "id": "sync_page_valid_but_rejected",
+          "url": "",
+          "title": "Synthetic valid item",
+          "priority": "🟡 中",
+          "due": null,
+          "status": "待开始"
+        },
+        {
+          "id": "sync_page_bad",
+          "url": "",
+          "title": "Synthetic invalid item",
+          "priority": "🟡 中",
+          "due": null,
+          "status": "未知状态"
+        }
+      ]
+    },
+    "malformed_schema": {
+      "ok": true,
+      "status": "ready",
+      "updatedAt": 1786323600000,
+      "items": { "not": "an array" }
+    }
+  },
+  "cache_miss": null
+}

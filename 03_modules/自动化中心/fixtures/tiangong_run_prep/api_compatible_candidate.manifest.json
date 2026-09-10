@@ -1,0 +1,87 @@
+{
+  "version": "0.1",
+  "created_at": "2026-08-22T11:35:54.4505354+08:00",
+  "task": "NEXA-AUTO-TIANGONG-CANDIDATE-API-COMPAT-001",
+  "state": "PASS_API_COMPATIBLE_CANDIDATE_VALIDATED",
+  "old_candidate": {
+    "candidate_id": "knowledge-collect-v141-hardened-001",
+    "relative_path": "fixtures/tiangong_run_prep/knowledge_collect_v141_hardened.candidate.json",
+    "sha256": "99BF04515925D7488B50E010B146E382F83F37132D1EFA4822F4F34B191B0A62",
+    "approval_invalidated": true
+  },
+  "new_candidate": {
+    "candidate_id": "knowledge-collect-v141-hardened-api-compatible-002",
+    "relative_path": "fixtures/tiangong_run_prep/knowledge_collect_v141_hardened.api_compatible.candidate.json",
+    "sha256": "002C8F5520B803FECE8387B3D2BC60E7055D9505B4A40131F87D76EACBC02FC9",
+    "format": "N8N_PUBLIC_API_UPDATE_REQUEST_BODY",
+    "api_schema": "PASS",
+    "sandbox": "14/14 PASS"
+  },
+  "diff": {
+    "relative_path": "fixtures/tiangong_run_prep/candidate_api_compat.diff.json",
+    "sha256": "0C89F223236F62B179F53C6F8537BBF68FEA51A697907DF71B86D7F360033F26"
+  },
+  "api_schema_validation": {
+    "relative_path": "fixtures/tiangong_run_prep/api_schema_validation.json",
+    "sha256": "965E67BA0ED080222D9D33053A39AD1BFD2F8A441B92E27D0AD3C7332D5A5642",
+    "local_schema_sha256": "BADB367018E4614D5C76F18C06306017B3E79977150B14F1F0FBC4339BFCE08D"
+  },
+  "sandbox": {
+    "relative_path": "fixtures/tiangong_run_prep/candidate_api_compat_sandbox_evidence/summary.json",
+    "sha256": "56CE1FF9899A4FBEC837A38AB9AFCF5C78E4D066FF4001808796074C2AA0A42B",
+    "state": "PASS",
+    "passed": 14,
+    "total": 14
+  },
+  "approval": {
+    "relative_path": "fixtures/tiangong_run_prep/publish_approval.api_compatible.ready.json",
+    "sha256": "64855A80260A0BD3E8EAB07EF677DCEFFFE3499B73D931525BC4E832983E0D98",
+    "state": "DEFINITION_UPDATE_REJECTED_NO_CHANGE",
+    "user_approval_required": true,
+    "approval_granted": true,
+    "authorization_consumed": true,
+    "approval_scope": "DEFINITION_UPDATE_ONLY"
+  },
+  "definition_update_controller": {
+    "relative_path": "scripts/tiangong_definition_update.py",
+    "sha256": "6001C953F951AD85214A4733333BFD9DA0B7D1849A1262AEB582FBDAA8387925",
+    "state": "FOCUSED_VALIDATED_USER_AUTH_ACTION_REQUIRED",
+    "allowed_call_sequence": ["GET", "PUT", "GET"],
+    "publish": false,
+    "activate": false,
+    "workflow_execution": false
+  },
+  "definition_update_attempt": {
+    "relative_path": "fixtures/tiangong_run_prep/definition_update_r2.result.json",
+    "sha256": "D3C39B98B9883DA7D3EF1A7D3D33F5798036EF865BC1154CCC5EE413FF7C78C3",
+    "state": "DEFINITION_UPDATE_REJECTED_NO_CHANGE",
+    "http_status": 403,
+    "authenticated_readback": "OLD_LOCKED_DEFINITION_UNCHANGED",
+    "production_write": false
+  },
+  "definition_update_closeout": {
+    "relative_path": "fixtures/tiangong_run_prep/definition_update_r2.closeout.json",
+    "sha256": "983D5338A5D96C88241E9EEC5F1C240D8DE2A3C4A4E01C04B2F26BB008D10ADA",
+    "state": "STOPPED_DEFINITION_UPDATE_REJECTED_NO_CHANGE"
+  },
+  "contract": {
+    "relative_path": "docs/contracts/TIANGONG_API_COMPATIBLE_CANDIDATE_V0.1.md",
+    "sha256": "FD4D81A3939F2525B83C9ACFFDFB2352585C33939C916CA32DADCDA8ED809EBA"
+  },
+  "audit": {
+    "relative_path": "docs/audits/NEXA_AUTO_TIANGONG_CANDIDATE_API_COMPAT_001.md",
+    "sha256": "030C00B5E9E5FB3EDE853B013CE3156EB02CCB20257D1F21846306DB1665491E"
+  },
+  "closeout": {
+    "relative_path": "fixtures/tiangong_run_prep/candidate_api_compat_closeout.json",
+    "sha256": "7B62248F31ECC916AF199336EFA0E6AA7CA0F67EB91423BA1823F805745E8289"
+  },
+  "production_side_effects": {
+    "production_write": false,
+    "publish": false,
+    "activate": false,
+    "workflow_execution": false,
+    "credential_access": false,
+    "secret_exposed": false
+  }
+}

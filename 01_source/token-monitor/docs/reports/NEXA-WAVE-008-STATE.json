@@ -1,0 +1,57 @@
+{
+  "schema_version": "NEXA_WAVE_008_STATE_V1",
+  "task": "NEXA-MOBILE-DATA-FABRIC-LOCAL-AI-NIGHT-WAVE-008",
+  "start_at": "2026-09-05T00:46:53.0767277+08:00",
+  "hard_deadline_at": "2026-09-05T08:46:53.0767277+08:00",
+  "feature_freeze_at": "2026-09-05T07:16:53.0767277+08:00",
+  "closeout_at": "2026-09-05T07:16:53.0767277+08:00",
+  "current_phase": "FINAL_CLOSEOUT",
+  "gate": "IMPLEMENTATION_AND_AUTOMATED_ACCEPTANCE_COMPLETE",
+  "completed_tasks": [
+    "TASK_CONTRACT_FROZEN",
+    "CANONICAL_CORE_IDENTITY_CONFIRMED",
+    "LEGACY_DUPLICATE_COPY_DETECTED_AND_LEFT_UNTOUCHED",
+    "ADB_REAL_DEVICE_AUTHORIZED",
+    "SHARED_LOCAL_AI_PROVIDER_VERIFIED",
+    "CALENDAR_REAL_SCHEMA_FIXTURES_A_TO_F_PASS",
+    "EXPENSE_AI_SAFETY_BOUNDARY_PASS",
+    "MOBILE_RUNTIME_COORDINATOR_PASS",
+    "MOBILE_PRODUCT_GATEWAY_PASS",
+    "FULL_NOTIFICATION_HISTORY_CHECKPOINTED",
+    "TEMPORAL_INDEX_REBUILT",
+    "DATA_CENTER_UI_PASS",
+    "CORE_CALENDAR_CONSUMPTION_MOBILE_TESTS_PASS",
+    "DESKTOP_AND_APK_BUILDS_CREATED"
+  ],
+  "blocked_tasks": [
+    "MOBILE_ADB_INSTALL_OEM_CONFIRMATION_NOT_COMPLETED_DURING_BOUNDED_WAIT",
+    "REAL_PHONE_END_TO_END_ACCEPTANCE_DEPENDS_ON_INSTALL_CONFIRMATION_AND_NEW_DESKTOP_START",
+    "WIFI_ADB_NATIVE_UPDATE_NOT_EXECUTED"
+  ],
+  "active_project": "NONE",
+  "active_writer": "Codex GPT-5.6 Sol /root",
+  "legacy_copy_status": "LEGACY_OR_DUPLICATE_COPY_DETECTED=YES; never written, synchronized, or merged",
+  "builds": {
+    "desktop_exe": "<PROJECT_ROOT>\\01_source\\token-monitor\\dist-mobile-data-wave008\\win-unpacked\\Token Monitor.exe",
+    "desktop_sha256": "7944FA6DC2C6E57BC43C187BF9BE173256612C37B5BC776662D9AF2FEAF619C5",
+    "mobile_apk": "<PROJECT_ROOT>\\03_modules\\NEXA-Mobile\\app\\build\\outputs\\apk\\debug\\app-debug.apk",
+    "mobile_sha256": "A2741DDC334770CE4A8BF0CF44613077F8292CF302FB5DA08E67C70FE4C6B04C",
+    "mobile_package": "com.xingshu.nexa.mobile",
+    "mobile_version_name": "0.1.0",
+    "mobile_version_code": 1,
+    "signing_certificate_sha256": "9d0dd431a078cbcb3abd3af9421ab5b773a710899d1eefcbb50f2c4a812d8a27"
+  },
+  "safety_counters": {
+    "opencode_calls": 0,
+    "deepseek_calls": 0,
+    "computer_use_calls": 0,
+    "external_ai_calls": 0,
+    "real_credential_reads": 0,
+    "real_credential_writes": 0,
+    "secret_exposure": 0,
+    "unauthorized_writes": 0,
+    "destructive_data_changes": 0,
+    "silent_install_bypass_attempts": 0
+  },
+  "last_checkpoint": "2026-09-05T03:17:00+08:00"
+}

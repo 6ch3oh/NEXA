@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/score-result-v0.1.schema.json",
+  "title": "StarBench Metric Score Result V0.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "record_type", "score_id", "evaluation_id", "run_id", "benchmark_task_id",
+    "suite_id", "metric_id", "raw_value", "normalized_score", "weight", "weighted_score",
+    "scoring_method", "status", "provenance", "error", "timestamp", "source_class", "metadata"
+  ],
+  "properties": {
+    "schema_version": { "const": "0.1" },
+    "record_type": { "const": "SCORE_RESULT" },
+    "score_id": { "type": "string", "pattern": "^score_[a-f0-9]{64}$" },
+    "evaluation_id": { "type": "string", "pattern": "^eval_[a-f0-9]{32}$" },
+    "run_id": { "type": "string", "pattern": "^run_[A-Za-z0-9_-]+$" },
+    "benchmark_task_id": { "type": "string", "minLength": 1 },
+    "suite_id": { "type": ["string", "null"] },
+    "metric_id": { "type": "string", "minLength": 1 },
+    "raw_value": {},
+    "normalized_score": { "type": ["number", "null"], "minimum": 0, "maximum": 1 },
+    "weight": { "type": "number", "exclusiveMinimum": 0 },
+    "weighted_score": { "type": ["number", "null"], "minimum": 0 },
+    "scoring_method": { "enum": ["exact_match", "rule_based", "numeric", "manual"] },
+    "status": { "enum": ["SCORED", "UNSCORED", "MANUAL_REQUIRED", "NOT_APPLICABLE", "INVALID", "FAILED"] },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["engine", "engine_version", "metric_definition_sha256", "evaluation_id", "raw_record_sha256", "observation_source", "scorer_details"],
+      "properties": {
+        "engine": { "const": "starbench.offline-score-engine" },
+        "engine_version": { "const": "0.1" },
+        "metric_definition_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "evaluation_id": { "type": "string" },
+        "raw_record_sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+        "observation_source": { "enum": ["EVALUATION_FIELD", "LOCAL_TEST_OBSERVATION", "NONE"] },
+        "scorer_details": { "type": "object" }
+      }
+    },
+    "error": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["code", "safe_message"],
+          "properties": {
+            "code": { "type": "string", "minLength": 1 },
+            "safe_message": { "type": "string" }
+          }
+        }
+      ]
+    },
+    "timestamp": { "type": "string", "format": "date-time" },
+    "source_class": { "enum": ["TEST_FIXTURE", "RAW_RESULT", "IMPORTED_REAL_RESULT"] },
+    "metadata": { "type": "object" }
+  }
+}

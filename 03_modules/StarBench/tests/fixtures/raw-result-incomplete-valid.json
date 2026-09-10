@@ -1,0 +1,42 @@
+{
+  "schema_version": "0.1",
+  "record_type": "INCOMPLETE_RESULT",
+  "run_id": "run_fixture_incomplete_valid",
+  "timestamp": "2099-12-10T00:00:00.000Z",
+  "provider": "fixture-provider-intake",
+  "model": "fixture-model-intake",
+  "benchmark_task": "fixture.intake.task",
+  "task_identity": { "task_id": "fixture.intake.task", "task_version": "1.0.0" },
+  "prompt_identity": { "prompt_id": "fixture.intake.prompt", "prompt_version": "1.0.0" },
+  "parameters": { "fixture_mode": "partial" },
+  "outcome_status": "PARTIAL",
+  "success": true,
+  "latency_ms": 80,
+  "ttft_ms": null,
+  "prompt_tokens": null,
+  "completion_tokens": null,
+  "total_tokens": null,
+  "throughput_tokens_per_second": null,
+  "cost": null,
+  "request_provenance": {
+    "provider_identity": "fixture-provider-intake",
+    "adapter_identity": "starbench.fixture-intake-adapter",
+    "adapter_version": "0.1",
+    "endpoint_class": "FIXTURE_REAL_SHAPED",
+    "request_id": "fixture-incomplete-request",
+    "execution_environment": { "runtime": "fixture", "network": "disabled" }
+  },
+  "error": null,
+  "missing_fields": ["ttft_ms", "prompt_tokens", "completion_tokens", "total_tokens", "throughput_tokens_per_second", "cost"],
+  "availability": {
+    "latency_ms": "OBSERVED",
+    "ttft_ms": "UNAVAILABLE",
+    "prompt_tokens": "UNAVAILABLE",
+    "completion_tokens": "UNAVAILABLE",
+    "total_tokens": "UNAVAILABLE",
+    "throughput_tokens_per_second": "UNAVAILABLE",
+    "cost": "UNAVAILABLE"
+  },
+  "source_class": "TEST_FIXTURE",
+  "metadata": { "fixture_only": true, "real_execution": false }
+}

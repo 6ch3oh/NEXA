@@ -1,0 +1,58 @@
+{
+  "task": "NEXA-LITELLM-PINNED-RUNTIME-TOOLCHAIN-DECISION-001",
+  "status": "TOOLCHAIN_DECISION_PASS / RUNTIME_NOT_YET_STARTED",
+  "observed_date": "2026-08-23",
+  "pinned_commit": "b9bff0998c9c89034314a81000ff8f9ff9158a01",
+  "commit_signature_verified_by_github": true,
+  "commit_pyproject_version": "1.99.0",
+  "python_requires": ">=3.10,<3.15",
+  "build_backend": "maturin==1.9.4",
+  "native_bridge": "litellm.rust_bridge._native / PyO3",
+  "official_pypi_current_stable": "1.98.0",
+  "pypi_1_99_0_endpoint_result": "HTTP 404",
+  "github_1_99_0_release_found": false,
+  "github_exact_commit_release_asset_found": false,
+  "exact_prebuilt_artifact_found": false,
+  "rejected_candidate": {
+    "filename": "litellm-1.99.0rc1-cp310-abi3-win_amd64.whl",
+    "sha256": "24f3a4e0e2b84dcb985408a3d9008ee883a0f3c529b6811086ce48b0fb253ae7",
+    "compatible_with_cpython_3_13": true,
+    "compatible_with_windows_x86_64": true,
+    "release_tag": "v1.99.0-rc.1",
+    "release_tag_commit": "947dbbf0298eecd3d226f765d4a4fb7ea3fd2551",
+    "matches_pinned_commit": false,
+    "install_attempted": false
+  },
+  "licenses": {
+    "root_oss": "MIT",
+    "proxy_extras": "MIT",
+    "enterprise": "LicenseRef-Proprietary",
+    "enterprise_production_term": "Valid BerriAI Enterprise subscription/license required",
+    "enterprise_development_test_term": "Copy/modify for development and testing allowed without subscription"
+  },
+  "proxy_packaging": {
+    "official_command": "uv tool install 'litellm[proxy]'",
+    "declares_litellm_proxy_extras": "0.4.88",
+    "declares_litellm_enterprise": "0.1.58",
+    "official_oss_only_extra_found": false,
+    "verified_enterprise_free_gateway_dependency_set_found": false
+  },
+  "install_attempted": false,
+  "runtime_v2_venv_created": false,
+  "litellm_import": "NOT_RUN",
+  "gateway_start": "NOT_RUN",
+  "poc_result": "NOT_RUN",
+  "real_provider_calls": 0,
+  "real_api_cost": 0,
+  "provider_credentials_accessed": false,
+  "production_n8n_contacted": false,
+  "upstream_source_modified": false,
+  "sources": [
+    "https://github.com/BerriAI/litellm/commit/b9bff0998c9c89034314a81000ff8f9ff9158a01",
+    "https://raw.githubusercontent.com/BerriAI/litellm/b9bff0998c9c89034314a81000ff8f9ff9158a01/pyproject.toml",
+    "https://pypi.org/project/litellm/",
+    "https://pypi.org/project/litellm/1.99.0rc1/",
+    "https://pypi.org/project/litellm-enterprise/0.1.58/",
+    "https://raw.githubusercontent.com/BerriAI/litellm/b9bff0998c9c89034314a81000ff8f9ff9158a01/enterprise/LICENSE.md"
+  ]
+}

@@ -1,0 +1,10 @@
+[project]
+name = "nexa-market-domain"
+version = "0.1.0"
+description = "Provider-neutral market domain foundation for NEXA"
+requires-python = ">=3.11"
+dependencies = []
+
+[tool.unittest]
+start-directory = "tests"
+

@@ -1,0 +1,34 @@
+{
+  "schema_version": "0.2",
+  "classification": "SANITIZED_RUNTIME_CONFIRMATION_EXPECTATION",
+  "provider_runtime": "running",
+  "workflow_run_state": "unknown",
+  "stable_identity": {
+    "state": "confirmed",
+    "stable_provider_instance_id": "n8n-tiangong-primary",
+    "display_name": "天工",
+    "provenance": "user_confirmed",
+    "container_id_is_stable_identity": false
+  },
+  "endpoint": {
+    "scheme": "http",
+    "host": "127.0.0.1",
+    "port": 5678,
+    "health_path": "/healthz",
+    "credentials": false
+  },
+  "workflow": {
+    "external_workflow_id": "ymYh8t76VP3jGPbr",
+    "membership": "auth_required",
+    "current_revision": "auth_required"
+  },
+  "artifact": {
+    "container_root": "/knowledge",
+    "host_root": "E:\\个人数字资产中心\\01_知识库",
+    "content_read": false
+  },
+  "binding": {
+    "progress_state": "target_confirmed",
+    "execution_enabled": false
+  }
+}

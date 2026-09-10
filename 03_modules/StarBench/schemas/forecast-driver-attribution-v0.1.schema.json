@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/forecast-driver-attribution-v0.1.schema.json",
+  "title": "Forecast Driver Attribution V0.1",
+  "type": "object",
+  "required": ["schema_version","record_type","attribution_id","case_id","evidence_class","actual_tokens","production_authority","production_detail_status","production_metrics","shadow_metrics","production_to_shadow_reduction_tokens","reduction_conserved","driver_changes","strongest_shadow_pressure","counterexample_analysis","findings","provenance","metadata"],
+  "properties": {"schema_version":{"const":"0.1"},"record_type":{"const":"FORECAST_DRIVER_ATTRIBUTION"},"attribution_id":{"type":"string","pattern":"^forecast_attribution_[a-f0-9]{64}$"},"case_id":{"type":"string"},"evidence_class":{"type":"string"},"actual_tokens":{"type":["integer","null"]},"production_authority":{"type":"object"},"production_detail_status":{"enum":["AUTHORITATIVE_DECOMPOSITION","UNKNOWN_TOTAL_ONLY_AUTHORITY"]},"production_metrics":{"type":"object"},"shadow_metrics":{"type":"object"},"production_to_shadow_reduction_tokens":{"type":"integer"},"reduction_conserved":{"type":["boolean","null"]},"driver_changes":{"type":"array"},"strongest_shadow_pressure":{"type":["object","null"]},"counterexample_analysis":{"type":"array"},"findings":{"type":"object"},"provenance":{"type":"object"},"metadata":{"type":"object"}},
+  "additionalProperties": true
+}

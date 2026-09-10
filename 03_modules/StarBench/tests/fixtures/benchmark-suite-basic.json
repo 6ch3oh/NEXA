@@ -1,0 +1,19 @@
+{
+  "schema_version": "0.1",
+  "record_type": "BENCHMARK_SUITE",
+  "suite_id": "fixture.suite.basic",
+  "name": "StarBench offline basic fixture suite",
+  "version": "1.0.0",
+  "description": "Deterministic local suite combining three synthetic Benchmark Tasks.",
+  "task_references": [
+    { "benchmark_task_id": "fixture.coding.sum", "version": "1.0.0", "order": 20 },
+    { "benchmark_task_id": "fixture.instruction.blue", "version": "1.0.0", "order": 30 },
+    { "benchmark_task_id": "fixture.planning.rollout", "version": "1.0.0", "order": 10 }
+  ],
+  "default_parameters": { "execution_mode": "offline_fixture" },
+  "tags": ["offline", "fixture", "basic"],
+  "source_class": "TEST_FIXTURE",
+  "provenance": { "origin": "LOCAL_AUTHORED", "source_ref": null },
+  "metadata": { "synthetic": true, "real_benchmark": false },
+  "created_at": "2099-05-01T00:00:00.000Z"
+}

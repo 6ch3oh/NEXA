@@ -1,0 +1,8 @@
+{
+  "source_class": "TEST_FIXTURE",
+  "input_tokens": 60,
+  "output_tokens": 20,
+  "reasoning_tokens": 10,
+  "cached_input_tokens": 10,
+  "total_tokens": 90
+}

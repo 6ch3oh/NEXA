@@ -1,0 +1,72 @@
+{
+  "version": "0.1",
+  "created_at": "2026-08-22T11:04:34.6412968+08:00",
+  "task": "NEXA-AUTO-TIANGONG-PRODUCTION-RECONCILIATION-AND-UPDATE-001",
+  "state": "INVALIDATED_CANDIDATE_SUPERSEDED",
+  "user_approval_required": true,
+  "approval_granted": false,
+  "invalidated": true,
+  "invalidated_reason": "API_COMPATIBLE_CANDIDATE_HAS_NEW_SHA256",
+  "authorization_transferable": false,
+  "replacement_candidate_sha256": "002C8F5520B803FECE8387B3D2BC60E7055D9505B4A40131F87D76EACBC02FC9",
+  "replacement_approval_relative_path": "fixtures/tiangong_run_prep/publish_approval.api_compatible.ready.json",
+  "approval_scope": "DEFINITION_UPDATE_ONLY",
+  "provider_instance_id": "n8n-tiangong-primary",
+  "workflow_external_id": "ymYh8t76VP3jGPbr",
+  "revision_lock": {
+    "state": "MATCHED",
+    "revision": "0fd6b9b7-ee0d-44b3-a494-7469be49bf96",
+    "updated_at": "2026-08-03T04:14:22.460000+00:00",
+    "observed_at": "2026-08-22T02:51:48.448153+00:00",
+    "production_drift": "NONE"
+  },
+  "fresh_authenticated_backup": {
+    "state": "CONFIRMED",
+    "relative_path": "fixtures/tiangong_run_prep/ymYh8t76VP3jGPbr_0fd6b9b7-ee0d-44b3-a494-7469be49bf96_20260822T025148448153Z.authenticated.backup.json",
+    "sha256": "7BFC195182AC296B18C7388680786774CAA381C0924FA30EBAFEDA715CD868D2",
+    "semantic_definition_match": true
+  },
+  "candidate": {
+    "candidate_id": "knowledge-collect-v141-hardened-001",
+    "sha256": "99BF04515925D7488B50E010B146E382F83F37132D1EFA4822F4F34B191B0A62",
+    "validation": "PASS",
+    "isolated_n8n_sandbox": "14/14 PASS"
+  },
+  "diff": {
+    "canonical_to_candidate": "VALID",
+    "production_to_candidate": "VALID_NO_PRODUCTION_DRIFT",
+    "relative_path": "fixtures/tiangong_run_prep/production_update_reconciliation.json"
+  },
+  "rollback": {
+    "state": "READY",
+    "payload_bound_to_fresh_backup": true,
+    "restore_route_validation": "PASS_SEMANTIC_EQUIVALENCE_REUSE",
+    "production_restore_performed": false
+  },
+  "post_publish_verification": "READY_FAIL_CLOSED",
+  "first_run_gate": "BLOCKED_UNTIL_PRODUCTION_UPDATE_VERIFIED_AND_SEPARATELY_APPROVED",
+  "separation": {
+    "definition_update_is_publish": false,
+    "publish_is_activate": false,
+    "definition_update_implies_activate": false
+  },
+  "allowed_actions": [
+    "APPROVE_DEFINITION_UPDATE",
+    "VIEW_DIFF",
+    "CANCEL"
+  ],
+  "excluded_actions": [
+    "PUBLISH",
+    "ACTIVATE",
+    "WORKFLOW_EXECUTION"
+  ],
+  "side_effects": {
+    "production_write": false,
+    "publish": false,
+    "activate": false,
+    "workflow_execution": false,
+    "credential_persisted": false,
+    "secret_exposed": false
+  },
+  "approval_prompt": "是否批准将 Hardened Candidate 更新到‘天工’正式 knowledge.collect？本次批准仅涵盖 Definition Update，不包含 Publish、Activate 或执行。"
+}

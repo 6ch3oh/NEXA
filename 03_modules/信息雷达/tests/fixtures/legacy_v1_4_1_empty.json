@@ -1,0 +1,11 @@
+{
+  "ai_name": "空页面示例",
+  "source_text": "",
+  "source_url": "https://example.com/empty",
+  "submittedAt": "2026-08-01T01:32:00Z",
+  "web_text": "",
+  "web_text_length": 0,
+  "webpage_read_status": "empty",
+  "http_status_code": 200,
+  "web_checked_at": "2026-08-01T01:32:02Z"
+}

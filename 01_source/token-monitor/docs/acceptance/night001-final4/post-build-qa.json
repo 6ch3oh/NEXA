@@ -1,0 +1,120 @@
+{
+  "exact_candidate_loaded": true,
+  "candidate_url": "file:///E:/%E6%98%9F%E6%9E%A2NEXA/01_source/token-monitor/dist-desktop-usability-observability-night001-r12/win-unpacked/resources/app.asar/src/electron/renderer/index.html?period=today&breakdown=tool",
+  "sizes": [
+    {
+      "label": "1366x768@100",
+      "css_viewport": {
+        "width": 1366,
+        "height": 768
+      },
+      "device_scale_factor": 1.0000000298023224,
+      "horizontal_overflow_px": 0,
+      "command_visible": true,
+      "command_form": {
+        "width": 760,
+        "height": 44,
+        "left": 303,
+        "right": 1063
+      },
+      "workspace_scrollable": true
+    },
+    {
+      "label": "1920x1080@100",
+      "css_viewport": {
+        "width": 1920,
+        "height": 1080
+      },
+      "device_scale_factor": 1.0000000298023224,
+      "horizontal_overflow_px": 0,
+      "command_visible": true,
+      "command_form": {
+        "width": 760,
+        "height": 44,
+        "left": 580,
+        "right": 1340
+      },
+      "workspace_scrollable": true
+    },
+    {
+      "label": "1920x1080@125",
+      "css_viewport": {
+        "width": 1536,
+        "height": 864
+      },
+      "device_scale_factor": 1.2499999701976776,
+      "horizontal_overflow_px": 0,
+      "command_visible": true,
+      "command_form": {
+        "width": 760,
+        "height": 44,
+        "left": 388,
+        "right": 1148
+      },
+      "workspace_scrollable": true
+    },
+    {
+      "label": "1920x1080@150",
+      "css_viewport": {
+        "width": 1280,
+        "height": 720
+      },
+      "device_scale_factor": 1.5,
+      "horizontal_overflow_px": 0,
+      "command_visible": true,
+      "command_form": {
+        "width": 760,
+        "height": 44,
+        "left": 260,
+        "right": 1020
+      },
+      "workspace_scrollable": true
+    },
+    {
+      "label": "2400x1302@100",
+      "css_viewport": {
+        "width": 2400,
+        "height": 1302
+      },
+      "device_scale_factor": 1.0000000298023224,
+      "horizontal_overflow_px": 0,
+      "command_visible": true,
+      "command_form": {
+        "width": 760,
+        "height": 44,
+        "left": 820,
+        "right": 1580
+      },
+      "workspace_scrollable": true
+    }
+  ],
+  "interaction": {
+    "history_opened": "true",
+    "history_closed": "false",
+    "selected_model": "qwen3-4b-instruct-2507",
+    "provider_model": "qwen3-4b-instruct-2507",
+    "service_model_ids": [
+      "qwen3-4b-instruct-2507",
+      "qwen/qwen3-vl-8b",
+      "text-embedding-nomic-embed-text-v1.5"
+    ],
+    "readiness": "ready",
+    "model_disabled": false,
+    "model_option_count": 3,
+    "hardware_card_count": 9,
+    "gpu_count": 2,
+    "gpu_names": [
+      "NVIDIA GeForce RTX 5060 Laptop GPU",
+      "Intel(R) Graphics"
+    ],
+    "gpu_ids_unique": true,
+    "gpu_physical_separation": true,
+    "gpu_memory_available": true,
+    "gpu_history_points": [
+      2,
+      2
+    ],
+    "study_card_count": 2
+  },
+  "failures": []
+}

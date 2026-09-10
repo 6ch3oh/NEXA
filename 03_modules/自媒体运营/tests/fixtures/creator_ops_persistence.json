@@ -1,0 +1,25 @@
+{
+  "fixture_version": "0.1",
+  "synthetic_data_only": true,
+  "database_kind": "TEMPORARY_SQLITE",
+  "coverage": [
+    "Creator",
+    "A1",
+    "B3",
+    "IDEA",
+    "READY_TO_PUBLISH",
+    "Asset relation",
+    "Manual Publish",
+    "null Metrics",
+    "zero Metrics",
+    "Review",
+    "WorkItem overlay",
+    "provenance",
+    "unsupported schema version"
+  ],
+  "source_fixtures": [
+    "creator_ops_minimal.json",
+    "creator_ops_workbench.json"
+  ],
+  "unsupported_schema_version": "creator_ops_schema_v99.0"
+}

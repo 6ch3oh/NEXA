@@ -1,0 +1,278 @@
+{
+  "exactBuild": true,
+  "measurements": [
+    {
+      "label": "1600x900",
+      "viewport": {
+        "width": 1600,
+        "height": 900
+      },
+      "workspace": {
+        "clientHeight": 771,
+        "scrollHeight": 993,
+        "overflowY": "auto"
+      },
+      "activityRect": {
+        "top": 496.66668701171875,
+        "right": 1560.65625,
+        "bottom": 939.8437805175781,
+        "left": 24,
+        "width": 1536.65625,
+        "height": 443.1770935058594
+      },
+      "deviceRect": {
+        "top": 949.84375,
+        "right": 1560.65625,
+        "bottom": 1102.6354217529297,
+        "left": 24,
+        "width": 1536.65625,
+        "height": 152.7916717529297
+      },
+      "activityCards": [
+        {
+          "className": "nexa-home-module-card nexa-creator-ops-home-widget",
+          "top": 496.66668701171875,
+          "bottom": 939.8437805175781,
+          "height": 443.1770935058594,
+          "scrollHeight": 442,
+          "clientHeight": 442
+        },
+        {
+          "className": "nexa-home-module-card nexa-study-home-widget",
+          "top": 496.66668701171875,
+          "bottom": 939.8437805175781,
+          "height": 443.1770935058594,
+          "scrollHeight": 442,
+          "clientHeight": 442
+        },
+        {
+          "className": "nexa-home-module-card nexa-system-status-home-widget",
+          "top": 496.66668701171875,
+          "bottom": 939.8437805175781,
+          "height": 443.1770935058594,
+          "scrollHeight": 442,
+          "clientHeight": 442
+        }
+      ],
+      "activityHeightSpread": 0,
+      "activityDeviceGap": 9.999969482421875,
+      "nestedVerticalScrollers": [],
+      "clippedCards": [],
+      "fontFloorViolations": [],
+      "learningCardCount": 2,
+      "creatorAccountCount": 0,
+      "morningVisibleCount": 3,
+      "moduleVisibleCount": 6
+    },
+    {
+      "label": "1440x900",
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "workspace": {
+        "clientHeight": 771,
+        "scrollHeight": 993,
+        "overflowY": "auto"
+      },
+      "activityRect": {
+        "top": 274,
+        "right": 1403.0625,
+        "bottom": 717.1770935058594,
+        "left": 21.59375,
+        "width": 1381.46875,
+        "height": 443.1770935058594
+      },
+      "deviceRect": {
+        "top": 727.1771240234375,
+        "right": 1403.0625,
+        "bottom": 879.9687957763672,
+        "left": 21.59375,
+        "width": 1381.46875,
+        "height": 152.7916717529297
+      },
+      "activityCards": [
+        {
+          "className": "nexa-home-module-card nexa-creator-ops-home-widget",
+          "top": 274,
+          "bottom": 717.1770935058594,
+          "height": 443.1770935058594,
+          "scrollHeight": 442,
+          "clientHeight": 442
+        },
+        {
+          "className": "nexa-home-module-card nexa-study-home-widget",
+          "top": 274,
+          "bottom": 717.1770935058594,
+          "height": 443.1770935058594,
+          "scrollHeight": 442,
+          "clientHeight": 442
+        },
+        {
+          "className": "nexa-home-module-card nexa-system-status-home-widget",
+          "top": 274,
+          "bottom": 717.1770935058594,
+          "height": 443.1770935058594,
+          "scrollHeight": 442,
+          "clientHeight": 442
+        }
+      ],
+      "activityHeightSpread": 0,
+      "activityDeviceGap": 10.000030517578125,
+      "nestedVerticalScrollers": [],
+      "clippedCards": [],
+      "fontFloorViolations": [],
+      "learningCardCount": 2,
+      "creatorAccountCount": 0,
+      "morningVisibleCount": 3,
+      "moduleVisibleCount": 6
+    },
+    {
+      "label": "default-electron",
+      "viewport": {
+        "width": 1182,
+        "height": 803
+      },
+      "workspace": {
+        "clientHeight": 705,
+        "scrollHeight": 995,
+        "overflowY": "auto"
+      },
+      "activityRect": {
+        "top": 479.07293701171875,
+        "right": 1148.93754196167,
+        "bottom": 922.2500305175781,
+        "left": 17.729167938232422,
+        "width": 1131.2083740234375,
+        "height": 443.1770935058594
+      },
+      "deviceRect": {
+        "top": 930.25,
+        "right": 1148.93754196167,
+        "bottom": 1083.0416717529297,
+        "left": 17.729167938232422,
+        "width": 1131.2083740234375,
+        "height": 152.7916717529297
+      },
+      "activityCards": [
+        {
+          "className": "nexa-home-module-card nexa-creator-ops-home-widget",
+          "top": 479.07293701171875,
+          "bottom": 922.2500305175781,
+          "height": 443.1770935058594,
+          "scrollHeight": 442,
+          "clientHeight": 442
+        },
+        {
+          "className": "nexa-home-module-card nexa-study-home-widget",
+          "top": 479.07293701171875,
+          "bottom": 922.2500305175781,
+          "height": 443.1770935058594,
+          "scrollHeight": 442,
+          "clientHeight": 442
+        },
+        {
+          "className": "nexa-home-module-card nexa-system-status-home-widget",
+          "top": 479.07293701171875,
+          "bottom": 922.2500305175781,
+          "height": 443.1770935058594,
+          "scrollHeight": 442,
+          "clientHeight": 442
+        }
+      ],
+      "activityHeightSpread": 0,
+      "activityDeviceGap": 7.999969482421875,
+      "nestedVerticalScrollers": [],
+      "clippedCards": [],
+      "fontFloorViolations": [],
+      "learningCardCount": 2,
+      "creatorAccountCount": 0,
+      "morningVisibleCount": 3,
+      "moduleVisibleCount": 6
+    },
+    {
+      "label": "1024x768",
+      "viewport": {
+        "width": 1024,
+        "height": 768
+      },
+      "workspace": {
+        "clientHeight": 670,
+        "scrollHeight": 1761,
+        "overflowY": "auto"
+      },
+      "activityRect": {
+        "top": 486.1145935058594,
+        "right": 993.3021039962769,
+        "bottom": 1688.6250915527344,
+        "left": 15.354166984558105,
+        "width": 977.9479370117188,
+        "height": 1202.510498046875
+      },
+      "deviceRect": {
+        "top": 1696.625,
+        "right": 993.3021039962769,
+        "bottom": 1849.4166717529297,
+        "left": 15.354166984558105,
+        "width": 977.9479370117188,
+        "height": 152.7916717529297
+      },
+      "activityCards": [
+        {
+          "className": "nexa-home-module-card nexa-creator-ops-home-widget",
+          "top": 486.1145935058594,
+          "bottom": 929.2916870117188,
+          "height": 443.1770935058594,
+          "scrollHeight": 442,
+          "clientHeight": 442
+        },
+        {
+          "className": "nexa-home-module-card nexa-study-home-widget",
+          "top": 486.1145935058594,
+          "bottom": 929.2916870117188,
+          "height": 443.1770935058594,
+          "scrollHeight": 442,
+          "clientHeight": 442
+        },
+        {
+          "className": "nexa-home-module-card nexa-system-status-home-widget",
+          "top": 939.2916870117188,
+          "bottom": 1688.6250610351562,
+          "height": 749.3333740234375,
+          "scrollHeight": 748,
+          "clientHeight": 748
+        }
+      ],
+      "activityHeightSpread": 306.1562805175781,
+      "activityDeviceGap": 7.999908447265625,
+      "nestedVerticalScrollers": [],
+      "clippedCards": [],
+      "fontFloorViolations": [],
+      "learningCardCount": 2,
+      "creatorAccountCount": 0,
+      "morningVisibleCount": 3,
+      "moduleVisibleCount": 6
+    }
+  ],
+  "interactions": {
+    "learningBefore": "abandon",
+    "learningAfter": "abbreviation",
+    "creatorFiveHourPressed": true,
+    "moduleBefore": 6,
+    "moduleAfter": 9,
+    "moduleExpanded": true,
+    "deviceRefreshReachable": true
+  },
+  "screenshots": [
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\home-density-r3\\01-1600-home-top.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\home-density-r3\\02-1600-second-row.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\home-density-r3\\03-1600-device-row.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\home-density-r3\\04-1440-second-row.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\home-density-r3\\05-default-electron.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\home-density-r3\\06-1024-natural-scroll.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\home-density-r3\\07-creator-account-list.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\home-density-r3\\08-learning-word-cards.png",
+    "<PROJECT_ROOT>\\01_source\\token-monitor\\docs\\acceptance\\home-density-r3\\09-system-status.png"
+  ],
+  "failures": []
+}

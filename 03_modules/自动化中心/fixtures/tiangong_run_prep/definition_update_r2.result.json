@@ -1,0 +1,53 @@
+{
+  "version": "0.1",
+  "task": "NEXA-AUTO-TIANGONG-PRODUCTION-PUBLISH-001",
+  "round": "R2_API_COMPATIBLE_CANDIDATE_DEFINITION_UPDATE",
+  "state": "DEFINITION_UPDATED_POST_UPDATE_VERIFIED_PUBLISH_APPROVAL_REQUIRED",
+  "observed_at": "2026-08-22T04:59:45.937172+00:00",
+  "user_approval_scope": "DEFINITION_UPDATE_ONLY",
+  "target_provider": "n8n-tiangong-primary",
+  "target_workflow": "ymYh8t76VP3jGPbr",
+  "approved_candidate_sha256": "002C8F5520B803FECE8387B3D2BC60E7055D9505B4A40131F87D76EACBC02FC9",
+  "pre_update_production_revision": "0fd6b9b7-ee0d-44b3-a494-7469be49bf96",
+  "pre_update_revision_lock": {
+    "workflow_identity": "MATCHED",
+    "revision_lock": "MATCHED",
+    "semantic_definition": "MATCHED_IMMUTABLE_BACKUP",
+    "inactive_unpublished": true
+  },
+  "backup_confirmed": true,
+  "backup_sha256": "7BFC195182AC296B18C7388680786774CAA381C0924FA30EBAFEDA715CD868D2",
+  "definition_update": true,
+  "post_update_production_revision": "cc645caf-2d26-4750-979d-4f924e01b7cf",
+  "revision_changed_as_expected": true,
+  "post_update_semantic_match": true,
+  "api_compatible_definition_verified": {
+    "matched": true,
+    "request_body_sha256": "002C8F5520B803FECE8387B3D2BC60E7055D9505B4A40131F87D76EACBC02FC9",
+    "binary_mode_submitted": false,
+    "response_derived_binary_mode_present": true,
+    "workflow_level_on_error_present": false,
+    "node_count": 22,
+    "edge_count": 26
+  },
+  "safety_hardening_verified": "EXACT_APPROVED_CANDIDATE_SEMANTIC_MATCH",
+  "production_drift": "NONE_BEFORE_WRITE",
+  "authenticated_call_sequence": [
+    "GET",
+    "PUT",
+    "GET"
+  ],
+  "post_update_readback_relative_path": "fixtures/tiangong_run_prep/ymYh8t76VP3jGPbr_cc645caf-2d26-4750-979d-4f924e01b7cf_20260822T045945937172Z.post_update.authenticated.json",
+  "post_update_readback_sha256": "3CB8C7E77D8D39106E7B751EBD1DA44AE6F4DD5673BFDABCB882530D0DB5D16A",
+  "production_write": true,
+  "publish": false,
+  "activate": false,
+  "workflow_execution": false,
+  "credential_persisted": false,
+  "secret_exposed": false,
+  "rollback_ready": true,
+  "rollback_backup_sha256": "7BFC195182AC296B18C7388680786774CAA381C0924FA30EBAFEDA715CD868D2",
+  "next_allowed_action": "SEPARATE_USER_DECISION_ON_PUBLISH",
+  "user_approval_required": true,
+  "stop_reason": "DEFINITION_UPDATE_VERIFIED_MUST_STOP_BEFORE_PUBLISH"
+}

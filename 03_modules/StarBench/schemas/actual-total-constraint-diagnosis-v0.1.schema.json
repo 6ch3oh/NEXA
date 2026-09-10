@@ -1,0 +1,11 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nexa.local/starbench/actual-total-constraint-diagnosis-v0.1.schema.json",
+  "title": "Actual Total Constraint Diagnosis V0.1",
+  "type": "object",
+  "required": ["schema_version","record_type","diagnosis_id","case_id","ledger_id","forecast_id","estimator_version","path","actual_total_tokens","actual_source_ref","actual_component_status","actual_component_values","category_totals","purpose_category_totals","findings","top_overestimation_pressure","diagnosed_at","provenance","metadata"],
+  "properties": {
+    "schema_version":{"const":"0.1"},"record_type":{"const":"ACTUAL_TOTAL_CONSTRAINT_DIAGNOSIS"},"diagnosis_id":{"type":"string","pattern":"^actual_constraint_[a-f0-9]{64}$"},"case_id":{"type":"string"},"ledger_id":{"type":"string"},"forecast_id":{"type":"string"},"estimator_version":{"type":"string"},"path":{"type":"string"},"actual_total_tokens":{"type":"integer","minimum":0},"actual_source_ref":{"type":"string"},"actual_component_status":{"const":"UNKNOWN"},"actual_component_values":{"type":"object"},"category_totals":{"type":"object"},"purpose_category_totals":{"type":"object"},"findings":{"type":"array","minItems":4,"maxItems":4},"top_overestimation_pressure":{"type":"array"},"diagnosed_at":{"type":["string","null"]},"provenance":{"type":"object","properties":{"actual_total_as_upper_bound_only":{"const":true},"actual_component_breakdown_known":{"const":false}}},"metadata":{"type":"object","properties":{"actual_component_fabrication":{"const":0},"fixed_multiplier":{"const":false}}}
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,7 @@
+{
+  "schema_version": "0.1",
+  "record_type": "TEST_FIXTURE",
+  "timestamp": "not-a-timestamp",
+  "provider": "local-fixture-provider",
+  "metadata": { "fixture": true, "purpose": "invalid-input" }
+}

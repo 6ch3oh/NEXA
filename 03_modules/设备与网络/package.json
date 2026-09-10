@@ -1,0 +1,40 @@
+{
+  "name": "@nexa/device-network",
+  "version": "0.1.0",
+  "private": true,
+  "description": "NEXA device and network domain contracts and offline adapters",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./public-api": "./src/public-api.mjs",
+    "./home-summary": "./src/home-device-network-summary.mjs",
+    "./ui-integration": "./src/ui-integration.mjs"
+  },
+  "scripts": {
+    "check": "node --check src/index.js && node --check src/contracts.js && node --check src/adapters.js && node --check src/legacyDeviceAdapter.js && node --check src/legacyDeviceHostBinding.js && node --check src/homeFooterViewModel.js && node --check src/home-device-network-summary.mjs && node --check src/deviceHealthEvaluator.js && node --check src/deviceNetworkSnapshot.js && node --check src/applicationNetworkContracts.js && node --check src/ipAddress.js && node --check src/applicationNetworkSnapshot.js && node --check src/applicationNetworkHistory.js && node --check src/applicationNetworkReadService.js && node --check src/applicationNetworkViewModel.js && node --check src/apexRouteObservation.js && node --check src/apexRouteBinding.js && node --check src/apexRuntimeConfig.js && node --check src/apexNetworkProbe.js && node --check src/networkPathQuality.js && node --check src/hardwareTelemetryHistory.js && node --check src/anomalyLifecycle.js && node --check src/deviceCenterReadApi.js && node --check src/deviceObservationRuntime.js && node --check src/dualEgressIdentityService.js && node --check src/egressIdentityService.js && node --check src/providers/windowsSystemCollector.js && node --check src/providers/windowsNetworkCollector.js && node --check src/providers/windowsProcessCollector.js && node --check src/providers/windowsApplicationConnectionCollector.js && node --check src/providers/windowsApexRouteCollector.js && node --check src/providers/windowsGpuCollector.js && node --check src/providers/egressIdentityProviders.js && node --check fixtures/scenarios.js && node --check scripts/windowsSmoke.js && node --check scripts/windowsNetworkSmoke.js && node --check scripts/windowsSnapshotSmoke.js && node --check scripts/windowsApplicationNetworkSmoke.js && node --check scripts/windowsApplicationNetworkPersistenceSmoke.js && node --check scripts/windowsDeviceCenterProductSmoke.js && node --check scripts/windowsApexRouteBindingSmoke.js && node --check scripts/windowsEgressIdentitySmoke.js && node --check scripts/windowsHealthSmoke.js && node --check scripts/benchmarkNetworkCollector.js",
+    "check:apex-runtime-config": "node --check src/apexRuntimeConfig.js && node --check scripts/windowsApexRouteBindingSmoke.js && node --check tests/apexRuntimeConfig.test.js",
+    "check:temperature": "node --check src/hardwareTemperature.js && node --check src/providers/windowsGpuCollector.js && node --check scripts/windowsTemperatureSmoke.js && node --check tests/hardwareTemperature.test.js",
+    "check:runtime-hardening": "node --check src/deviceObservationRuntime.js && node --check src/hardwareTelemetryHistory.js && node --check src/applicationNetworkHistory.js && node --check src/anomalyLifecycle.js && node --check scripts/windowsObservationRuntimeProductSmoke.js && node --check tests/observationRuntimeHardening.test.js",
+    "check:device-center-product": "node --check src/deviceCenterProduct.js && node --check src/deviceCenterReadApi.js && node --check scripts/windowsDeviceCenterProductSmoke.js && node --check tests/deviceCenterProduct.test.js",
+    "check:device-center-public-api": "node --check src/deviceCenterApplication.js && node --check src/public-api.mjs && node --check scripts/windowsDeviceCenterPublicApiSmoke.js && node --check tests/deviceCenterPublicApi.test.js",
+    "check:device-center-ui-integration": "node --check src/ui-integration.mjs && node --check tests/deviceCenterUiIntegration.test.js",
+    "benchmark:network": "node scripts/benchmarkNetworkCollector.js optimized 5",
+    "smoke:network": "node scripts/windowsNetworkSmoke.js",
+    "smoke:health": "node scripts/windowsHealthSmoke.js",
+    "smoke:snapshot": "node scripts/windowsSnapshotSmoke.js",
+    "smoke:applications": "node scripts/windowsApplicationNetworkSmoke.js",
+    "smoke:application-history": "node scripts/windowsApplicationNetworkPersistenceSmoke.js",
+    "smoke:device-center": "node scripts/windowsDeviceCenterProductSmoke.js",
+    "smoke:device-center-public-api": "node scripts/windowsDeviceCenterPublicApiSmoke.js",
+    "smoke:apex-route": "node scripts/windowsApexRouteBindingSmoke.js",
+    "smoke:temperature": "node scripts/windowsTemperatureSmoke.js",
+    "smoke:runtime-product": "node scripts/windowsObservationRuntimeProductSmoke.js",
+    "smoke:egress": "node scripts/windowsEgressIdentitySmoke.js",
+    "smoke:windows": "node scripts/windowsSmoke.js",
+    "test": "node --test tests/*.test.js",
+    "verify": "npm run check && npm run check:apex-runtime-config && npm run check:temperature && npm run check:runtime-hardening && npm run check:device-center-product && npm run check:device-center-public-api && npm run check:device-center-ui-integration && npm test"
+  },
+  "engines": {
+    "node": ">=22.13.0"
+  }
+}

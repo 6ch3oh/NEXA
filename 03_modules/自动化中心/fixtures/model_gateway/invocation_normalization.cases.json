@@ -1,0 +1,18 @@
+{
+  "schema_version": "0.1",
+  "cases": [
+    {"case_id": "success_full_usage", "status": "SUCCESS", "usage_availability": "COMPLETE", "cost_source": "LITELLM_CALCULATED"},
+    {"case_id": "success_no_cost", "status": "SUCCESS", "usage_availability": "COMPLETE", "cost_source": "UNAVAILABLE"},
+    {"case_id": "success_partial_usage", "status": "SUCCESS", "usage_availability": "PARTIAL", "cost_source": "UNAVAILABLE"},
+    {"case_id": "success_no_usage", "status": "SUCCESS", "usage_availability": "UNAVAILABLE", "cost_source": "UNAVAILABLE"},
+    {"case_id": "rate_limit", "status": "ERROR", "error_category": "RATE_LIMITED", "retryable": true},
+    {"case_id": "authentication", "status": "ERROR", "error_category": "AUTHENTICATION_FAILED", "retryable": false},
+    {"case_id": "timeout", "status": "ERROR", "error_category": "TIMEOUT", "retryable": true},
+    {"case_id": "provider_5xx", "status": "ERROR", "error_category": "PROVIDER_UNAVAILABLE", "retryable": true},
+    {"case_id": "context_limit", "status": "ERROR", "error_category": "CONTEXT_LIMIT_EXCEEDED", "retryable": false},
+    {"case_id": "unknown_error", "status": "ERROR", "error_category": "UNKNOWN_PROVIDER_ERROR", "retryable": false},
+    {"case_id": "secret_redaction", "status": "ERROR", "error_category": "UNKNOWN_PROVIDER_ERROR", "retryable": false},
+    {"case_id": "provider_reported_zero_cost", "status": "SUCCESS", "usage_availability": "COMPLETE", "cost_source": "PROVIDER_REPORTED"},
+    {"case_id": "nexa_estimated_cost", "status": "SUCCESS", "usage_availability": "COMPLETE", "cost_source": "NEXA_ESTIMATED"}
+  ]
+}
