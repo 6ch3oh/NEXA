@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NEXA Mobile</string>
+    <string name="notification_listener_service_name">星枢通知采集</string>
+    <string name="connectivity_recovery_channel_name">NEXA 连接恢复</string>
+    <string name="connectivity_recovery_channel_description">仅在恢复可信电脑连接时显示</string>
+    <string name="connectivity_recovery_notification_title">星枢正在恢复电脑连接</string>
+    <string name="connectivity_recovery_notification_body">正在通过校园网络重新连接你的NEXA电脑</string>
+</resources>
