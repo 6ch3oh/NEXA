@@ -7,7 +7,8 @@ const {
   NEXA_DASHI_DESCRIPTOR,
   NexaDashiReadBridgeError,
   createNexaDashiReadController,
-  createNexaDashiReadIpcHandlers
+  createNexaDashiReadIpcHandlers,
+  createUnavailableNexaDashiPublicApi
 } = require('../../src/electron/nexaDashiReadBridge');
 
 const METHODS = Object.freeze([
@@ -224,4 +225,28 @@ test('fails closed for unsupported public surfaces, commands, and non-serializab
     controller.execute({ operation: 'get-board-overview' }),
     (error) => error instanceof NexaDashiReadBridgeError && error.code === 'UNSAFE_PUBLIC_RESULT'
   );
+});
+
+test('public runtime fallback preserves the Dashi contract and fails closed without the private source', async () => {
+  const publicApi = createUnavailableNexaDashiPublicApi();
+  const controller = createNexaDashiReadController({ publicApi });
+
+  assert.equal(publicApi.DASHI_APPLICATION_API_VERSION, '0.1');
+  assert.equal(publicApi.DASHI_DESKTOP_ENTRY_CONTRACT.access, 'READ_ONLY');
+  assert.deepEqual(publicApi.DASHI_DESKTOP_ENTRY_CONTRACT.methods, METHODS);
+  await assert.rejects(
+    controller.start(),
+    (error) => error instanceof NexaDashiReadBridgeError && error.code === 'DASHI_PUBLIC_API_UNAVAILABLE'
+  );
+
+  const handlers = createNexaDashiReadIpcHandlers({
+    startModule: () => controller.start(),
+    executeModule: (_moduleId, command) => controller.execute(command)
+  });
+  const value = await handlers['nexa:dashi:get-board-overview']({});
+  assert.deepEqual(value, {
+    ok: false,
+    hostStatus: 'request-failed',
+    error: { code: 'DASHI_PUBLIC_API_UNAVAILABLE', message: 'Dashi host request failed' }
+  });
 });

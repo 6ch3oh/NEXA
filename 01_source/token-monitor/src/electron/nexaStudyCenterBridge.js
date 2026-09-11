@@ -58,6 +58,33 @@ function validateStudyCenterPublicApi(publicApi) {
   return publicApi;
 }
 
+function createUnavailableNexaStudyCenterPublicApi(code = 'STUDY_CENTER_DEPENDENCY_UNAVAILABLE') {
+  const unavailable = () => fail(code, 'Study Center runtime dependencies are unavailable');
+  return Object.freeze({
+    STUDY_CENTER_DESKTOP_APPLICATION_VERSION,
+    STUDY_CENTER_MODULE_ID,
+    STUDY_CENTER_ROUTE_ID: STUDY_CENTER_MODULE_ID,
+    STUDY_CENTER_PRODUCT_NAME: '学习中心',
+    HOME_LEARNING_SUMMARY_CONTRACT_VERSION: '0.1.0',
+    STUDY_CENTER_DESKTOP_CONTRACT: Object.freeze({
+      contractVersion: STUDY_CENTER_DESKTOP_APPLICATION_VERSION,
+      moduleId: STUDY_CENTER_MODULE_ID,
+      routeId: STUDY_CENTER_MODULE_ID,
+      productName: '学习中心',
+      runtime: 'DESKTOP_MANAGED_LOOPBACK',
+      host: '127.0.0.1',
+      runtimeNetworkDependency: 0,
+      singleWriterScope: 'PROCESS_LOCAL_SINGLE_WRITER',
+      methods: Object.freeze([
+        'start', 'stop', 'getReadiness', 'getHomeSummary', 'getPronunciationAudio', 'updateStudyPlan'
+      ])
+    }),
+    createStudyCenterDesktopApplication: unavailable,
+    createHomeLearningSummaryAdapter: unavailable,
+    validateHomeLearningSummary: unavailable
+  });
+}
+
 function validateApplication(application) {
   for (const method of ['start', 'stop', 'getReadiness', 'getHomeSummary', 'getPronunciationAudio', 'updateStudyPlan']) {
     if (typeof application?.[method] !== 'function') {
@@ -422,6 +449,7 @@ module.exports = {
   NexaStudyCenterBridgeError,
   createNexaStudyCenterController,
   createNexaStudyCenterIpcHandlers,
+  createUnavailableNexaStudyCenterPublicApi,
   projectHomeLearningSummary,
   validateStudyCenterPublicApi
 };

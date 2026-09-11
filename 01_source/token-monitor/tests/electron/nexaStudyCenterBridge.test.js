@@ -8,6 +8,7 @@ const {
   STUDY_CENTER_CHANNELS,
   createNexaStudyCenterController,
   createNexaStudyCenterIpcHandlers,
+  createUnavailableNexaStudyCenterPublicApi,
   validateStudyCenterPublicApi
 } = require('../../src/electron/nexaStudyCenterBridge');
 
@@ -185,4 +186,31 @@ test('Study Center IPC retries one transient stop-incomplete startup race', asyn
   assert.equal(result.value.cards[0].title, 'serendipity');
   assert.equal(starts, 2);
   assert.equal(executes, 1);
+});
+
+test('public runtime fallback preserves the Study Center contract and fails soft when module dependencies are absent', async () => {
+  const publicApi = createUnavailableNexaStudyCenterPublicApi();
+  assert.equal(validateStudyCenterPublicApi(publicApi).STUDY_CENTER_PRODUCT_NAME, '学习中心');
+
+  const controller = createNexaStudyCenterController({ publicApi });
+  await assert.rejects(
+    controller.start(),
+    (error) => error?.code === 'STUDY_CENTER_DEPENDENCY_UNAVAILABLE'
+  );
+
+  const control = {
+    startModule: () => controller.start(),
+    stopModule: () => controller.stop(),
+    executeModule: (_moduleId, command) => controller.execute(command)
+  };
+  const handlers = createNexaStudyCenterIpcHandlers(control);
+  const readiness = await handlers[STUDY_CENTER_CHANNELS.getReadiness]();
+  assert.deepEqual(readiness, {
+    ok: false,
+    error: {
+      code: 'STUDY_CENTER_DEPENDENCY_UNAVAILABLE',
+      message: 'Study Center host request failed'
+    }
+  });
+  assert.equal(JSON.stringify(readiness).includes('ts-fsrs'), false);
 });

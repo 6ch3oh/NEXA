@@ -1,5 +1,6 @@
 'use strict';
 
+const { existsSync } = require('node:fs');
 const path = require('node:path');
 
 const { createNexaControllerBinding } = require('../shared/nexaControllerBinding');
@@ -36,12 +37,14 @@ const {
   NEXA_STUDY_CENTER_DESCRIPTOR,
   createNexaStudyCenterController,
   createNexaStudyCenterIpcHandlers,
+  createUnavailableNexaStudyCenterPublicApi,
   validateStudyCenterPublicApi
 } = require('./nexaStudyCenterBridge');
 const {
   NEXA_AUTOMATION_CENTER_DESCRIPTOR,
   createNexaAutomationCenterController,
   createNexaAutomationCenterIpcHandlers,
+  createUnavailableNexaAutomationCenterPublicApi,
   validateAutomationCenterPublicApi
 } = require('./nexaAutomationCenterBridge');
 const {
@@ -54,7 +57,8 @@ const {
 const {
   NEXA_DASHI_DESCRIPTOR,
   createNexaDashiReadController,
-  createNexaDashiReadIpcHandlers
+  createNexaDashiReadIpcHandlers,
+  createUnavailableNexaDashiPublicApi
 } = require('./nexaDashiReadBridge');
 const {
   NEXA_CORE_CONTROL_DESCRIPTOR,
@@ -729,6 +733,24 @@ function projectConsumptionEnvelope(envelope, commandType) {
   }
 }
 
+async function loadPublicApiOrUnavailable(
+  loader,
+  entrypoint,
+  createUnavailable,
+  { allowMissingDependency = false } = {}
+) {
+  if (!existsSync(entrypoint)) return createUnavailable();
+  try {
+    return await loader.load(entrypoint);
+  } catch (error) {
+    if (allowMissingDependency &&
+        error?.code === 'ESM_IMPORT_FAILED' && error?.cause?.code === 'ERR_MODULE_NOT_FOUND') {
+      return createUnavailable();
+    }
+    throw error;
+  }
+}
+
 async function createNexaAppComposition(options = {}) {
   validateOptions(options);
 
@@ -750,10 +772,19 @@ async function createNexaAppComposition(options = {}) {
     loader.load(CONSUMPTION_PUBLIC_API_ENTRYPOINT),
     loader.load(CONSUMPTION_INTEGRATION_PACKAGE_ENTRYPOINT),
     loader.load(TODAY_TOMORROW_PUBLIC_API_ENTRYPOINT),
-    loader.load(DASHI_DESKTOP_ENTRYPOINT),
+    loadPublicApiOrUnavailable(loader, DASHI_DESKTOP_ENTRYPOINT, createUnavailableNexaDashiPublicApi),
     loader.load(STARBENCH_DESKTOP_ENTRYPOINT),
-    loader.load(STUDY_CENTER_PUBLIC_API_ENTRYPOINT),
-    loader.load(AUTOMATION_CENTER_PRODUCTION_COMPOSITION_ENTRYPOINT)
+    loadPublicApiOrUnavailable(
+      loader,
+      STUDY_CENTER_PUBLIC_API_ENTRYPOINT,
+      createUnavailableNexaStudyCenterPublicApi,
+      { allowMissingDependency: true }
+    ),
+    loadPublicApiOrUnavailable(
+      loader,
+      AUTOMATION_CENTER_PRODUCTION_COMPOSITION_ENTRYPOINT,
+      createUnavailableNexaAutomationCenterPublicApi
+    )
   ]);
   validateConsumptionPackage(publicApi, integrationPackage);
   validateTodayTomorrowPublicApi(todayTomorrowPublicApi);
