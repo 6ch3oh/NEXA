@@ -45,20 +45,80 @@ function truncateReleaseNoteText(value, maxChars) {
   return `${characters.slice(0, maxChars - 1).join('').trimEnd()}…`;
 }
 
+function replaceMarkdownLinksWithLabels(value) {
+  let result = '';
+  let index = 0;
+  while (index < value.length) {
+    const image = value[index] === '!' && value[index + 1] === '[';
+    const link = value[index] === '[';
+    if (!image && !link) {
+      result += value[index];
+      index += 1;
+      continue;
+    }
+    const labelStart = index + (image ? 2 : 1);
+    const labelEnd = value.indexOf(']', labelStart);
+    if (labelEnd < 0 || value[labelEnd + 1] !== '(') {
+      result += value[index];
+      index += 1;
+      continue;
+    }
+    const targetEnd = value.indexOf(')', labelEnd + 2);
+    if (targetEnd < 0) {
+      result += value[index];
+      index += 1;
+      continue;
+    }
+    result += value.slice(labelStart, labelEnd);
+    index = targetEnd + 1;
+  }
+  return result;
+}
+
+function stripHtmlMarkup(value) {
+  let result = '';
+  let index = 0;
+  while (index < value.length) {
+    if (value.startsWith('<!--', index)) {
+      const commentEnd = value.indexOf('-->', index + 4);
+      index = commentEnd < 0 ? value.length : commentEnd + 3;
+      continue;
+    }
+    if (value[index] === '<') {
+      const tagEnd = value.indexOf('>', index + 1);
+      if (tagEnd >= 0) {
+        index = tagEnd + 1;
+        continue;
+      }
+    }
+    result += value[index];
+    index += 1;
+  }
+  return result;
+}
+
+function stripMarkdownMarkers(value) {
+  let result = '';
+  for (let index = 0; index < value.length; index += 1) {
+    const character = value[index];
+    if (character === '`') continue;
+    if ((character === '*' || character === '_') && value[index + 1] === character) {
+      index += 1;
+      continue;
+    }
+    result += character;
+  }
+  return result;
+}
+
 function plainReleaseNoteText(value, maxChars = MAX_RELEASE_NOTE_ITEM_CHARS) {
-  const text = String(value || '')
-    .replace(/<!--[\s\S]*?-->/g, '')
-    .replace(/!\[([^\]]*)\]\([^)]+\)/g, '$1')
-    .replace(/\[([^\]]+)\]\([^)]+\)/g, '$1')
-    .replace(/<\/?[^>]+>/g, '')
-    .replace(/`([^`]+)`/g, '$1')
-    .replace(/\*\*([^*]+)\*\*/g, '$1')
-    .replace(/__([^_]+)__/g, '$1')
-    .replace(/\s+/g, ' ')
-    .replace(/([：。！？])\s+/g, '$1')
-    .trim()
-    .replace(TRAILING_PULL_REQUEST_REFERENCES_RE, '')
-    .trimEnd();
+  const source = String(value || '').slice(0, Math.max(maxChars * 4, maxChars));
+  let text = replaceMarkdownLinksWithLabels(source);
+  text = stripHtmlMarkup(text);
+  text = stripMarkdownMarkers(text);
+  text = text.split(/\s+/u).filter(Boolean).join(' ');
+  for (const punctuation of ['：', '。', '！', '？']) text = text.split(`${punctuation} `).join(punctuation);
+  text = text.trim().replace(TRAILING_PULL_REQUEST_REFERENCES_RE, '').trimEnd();
   return truncateReleaseNoteText(text, maxChars);
 }
 

@@ -535,12 +535,31 @@ function positionTooltip(ev) {
   els.tooltip.style.top = `${Math.max(8, y)}px`;
 }
 
+function tooltipElement(tagName, className, value) {
+  const element = document.createElement(tagName);
+  element.className = className;
+  element.textContent = String(value ?? '');
+  return element;
+}
+
+function tooltipRow(name, value, swatchKey = null) {
+  const row = document.createElement('div');
+  row.className = 'tt-row';
+  if (swatchKey !== null) {
+    const swatch = tooltipElement('span', 'tt-dot', '');
+    swatch.dataset.c = colorFor(swatchKey);
+    row.appendChild(swatch);
+  }
+  row.appendChild(tooltipElement('span', 'tt-name', name));
+  row.appendChild(tooltipElement('span', 'tt-val', value));
+  return row;
+}
+
 function showBarTooltip(bar, ev) {
   const segs = (bar.segments || []).filter((s) => s.value > 0).sort((a, b) => b.value - a.value);
-  const rows = segs.map((s) =>
-    `<div class="tt-row"><span class="tt-dot" data-c="${colorFor(s.key)}"></span><span class="tt-name">${s.key}</span><span class="tt-val">${formatCompact(s.value)}</span></div>`
-  ).join('');
-  els.tooltip.innerHTML = `<div class="tt-head">${shortDate(bar.label)} · ${formatCompact(bar.total)}</div>${rows}`;
+  const head = tooltipElement('div', 'tt-head', `${shortDate(bar.label)} · ${formatCompact(bar.total)}`);
+  const rows = segs.map((segment) => tooltipRow(segment.key, formatCompact(segment.value), segment.key));
+  els.tooltip.replaceChildren(head, ...rows);
   applySwatchColors(els.tooltip);
   positionTooltip(ev);
 }
@@ -549,8 +568,10 @@ function showCandleTooltip(c, ev) {
   // Each candle spans a bucket of days: O = first day, C = last day, H/L = busiest/quietest.
   const head = c.endKey && c.endKey !== c.key ? `${longDate(c.key)} – ${longDate(c.endKey)}` : longDate(c.key);
   const ohlc = [['O', c.open], ['H', c.high], ['L', c.low], ['C', c.close]];
-  els.tooltip.innerHTML = `<div class="tt-head">${head}</div>`
-    + ohlc.map(([k, v]) => `<div class="tt-row"><span class="tt-name">${k}</span><span class="tt-val">${formatCompact(v)}</span></div>`).join('');
+  els.tooltip.replaceChildren(
+    tooltipElement('div', 'tt-head', head),
+    ...ohlc.map(([key, value]) => tooltipRow(key, formatCompact(value)))
+  );
   positionTooltip(ev);
 }
 
@@ -559,10 +580,9 @@ function showHeatTooltip(date, day, ev) {
   const cost = day ? day.cost : 0;
   const tokLabel = state.locale.startsWith('zh') ? 'Token' : 'Tokens';
   const costLabel = state.locale.startsWith('zh') ? '花費' : 'Cost';
-  let html = `<div class="tt-head">${longDate(date)}</div>`;
-  html += `<div class="tt-row"><span class="tt-name">${tokLabel}</span><span class="tt-val">${formatCompact(tokens)}</span></div>`;
-  if (cost > 0) html += `<div class="tt-row"><span class="tt-name">${costLabel}</span><span class="tt-val">${formatCost(cost)}</span></div>`;
-  els.tooltip.innerHTML = html;
+  const rows = [tooltipRow(tokLabel, formatCompact(tokens))];
+  if (cost > 0) rows.push(tooltipRow(costLabel, formatCost(cost)));
+  els.tooltip.replaceChildren(tooltipElement('div', 'tt-head', longDate(date)), ...rows);
   positionTooltip(ev);
 }
 

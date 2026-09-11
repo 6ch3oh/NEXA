@@ -3160,7 +3160,7 @@ async function postToHub(summary) {
   const stale = settings.lastPostedDeviceId;
   if (stale && stale !== summary.deviceId) {
     try { await deleteDeviceFromHub(stale); }
-    catch (error) { console.log(`[sync] cleanup of old deviceId ${stale} failed: ${error.message}`); }
+    catch { console.log('[sync] cleanup of previous device identity failed'); }
   }
   const url = `${hubUrl.replace(/\/$/, '')}/api/ingest`;
   const { response } = await postSyncPayload(fetch, url, {

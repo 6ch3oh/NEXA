@@ -5,6 +5,8 @@ const path = require('node:path');
 const { SCHEMA_VERSION } = require('./contracts');
 
 const MAX_CONFIG_BYTES = 1024 * 1024;
+const MAX_COMMAND_LINE_CHARS = 32768;
+const MAX_CONFIG_LINE_CHARS = 8192;
 const MAX_DISCOVERY_DEPTH = 2;
 const ALLOWED_EXTENSIONS = new Set(['.json', '.yaml', '.yml', '.toml', '.ini', '.conf', '.config', '.txt']);
 const BLOCKED_FILE_PATTERN = /(account|credential|cookie|token|secret|password|subscription|browser|webview|login|history|cache|database|\.db$|\.sqlite)/i;
@@ -22,13 +24,30 @@ const ConfigDiscoveryState = Object.freeze({ READY: 'ready', NOT_FOUND: 'not_fou
 
 function safeBaseName(value) {
   if (typeof value !== 'string' || !value.trim()) return null;
-  const name = path.basename(value.trim().replace(/^['"]|['"]$/g, ''));
+  const name = path.basename(stripMatchingOuterQuotes(value.trim()));
   return name && !BLOCKED_FILE_PATTERN.test(name) ? name.slice(0, 160) : null;
 }
 
 function tokenizeCommandLine(commandLine) {
   if (typeof commandLine !== 'string') return [];
-  return commandLine.match(/(?:[^\s"]+|"[^"]*")+/g)?.map((x) => x.replace(/^"|"$/g, '')) || [];
+  if (commandLine.length > MAX_COMMAND_LINE_CHARS) return [];
+  const tokens = [];
+  let current = '';
+  let quoted = false;
+  for (const character of commandLine) {
+    if (character === '"') {
+      quoted = !quoted;
+      continue;
+    }
+    if (!quoted && /\s/u.test(character)) {
+      if (current) tokens.push(current);
+      current = '';
+      continue;
+    }
+    current += character;
+  }
+  if (current) tokens.push(current);
+  return tokens;
 }
 
 function projectSafeApexProcessLaunch({ name, pid, commandLine } = {}) {
@@ -50,7 +69,21 @@ function projectSafeApexProcessLaunch({ name, pid, commandLine } = {}) {
   };
 }
 
-function normalizeKey(key) { return String(key || '').trim().toLowerCase().replace(/^[-'"\s]+|[-'"\s]+$/g, ''); }
+function isKeyBoundary(character) { return character === '-' || character === "'" || character === '"' || /\s/u.test(character); }
+function trimKeyBoundaries(value) {
+  const text = String(value || '').trim().toLowerCase();
+  let start = 0; let end = text.length;
+  while (start < end && isKeyBoundary(text[start])) start += 1;
+  while (end > start && isKeyBoundary(text[end - 1])) end -= 1;
+  return text.slice(start, end);
+}
+function stripMatchingOuterQuotes(value) {
+  const text = String(value || '');
+  return text.length >= 2 && ((text[0] === '"' && text.at(-1) === '"') || (text[0] === "'" && text.at(-1) === "'"))
+    ? text.slice(1, -1)
+    : text;
+}
+function normalizeKey(key) { return trimKeyBoundaries(key); }
 function port(value) { const match = String(value ?? '').match(/(?:^|:)(\d{1,5})(?:\s*$|\/)/); const number = Number(match?.[1] ?? value); return Number.isInteger(number) && number > 0 && number <= 65535 ? number : null; }
 function bool(value) { if (value === true || /^(true|yes|on|enabled)$/i.test(String(value).trim())) return true; if (value === false || /^(false|no|off|disabled)$/i.test(String(value).trim())) return false; return null; }
 function safeMode(value) { const match = String(value ?? '').trim().toLowerCase(); return ['global', 'rule', 'direct', 'script', 'system', 'http', 'socks', 'mixed', 'tun'].includes(match) ? match : null; }
@@ -67,10 +100,22 @@ function flattenObject(value, prefix = '', result = []) {
 }
 
 function safePairsFromText(text) {
-  return String(text || '').split(/\r?\n/).flatMap((line) => {
-    const clean = line.replace(/\s+#.*$/, '').trim(); if (!clean || clean.startsWith('#') || clean.startsWith(';')) return [];
-    const match = clean.match(/^([A-Za-z0-9_.-]+)\s*[:=]\s*(.*?)\s*$/); if (!match || SENSITIVE_KEY_PATTERN.test(match[1])) return [];
-    return [[match[1], match[2].replace(/^['"]|['"]$/g, '')]];
+  const source = String(text || '');
+  if (Buffer.byteLength(source, 'utf8') > MAX_CONFIG_BYTES) return [];
+  return source.split(/\r?\n/).flatMap((line) => {
+    if (line.length > MAX_CONFIG_LINE_CHARS) return [];
+    let commentAt = -1;
+    for (let index = 1; index < line.length; index += 1) {
+      if (line[index] === '#' && /\s/u.test(line[index - 1])) { commentAt = index; break; }
+    }
+    const clean = (commentAt >= 0 ? line.slice(0, commentAt) : line).trim();
+    if (!clean || clean.startsWith('#') || clean.startsWith(';')) return [];
+    const colon = clean.indexOf(':'); const equals = clean.indexOf('=');
+    const separator = colon < 0 ? equals : (equals < 0 ? colon : Math.min(colon, equals));
+    if (separator <= 0) return [];
+    const key = clean.slice(0, separator).trim();
+    if (!/^[A-Za-z0-9_.-]+$/.test(key) || SENSITIVE_KEY_PATTERN.test(key)) return [];
+    return [[key, stripMatchingOuterQuotes(clean.slice(separator + 1).trim())]];
   });
 }
 

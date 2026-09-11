@@ -312,6 +312,46 @@ test('runCodexLogin tries the next Windows command after cmd reports it missing'
   assert.equal(result.outcome, 'success');
 });
 
+test('runCodexLogin uses cmd.exe outer quoting for a safe Windows batch path', async () => {
+  const child = fakeChild();
+  let spawnCall = null;
+  const promise = runCodexLogin(
+    { homePath: 'C:/managed/quoted-home' },
+    {
+      ...noopTimers,
+      platform: 'win32',
+      codexCommand: 'C:\\Program Files\\OpenAI\\codex.cmd',
+      env: {},
+      spawn: (command, args) => {
+        spawnCall = { command, args };
+        return child;
+      }
+    }
+  );
+
+  assert.equal(spawnCall.command, 'cmd.exe');
+  assert.equal(spawnCall.args.at(-1), '""C:\\Program Files\\OpenAI\\codex.cmd" login"');
+  child.emit('close', 0);
+  assert.equal((await promise).outcome, 'success');
+});
+
+test('runCodexLogin fails closed before spawning an unsafe Windows batch path', async () => {
+  let spawned = false;
+  const result = await runCodexLogin(
+    { homePath: 'C:/managed/unsafe-home' },
+    {
+      ...noopTimers,
+      platform: 'win32',
+      codexCommand: 'C:\\unsafe&whoami\\codex.cmd',
+      env: {},
+      spawn: () => { spawned = true; return fakeChild(); }
+    }
+  );
+
+  assert.equal(result.outcome, 'launchFailed');
+  assert.equal(spawned, false);
+});
+
 test('runCodexLogin does not retry a normal login failure', async () => {
   const legacyCodex = '/Applications/Codex.app/Contents/Resources/codex';
   const chatgptCodex = '/Applications/ChatGPT.app/Contents/Resources/codex';

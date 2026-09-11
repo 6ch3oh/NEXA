@@ -6,6 +6,8 @@ const net = require('node:net');
 const { buildApexRouteObservation } = require('../apexRouteObservation');
 const { buildApexRouteBinding } = require('../apexRouteBinding');
 const { ApexRuntimeConfigDiscovery, projectSafeApexProcessLaunch } = require('../apexRuntimeConfig');
+const MAX_ROUTE_OUTPUT_CHARS = 1024 * 1024;
+const MAX_ROUTE_LINE_CHARS = 4096;
 
 const APEX_NAMES = new Set(['Apex.exe', 'ApexCore.exe', 'ApexHelperService.exe']);
 const PROCESS_SCRIPT = "$items=@(Get-Process -Name Apex,ApexCore,ApexHelperService -ErrorAction SilentlyContinue | ForEach-Object { [PSCustomObject]@{Name=($_.ProcessName+'.exe');Pid=$_.Id;Path=$_.Path} }); $dirs=@($items.Path|Where-Object{$_}|ForEach-Object{Split-Path -Parent $_}|Sort-Object -Unique); $runtime=[PSCustomObject]@{ProxyComponentPresent=[bool]@($dirs|Where-Object{Test-Path -LiteralPath (Join-Path $_ 'proxy_plugin.dll')}).Count;HelperComponentPresent=[bool]@($dirs|Where-Object{Test-Path -LiteralPath (Join-Path $_ 'ApexHelperService.exe')}).Count}; [PSCustomObject]@{Items=$items;RuntimeEvidence=$runtime}|ConvertTo-Json -Depth 3 -Compress";
@@ -71,8 +73,11 @@ function parseNetshDefaultRoutes(stdout) {
 }
 
 function parseRoutePrint(stdout, family) {
-  const lines = String(stdout).split(/\r?\n/); const adapters = []; const routes = [];
+  const source = String(stdout || '');
+  if (source.length > MAX_ROUTE_OUTPUT_CHARS) return { adapters: [], routes: [] };
+  const lines = source.split(/\r?\n/); const adapters = []; const routes = [];
   for (const line of lines) {
+    if (line.length > MAX_ROUTE_LINE_CHARS) continue;
     const adapter = line.match(/^\s*(\d+)\.{3}.*?\.{6}(.+)$/);
     if (adapter) {
       const name = adapter[2].trim();
@@ -80,15 +85,15 @@ function parseRoutePrint(stdout, family) {
       continue;
     }
     if (family === 'ipv4') {
-      const row = line.match(/^\s*(\S+)\s+(\S+)\s+(\S+)\s+(\S+)\s+(\d+)\s*$/);
-      if (!row || net.isIP(row[1]) !== 4 || net.isIP(row[2]) !== 4) continue;
-      const defaultRoute = row[1] === '0.0.0.0' && row[2] === '0.0.0.0'; const remoteGateway = net.isIP(row[3]) === 4;
-      routes.push({ family, destination: defaultRoute ? '0.0.0.0/0' : `${row[1]}/${row[2]}`, default: defaultRoute, split_candidate: !defaultRoute && remoteGateway, interface_address: row[4], interface_index: null, metric: Number(row[5]) });
+      const fields = line.trim().split(/\s+/);
+      if (fields.length !== 5 || net.isIP(fields[0]) !== 4 || net.isIP(fields[1]) !== 4 || !/^\d+$/.test(fields[4])) continue;
+      const defaultRoute = fields[0] === '0.0.0.0' && fields[1] === '0.0.0.0'; const remoteGateway = net.isIP(fields[2]) === 4;
+      routes.push({ family, destination: defaultRoute ? '0.0.0.0/0' : `${fields[0]}/${fields[1]}`, default: defaultRoute, split_candidate: !defaultRoute && remoteGateway, interface_address: fields[3], interface_index: null, metric: Number(fields[4]) });
     } else {
-      const row = line.match(/^\s*(\d+)\s+(\d+)\s+(\S+)\s+(.+?)\s*$/);
-      if (!row || !row[3].includes(':')) continue;
-      const destination = row[3]; const gateway = row[4].trim(); const defaultRoute = destination === '::/0';
-      routes.push({ family, destination, default: defaultRoute, split_candidate: !defaultRoute && !/^On-link$/i.test(gateway) && !/^(::1|fe80:|ff00:|2001::\/32)/i.test(destination), interface_index: Number(row[1]), metric: Number(row[2]) });
+      const fields = line.trim().split(/\s+/);
+      if (fields.length < 4 || !/^\d+$/.test(fields[0]) || !/^\d+$/.test(fields[1]) || !fields[2].includes(':')) continue;
+      const destination = fields[2]; const gateway = fields.slice(3).join(' '); const defaultRoute = destination === '::/0';
+      routes.push({ family, destination, default: defaultRoute, split_candidate: !defaultRoute && !/^On-link$/i.test(gateway) && !/^(::1|fe80:|ff00:|2001::\/32)/i.test(destination), interface_index: Number(fields[0]), metric: Number(fields[1]) });
     }
   }
   return { adapters, routes };
