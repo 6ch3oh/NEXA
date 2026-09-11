@@ -5,6 +5,7 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs/promises');
 const os = require('node:os');
 const path = require('node:path');
+const { performance } = require('node:perf_hooks');
 const {
   ApexRouteContinuityMonitor,
   ApexRuntimeConfigDiscovery,
@@ -13,6 +14,8 @@ const {
   buildApexProxyPortProofs,
   buildApexRouteBinding,
   buildApexTunProof,
+  parseProxyEndpoint,
+  parseRoutePrint,
   projectApexBindingViewModel,
   projectApexRouteHistory,
   projectApexRuntimeConfig,
@@ -44,6 +47,35 @@ const launchCases = [
   ['never retain command line', 'Apex.exe --password abc', (x) => x.raw_command_line_retained === false]
 ];
 for (const [name, commandLine, check] of launchCases) test(`launch projection: ${name}`, () => assert.equal(Boolean(check(projectSafeApexProcessLaunch({ name: 'Apex.exe', pid: 7, commandLine }))), true));
+
+function assertCompletesPromptly(operation, maximumMs = 1000) {
+  const startedAt = performance.now();
+  const result = operation();
+  assert.ok(performance.now() - startedAt < maximumMs, `parser exceeded ${maximumMs} ms`);
+  return result;
+}
+
+test('proxy endpoint parser preserves supported forms without backtracking regexes', () => {
+  assert.deepEqual(parseProxyEndpoint('http=127.0.0.1:7890; SOCKS=socks5://[::1]:7891'), [
+    { protocol_hint: 'http', address: '127.0.0.1', port: 7890 },
+    { protocol_hint: 'socks', address: '::1', port: 7891 }
+  ]);
+});
+
+test('proxy endpoint parser rejects oversized hostile input promptly', () => {
+  assert.deepEqual(assertCompletesPromptly(() => parseProxyEndpoint('http='.repeat(300000))), []);
+});
+
+test('command-line and config parsers reject oversized hostile input promptly', () => {
+  const launch = assertCompletesPromptly(() => projectSafeApexProcessLaunch({ name: 'Apex.exe', pid: 7, commandLine: '"'.repeat(100000) }));
+  const config = assertCompletesPromptly(() => projectApexRuntimeConfig('x'.repeat(2 * 1024 * 1024)));
+  assert.equal(launch.availability, 'unavailable');
+  assert.equal(config.availability, 'unavailable');
+});
+
+test('route parser rejects oversized hostile input promptly', () => {
+  assert.deepEqual(assertCompletesPromptly(() => parseRoutePrint(`1 1 ::/0 ${'x'.repeat(2 * 1024 * 1024)}`, 'ipv6')), { adapters: [], routes: [] });
+});
 
 const configCases = [
   ['HTTP port', 'http-port: 7890', (x) => x.ports.http_port === 7890],

@@ -9,6 +9,8 @@ const Handling = Object.freeze({ APEX: 'apex', DIRECT: 'direct', MIXED: 'mixed',
 const BindingState = Object.freeze({ READY: 'ready', CONTRACT_READY: 'contract_ready', DEFERRED: 'deferred' });
 const TunBindingState = Object.freeze({ BOUND_TO_APEX: 'bound_to_apex', CANDIDATE: 'candidate', NOT_FOUND: 'not_found', UNKNOWN: 'unknown' });
 const COMPONENTS = Object.freeze(['Apex.exe', 'ApexCore.exe', 'ApexHelperService.exe']);
+const MAX_PROXY_SERVER_CHARS = 8192;
+const MAX_PROXY_ENDPOINT_CHARS = 1024;
 const clone = (value) => value == null ? value : JSON.parse(JSON.stringify(value));
 const validAt = (value) => Number.isFinite(Date.parse(value));
 
@@ -48,11 +50,45 @@ function buildApexLocalListenerObservations(raw = {}) {
 
 function parseProxyEndpoint(value) {
   const text = String(value || '').trim(); if (!text) return [];
+  if (text.length > MAX_PROXY_SERVER_CHARS) return [];
   return text.split(';').flatMap((part) => {
-    const match = part.trim().match(/^(?:(https?|socks)\s*=\s*)?(?:https?:\/\/|socks5?:\/\/)?(?:\[([^\]]+)]|([^:]+)):(\d+)$/i);
-    if (!match) return [];
-    const port = Number(match[4]); if (!Number.isInteger(port) || port < 1 || port > 65535) return [];
-    return [{ protocol_hint: match[1]?.toLowerCase() || 'system', address: (match[2] || match[3]).toLowerCase(), port }];
+    let endpoint = part.trim();
+    if (!endpoint || endpoint.length > MAX_PROXY_ENDPOINT_CHARS) return [];
+
+    let protocolHint = 'system';
+    const assignment = endpoint.indexOf('=');
+    if (assignment >= 0) {
+      if (endpoint.indexOf('=', assignment + 1) >= 0) return [];
+      const candidate = endpoint.slice(0, assignment).trim().toLowerCase();
+      if (!['http', 'https', 'socks'].includes(candidate)) return [];
+      protocolHint = candidate;
+      endpoint = endpoint.slice(assignment + 1).trim();
+    }
+
+    const lower = endpoint.toLowerCase();
+    for (const scheme of ['https://', 'http://', 'socks5://', 'socks://']) {
+      if (lower.startsWith(scheme)) {
+        endpoint = endpoint.slice(scheme.length);
+        break;
+      }
+    }
+
+    let address;
+    let portText;
+    if (endpoint.startsWith('[')) {
+      const closing = endpoint.indexOf(']');
+      if (closing <= 1 || endpoint[closing + 1] !== ':' || endpoint.indexOf(']', closing + 1) >= 0) return [];
+      address = endpoint.slice(1, closing);
+      portText = endpoint.slice(closing + 2);
+    } else {
+      const separator = endpoint.lastIndexOf(':');
+      if (separator <= 0 || endpoint.indexOf(':') !== separator) return [];
+      address = endpoint.slice(0, separator).trim();
+      portText = endpoint.slice(separator + 1);
+    }
+    if (!address || !/^\d{1,5}$/.test(portText)) return [];
+    const port = Number(portText); if (port < 1 || port > 65535) return [];
+    return [{ protocol_hint: protocolHint, address: address.toLowerCase(), port }];
   });
 }
 

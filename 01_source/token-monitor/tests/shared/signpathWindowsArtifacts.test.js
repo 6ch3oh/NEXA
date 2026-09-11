@@ -448,9 +448,10 @@ test('applySignedWindowsArtifacts replaces both exes and repairs installer updat
   assert.equal(blockmap.files[0].name, 'file');
 
   const patchedYaml = fs.readFileSync(path.join(fixture.distDir, 'latest.yml'), 'utf8');
-  assert.match(patchedYaml, new RegExp(`sha512: ${result.sha512.replace(/[+/=]/g, '\\$&')}`));
+  const sha512Line = patchedYaml.split(/\r?\n/).find((line) => line.startsWith('sha512: '));
+  assert.equal(sha512Line, `sha512: ${result.sha512}`);
   assert.doesNotMatch(patchedYaml, /blockMapSize/);
-  assert.doesNotMatch(patchedYaml, new RegExp(PORTABLE.replaceAll('.', '\\.')));
+  assert.equal(patchedYaml.includes(PORTABLE), false);
 });
 
 test('applySignedWindowsArtifacts rejects missing or extra signed executables before replacing output', async (t) => {

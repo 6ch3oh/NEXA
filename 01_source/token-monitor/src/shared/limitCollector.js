@@ -2354,14 +2354,22 @@ function codexSpawnSpec(command, platform = process.platform) {
   }
   return {
     command: 'cmd.exe',
-    args: ['/d', '/s', '/c', [quoteWindowsCmdArg(command), ...args.map(quoteWindowsCmdArg)].join(' ')]
+    args: ['/d', '/s', '/c', windowsCmdCommandLine(command, args)]
   };
 }
 
 function quoteWindowsCmdArg(value) {
   const text = String(value);
+  if (!text || [...text].some((character) => '\0\r\n"%!^&|<>'.includes(character))) {
+    throw new TypeError('Windows command argument contains unsupported shell metacharacters.');
+  }
   if (/^[A-Za-z0-9_./:=\\-]+$/.test(text)) return text;
-  return `"${text.replace(/"/g, '\\"')}"`;
+  return `"${text}"`;
+}
+
+function windowsCmdCommandLine(command, args) {
+  const parts = [quoteWindowsCmdArg(command), ...args.map(quoteWindowsCmdArg)];
+  return `"${parts.join(' ')}"`;
 }
 
 function codexLoginSpawnSpec(command, platform = process.platform) {
@@ -2371,7 +2379,7 @@ function codexLoginSpawnSpec(command, platform = process.platform) {
   }
   return {
     command: 'cmd.exe',
-    args: ['/d', '/s', '/c', [quoteWindowsCmdArg(command), ...args.map(quoteWindowsCmdArg)].join(' ')]
+    args: ['/d', '/s', '/c', windowsCmdCommandLine(command, args)]
   };
 }
 
@@ -2425,7 +2433,12 @@ function runCodexLoginWithCommand(command, options = {}, deps = {}) {
   const onOutput = typeof options.onOutput === 'function' ? options.onOutput : () => {};
   const timeoutMs = Number(options.timeoutMs || deps.codexLoginTimeoutMs || 180000);
   if (signal?.aborted) return Promise.resolve({ outcome: 'cancelled', exitCode: null, output: '' });
-  const spec = codexLoginSpawnSpec(command, platform);
+  let spec;
+  try {
+    spec = codexLoginSpawnSpec(command, platform);
+  } catch (error) {
+    return Promise.resolve({ outcome: 'launchFailed', exitCode: null, output: String(error?.message || error) });
+  }
   let child;
   try {
     child = spawnFn(spec.command, spec.args, {

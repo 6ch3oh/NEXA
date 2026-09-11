@@ -195,6 +195,20 @@ test('extractReleaseNotes reads marked bilingual summaries as plain text', () =>
   });
 });
 
+test('extractReleaseNotes keeps hostile markup inert plain text', () => {
+  const notes = extractReleaseNotes(`
+<!-- app-update-notes:en:start -->
+### <img src=x onerror=alert(1)> Security
+- <script>alert('xss')</script> <img src=x onerror=alert(2)> &lt;quoted&gt; "value"
+<!-- app-update-notes:en:end -->
+  `);
+
+  assert.deepEqual(notes, {
+    en: [{ title: 'Security', items: ['alert(\'xss\') &lt;quoted&gt; "value"'] }]
+  });
+  assert.doesNotMatch(JSON.stringify(notes), /<script|<img|onerror/i);
+});
+
 test('extractReleaseNotes hides trailing PR references from App summaries', () => {
   const body = `
 <!-- app-update-notes:en:start -->

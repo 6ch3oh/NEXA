@@ -320,6 +320,11 @@ async function listeningPorts(pid, deps = {}) {
 
 const LS_SERVICE = 'exa.language_server_pb.LanguageServerService';
 const USER_AGENT = `token-monitor/${appVersion()} (+https://github.com/Javis603/token-monitor)`;
+const LOOPBACK_HOSTS = new Map([
+  ['127.0.0.1', '127.0.0.1'],
+  ['::1', '::1'],
+  ['localhost', '127.0.0.1']
+]);
 
 function statusFromHttpCode(code) {
   if (code === 401 || code === 403) return 'unauthorized';
@@ -338,11 +343,17 @@ function callLs({
   timeoutMs = DEFAULT_RPC_TIMEOUT_MS,
   signal
 }) {
+  let requestedHost = String(host || '').trim().toLowerCase();
+  if (requestedHost.startsWith('[') && requestedHost.endsWith(']')) requestedHost = requestedHost.slice(1, -1);
+  const loopbackHost = LOOPBACK_HOSTS.get(requestedHost);
+  if (!loopbackHost) {
+    throw errorWithStatus('unavailable', 'Antigravity language server host must be loopback');
+  }
   const transport = scheme === 'https' ? https : http;
   const payload = Buffer.from(JSON.stringify(body || {}));
   return new Promise((resolve, reject) => {
     const req = transport.request({
-      host,
+      host: loopbackHost,
       port,
       method: 'POST',
       path: `/${LS_SERVICE}/${method}`,
@@ -355,6 +366,9 @@ function callLs({
       },
       timeout: timeoutMs,
       signal,
+      // Antigravity's local language server may use an ephemeral self-signed
+      // certificate. This exception is safe only because remote hosts are
+      // rejected above before a socket is created.
       ...(scheme === 'https' ? { rejectUnauthorized: false } : {})
     }, (res) => {
       const chunks = [];
