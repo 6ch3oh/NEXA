@@ -15,6 +15,7 @@ const {
   NexaAutomationCenterBridgeError,
   createNexaAutomationCenterController,
   createNexaAutomationCenterIpcHandlers,
+  createUnavailableNexaAutomationCenterPublicApi,
   validateAutomationCenterPublicApi
 } = require('../../src/electron/nexaAutomationCenterBridge');
 
@@ -176,4 +177,40 @@ test('maps every IPC channel through Module Control and returns safe host failur
   assert.equal(failed.ok, false);
   assert.equal(failed.error.code, 'RUNTIME_UNAVAILABLE');
   assert.equal(JSON.stringify(failed).includes('sensitive internal failure'), false);
+});
+
+test('public runtime fallback stays credential-free and exposes only limited Automation state', async () => {
+  const publicApi = createUnavailableNexaAutomationCenterPublicApi();
+  const timers = [];
+  const controller = createNexaAutomationCenterController({
+    publicApi,
+    dataRoot: path.join(os.tmpdir(), 'nexa-automation-center-public-fallback'),
+    setIntervalFn(callback, intervalMs) {
+      const handle = { callback, intervalMs, id: timers.length + 1 };
+      timers.push(handle);
+      return handle;
+    },
+    clearIntervalFn() {}
+  });
+
+  const started = await controller.start();
+  assert.equal(started.runtimeStarted, false);
+  assert.deepEqual(controller.getSnapshot().readiness, {
+    state: 'LIMITED',
+    code: 'RUNTIME_UNAVAILABLE',
+    registry: 'UNAVAILABLE',
+    scheduler: 'READY',
+    dispatch: 'UNAVAILABLE',
+    runtime: 'UNAVAILABLE',
+    runtimeStatus: 'AUTOMATION_RUNTIME_UNAVAILABLE',
+    credentialFree: true
+  });
+  assert.equal(timers.length, 1);
+
+  const result = await controller.execute({ operation: 'list-automations', arguments: [] });
+  assert.equal(result.ok, false);
+  assert.equal(result.error.code, 'AUTOMATION_RUNTIME_UNAVAILABLE');
+  assert.equal(result.error.retryable, false);
+  assert.equal(JSON.stringify(result).includes('credential'), false);
+  await controller.stop();
 });

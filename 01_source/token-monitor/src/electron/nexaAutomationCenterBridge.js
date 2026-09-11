@@ -99,6 +99,49 @@ function validateAutomationCenterPublicApi(publicApi) {
   return publicApi;
 }
 
+function createUnavailableNexaAutomationCenterPublicApi(code = 'AUTOMATION_RUNTIME_UNAVAILABLE') {
+  const unavailableEnvelope = Object.freeze({
+    bridge_version: AUTOMATION_CENTER_BRIDGE_VERSION,
+    ok: false,
+    data: null,
+    error: Object.freeze({
+      code,
+      message: 'Automation runtime is unavailable in this public build.',
+      retryable: false,
+      action_required: null
+    })
+  });
+  const bridge = {};
+  for (const method of new Set(Object.values(BRIDGE_METHOD_BY_OPERATION))) {
+    bridge[method] = async () => unavailableEnvelope;
+  }
+  const frozenBridge = Object.freeze(bridge);
+  return Object.freeze({
+    DAILY_OPS_PRODUCTION_COMPOSITION_VERSION: AUTOMATION_CENTER_COMPOSITION_VERSION,
+    DAILY_OPS_DESKTOP_BRIDGE_VERSION: AUTOMATION_CENTER_BRIDGE_VERSION,
+    async createDailyOpsProductionComposition() {
+      return Object.freeze({
+        version: AUTOMATION_CENTER_COMPOSITION_VERSION,
+        bridge_version: AUTOMATION_CENTER_BRIDGE_VERSION,
+        credential_free: true,
+        bridge: frozenBridge,
+        readiness: async () => Object.freeze({
+          automation_registry: 'UNAVAILABLE',
+          dispatch: 'UNAVAILABLE',
+          runtime: 'UNAVAILABLE',
+          runtime_status: code
+        }),
+        lifecycle: Object.freeze({
+          host_owned: true,
+          starts_runtime_on_import: false,
+          async start() { return Object.freeze({ status: 'LIMITED', runtime_started: false }); },
+          async stop() { return Object.freeze({ status: 'STOPPED', runtime_stopped: false }); }
+        })
+      });
+    }
+  });
+}
+
 function validateProductionComposition(composition) {
   const bridge = composition?.bridge;
   if (composition?.version !== AUTOMATION_CENTER_COMPOSITION_VERSION ||
@@ -332,5 +375,6 @@ module.exports = {
   NexaAutomationCenterBridgeError,
   createNexaAutomationCenterController,
   createNexaAutomationCenterIpcHandlers,
+  createUnavailableNexaAutomationCenterPublicApi,
   validateAutomationCenterPublicApi
 };

@@ -97,6 +97,29 @@ function validatePublicApi(publicApi) {
   }
 }
 
+function createUnavailableNexaDashiPublicApi(code = 'DASHI_PUBLIC_API_UNAVAILABLE') {
+  const methods = Object.values(DASHI_OPERATIONS).map(({ method }) => method);
+  return Object.freeze({
+    DASHI_APPLICATION_API_VERSION: DASHI_PUBLIC_API_VERSION,
+    DASHI_DESKTOP_ENTRY_CONTRACT: Object.freeze({
+      moduleId: 'dashi',
+      handoffVersion: '0.1',
+      applicationApiVersion: DASHI_PUBLIC_API_VERSION,
+      dataContractVersion: '0.1',
+      authority: 'DASHI_AUTHORITATIVE_BUSINESS_MAINLINE',
+      facade: 'STABLE_NEXA_READ_FACADE',
+      access: 'READ_ONLY',
+      lifecycle: 'LOAD_ON_MODULE_START_READ_ON_DEMAND_RELEASE_ON_MODULE_STOP',
+      homepageWidgetRequired: false,
+      pushChannels: Object.freeze([]),
+      methods: Object.freeze(methods)
+    }),
+    createDashiReadApplication() {
+      fail(code, 'Dashi Desktop Entry is unavailable in this public runtime');
+    }
+  });
+}
+
 function validateApplication(application) {
   if (application?.version !== DASHI_PUBLIC_API_VERSION) {
     fail('INVALID_APPLICATION', 'Dashi read application version is not supported');
@@ -192,5 +215,6 @@ module.exports = {
   NEXA_DASHI_DESCRIPTOR,
   NexaDashiReadBridgeError,
   createNexaDashiReadController,
-  createNexaDashiReadIpcHandlers
+  createNexaDashiReadIpcHandlers,
+  createUnavailableNexaDashiPublicApi
 };
