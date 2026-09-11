@@ -85,7 +85,7 @@ NEXA 不是从零重写。
 
 | 模块 | 主要用途 | 当前公开仓库里的定位 |
 |---|---|---|
-| `NEXA-Mobile` | Android 通知采集、支付通知解析、配对、同步 | 有核心源码和文档；当前公开树不包含完整独立 Gradle wrapper，暂不把“一键构建 APK”写成已验证能力 |
+| `NEXA-Mobile` | Android 通知采集、支付通知解析、配对、同步 | Android 工程骨架与主源码已闭包；`assembleDebug` 已验证通过，JVM 单元测试 177/177 PASS |
 | `消费中心` | 消费记录、查询、统计、导入导出 | 已有稳定 Public API 与测试，数据源解析和 UI 仍可继续扩展 |
 | `日历与星枢管家` | 日历、任务、日期解析、本地管家基础 | Node 本地核心，零第三方依赖 |
 | `设备与网络` | Windows 设备、网络、应用连接、健康状态 | 有完整 Node 测试与 Windows smoke 入口 |
@@ -354,11 +354,34 @@ python -m unittest discover -s tests -v
 - Android Keystore；
 - Compose 页面。
 
-但这里需要特别说明：
+当前公开仓库已经完成 NEXA-Mobile 的 Android 工程骨架和主源码闭包：
 
-> **当前公开仓库快照不应被描述为一个已经完成独立 Android 构建闭包的工程。**
+- Gradle Wrapper、`settings.gradle.kts`、根/应用级 `build.gradle.kts`、Version Catalog、Manifest 和基础资源已提交；
+- `app/src/main/java` 的第一方 Kotlin 主源码与正式项目一致，共 177 个文件；
+- `assembleDebug` 已在 Windows + Android SDK 环境中真实验证通过；
+- JVM 单元测试通过 `tools/test-jvm-ascii.ps1` 运行，结果为 **177/177 PASS**；
+- `local.properties`、keystore、凭据、真实设备数据和构建缓存不属于源码发布物。
 
-公开树中可见 `app/`、`docs/` 和 README，但目前没有把完整 Gradle wrapper / 顶层构建元数据作为可独立复现的发布条件冻结下来。因此，本 README 不提供“克隆后直接 `gradlew assembleDebug` 就一定成功”的承诺。
+基础构建：
+
+```powershell
+cd 03_modules/NEXA-Mobile
+.\gradlew.bat assembleDebug
+```
+
+Debug APK 输出到：
+
+```text
+app/build/outputs/apk/debug/app-debug.apk
+```
+
+Windows 上如果项目路径包含非 ASCII 字符，JVM 单元测试建议使用项目提供的 ASCII 映射入口：
+
+```powershell
+.\tools\test-jvm-ascii.ps1 :app:testDebugUnitTest
+```
+
+该脚本会临时创建 ASCII 盘符映射并在结束后清理。若 `GRADLE_USER_HOME` 本身位于非 ASCII 路径，测试进程也应使用一个 ASCII Gradle 用户缓存目录；这是 Windows/Gradle Test Worker 的路径兼容问题，不影响 APK 编译。
 
 如果你希望参与 Android 部分，建议先阅读：
 
@@ -366,8 +389,6 @@ python -m unittest discover -s tests -v
 03_modules/NEXA-Mobile/README.md
 03_modules/NEXA-Mobile/docs/
 ```
-
-然后再根据当前仓库状态补齐独立构建闭包。
 
 ---
 
